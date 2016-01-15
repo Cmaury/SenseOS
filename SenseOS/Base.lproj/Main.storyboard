@@ -30,7 +30,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9gv-OI-YCt">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9gv-OI-YCt">
                                 <rect key="frame" x="59" y="311" width="453" height="187"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -42,6 +42,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="9gv-OI-YCt" secondAttribute="trailing" constant="68" id="6RO-bt-XNs"/>
                             <constraint firstItem="9gv-OI-YCt" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="291" id="FVu-Ef-j9P"/>
                             <constraint firstItem="9gv-OI-YCt" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="NNq-qX-ywL"/>
+                            <constraint firstItem="9gv-OI-YCt" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="39" id="Ufs-h0-i5P"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="9gv-OI-YCt" secondAttribute="bottom" constant="102" id="hq6-i2-gIs"/>
                         </constraints>
                     </view>

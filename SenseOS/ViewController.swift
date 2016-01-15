@@ -24,7 +24,7 @@ class ViewController: UIViewController {
         headset.connect()
         
         
-        ConsoleLog.text = ConsoleLog.text + "connections state is " + "\(headset.connectionState) \n	"
+        ConsoleLog.text = ConsoleLog.text + "connections state is " + "\(headset.connectionState)"
         print("connections state is \(headset.connectionState)")
         ConsoleLog.text = ConsoleLog.text + "accelerometer data \(headset.pitch)" + "," + "\(headset.roll)" + "," + "\(headset.yaw)"
     }
