@@ -1,0 +1,605 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A8436A981C4984BD006BCB09 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8436A971C4984BD006BCB09 /* AppDelegate.swift */; };
+		A8436A9A1C4984BD006BCB09 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8436A991C4984BD006BCB09 /* ViewController.swift */; };
+		A8436A9D1C4984BD006BCB09 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8436A9B1C4984BD006BCB09 /* Main.storyboard */; };
+		A8436A9F1C4984BD006BCB09 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8436A9E1C4984BD006BCB09 /* Assets.xcassets */; };
+		A8436AA21C4984BD006BCB09 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8436AA01C4984BD006BCB09 /* LaunchScreen.storyboard */; };
+		A8436AAD1C4984BD006BCB09 /* SenseOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8436AAC1C4984BD006BCB09 /* SenseOSTests.swift */; };
+		A8436AB81C4984BD006BCB09 /* SenseOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8436AB71C4984BD006BCB09 /* SenseOSUITests.swift */; };
+		A8436AC71C49855A006BCB09 /* IHS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8436AC61C49855A006BCB09 /* IHS.framework */; };
+		A8436AC91C499AD7006BCB09 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8436AC81C499AD7006BCB09 /* AudioToolbox.framework */; };
+		A8436ACB1C499AE7006BCB09 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8436ACA1C499AE7006BCB09 /* AVFoundation.framework */; };
+		A8436ACD1C499AF6006BCB09 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8436ACC1C499AF6006BCB09 /* CFNetwork.framework */; };
+		A8436ACF1C499B05006BCB09 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8436ACE1C499B05006BCB09 /* CoreLocation.framework */; };
+		A8436AD11C499B13006BCB09 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8436AD01C499B13006BCB09 /* CoreMotion.framework */; };
+		A8436AD31C499B1F006BCB09 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8436AD21C499B1F006BCB09 /* CoreBluetooth.framework */; };
+		A8436AD51C499B28006BCB09 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8436AD41C499B28006BCB09 /* ExternalAccessory.framework */; };
+		A8436AD71C499B34006BCB09 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8436AD61C499B34006BCB09 /* MobileCoreServices.framework */; };
+		A8436AD91C499B45006BCB09 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8436AD81C499B45006BCB09 /* SystemConfiguration.framework */; };
+		A8436ADD1C499B62006BCB09 /* libc++.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A8436ADA1C499B62006BCB09 /* libc++.1.tbd */; };
+		A8436ADE1C499B62006BCB09 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A8436ADB1C499B62006BCB09 /* libc++.tbd */; };
+		A8436ADF1C499B62006BCB09 /* libc++abi.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A8436ADC1C499B62006BCB09 /* libc++abi.tbd */; };
+		A8436AE61C499C32006BCB09 /* ButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8436AE11C499C32006BCB09 /* ButtonDelegate.swift */; };
+		A8436AE71C499C32006BCB09 /* DeviceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8436AE21C499C32006BCB09 /* DeviceDelegate.swift */; };
+		A8436AE81C499C32006BCB09 /* SensorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8436AE31C499C32006BCB09 /* SensorDelegate.swift */; };
+		A8436AE91C499C32006BCB09 /* AudioDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8436AE41C499C32006BCB09 /* AudioDelegate.swift */; };
+		A8436AEA1C499C32006BCB09 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8436AE51C499C32006BCB09 /* Device.swift */; };
+		A8436AEC1C499D3F006BCB09 /* IHS in Resources */ = {isa = PBXBuildFile; fileRef = A8436AEB1C499D3F006BCB09 /* IHS */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A8436AA91C4984BD006BCB09 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A8436A8C1C4984BD006BCB09 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A8436A931C4984BD006BCB09;
+			remoteInfo = SenseOS;
+		};
+		A8436AB41C4984BD006BCB09 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A8436A8C1C4984BD006BCB09 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A8436A931C4984BD006BCB09;
+			remoteInfo = SenseOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A8436A941C4984BD006BCB09 /* SenseOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SenseOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8436A971C4984BD006BCB09 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A8436A991C4984BD006BCB09 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A8436A9C1C4984BD006BCB09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A8436A9E1C4984BD006BCB09 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A8436AA11C4984BD006BCB09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A8436AA31C4984BD006BCB09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8436AA81C4984BD006BCB09 /* SenseOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SenseOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8436AAC1C4984BD006BCB09 /* SenseOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenseOSTests.swift; sourceTree = "<group>"; };
+		A8436AAE1C4984BD006BCB09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8436AB31C4984BD006BCB09 /* SenseOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SenseOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8436AB71C4984BD006BCB09 /* SenseOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenseOSUITests.swift; sourceTree = "<group>"; };
+		A8436AB91C4984BD006BCB09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8436AC61C49855A006BCB09 /* IHS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IHS.framework; sourceTree = "<group>"; };
+		A8436AC81C499AD7006BCB09 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		A8436ACA1C499AE7006BCB09 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		A8436ACC1C499AF6006BCB09 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		A8436ACE1C499B05006BCB09 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		A8436AD01C499B13006BCB09 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		A8436AD21C499B1F006BCB09 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		A8436AD41C499B28006BCB09 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
+		A8436AD61C499B34006BCB09 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		A8436AD81C499B45006BCB09 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		A8436ADA1C499B62006BCB09 /* libc++.1.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.1.tbd"; path = "usr/lib/libc++.1.tbd"; sourceTree = SDKROOT; };
+		A8436ADB1C499B62006BCB09 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		A8436ADC1C499B62006BCB09 /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
+		A8436AE01C499C17006BCB09 /* IHS-Bridging-header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IHS-Bridging-header.h"; sourceTree = "<group>"; };
+		A8436AE11C499C32006BCB09 /* ButtonDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonDelegate.swift; sourceTree = "<group>"; };
+		A8436AE21C499C32006BCB09 /* DeviceDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceDelegate.swift; sourceTree = "<group>"; };
+		A8436AE31C499C32006BCB09 /* SensorDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorDelegate.swift; sourceTree = "<group>"; };
+		A8436AE41C499C32006BCB09 /* AudioDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioDelegate.swift; sourceTree = "<group>"; };
+		A8436AE51C499C32006BCB09 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		A8436AEB1C499D3F006BCB09 /* IHS */ = {isa = PBXFileReference; lastKnownFileType = folder; path = IHS; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A8436A911C4984BD006BCB09 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A8436ADD1C499B62006BCB09 /* libc++.1.tbd in Frameworks */,
+				A8436ADE1C499B62006BCB09 /* libc++.tbd in Frameworks */,
+				A8436ADF1C499B62006BCB09 /* libc++abi.tbd in Frameworks */,
+				A8436AD91C499B45006BCB09 /* SystemConfiguration.framework in Frameworks */,
+				A8436AD71C499B34006BCB09 /* MobileCoreServices.framework in Frameworks */,
+				A8436AD51C499B28006BCB09 /* ExternalAccessory.framework in Frameworks */,
+				A8436AD31C499B1F006BCB09 /* CoreBluetooth.framework in Frameworks */,
+				A8436AD11C499B13006BCB09 /* CoreMotion.framework in Frameworks */,
+				A8436ACF1C499B05006BCB09 /* CoreLocation.framework in Frameworks */,
+				A8436ACD1C499AF6006BCB09 /* CFNetwork.framework in Frameworks */,
+				A8436ACB1C499AE7006BCB09 /* AVFoundation.framework in Frameworks */,
+				A8436AC91C499AD7006BCB09 /* AudioToolbox.framework in Frameworks */,
+				A8436AC71C49855A006BCB09 /* IHS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A8436AA51C4984BD006BCB09 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A8436AB01C4984BD006BCB09 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A8436A8B1C4984BD006BCB09 = {
+			isa = PBXGroup;
+			children = (
+				A8436A961C4984BD006BCB09 /* SenseOS */,
+				A8436AAB1C4984BD006BCB09 /* SenseOSTests */,
+				A8436AB61C4984BD006BCB09 /* SenseOSUITests */,
+				A8436A951C4984BD006BCB09 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A8436A951C4984BD006BCB09 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A8436A941C4984BD006BCB09 /* SenseOS.app */,
+				A8436AA81C4984BD006BCB09 /* SenseOSTests.xctest */,
+				A8436AB31C4984BD006BCB09 /* SenseOSUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A8436A961C4984BD006BCB09 /* SenseOS */ = {
+			isa = PBXGroup;
+			children = (
+				A8436A971C4984BD006BCB09 /* AppDelegate.swift */,
+				A8436AE01C499C17006BCB09 /* IHS-Bridging-header.h */,
+				A8436A991C4984BD006BCB09 /* ViewController.swift */,
+				A8436AE11C499C32006BCB09 /* ButtonDelegate.swift */,
+				A8436AE21C499C32006BCB09 /* DeviceDelegate.swift */,
+				A8436AE31C499C32006BCB09 /* SensorDelegate.swift */,
+				A8436AE41C499C32006BCB09 /* AudioDelegate.swift */,
+				A8436AE51C499C32006BCB09 /* Device.swift */,
+				A8436A9B1C4984BD006BCB09 /* Main.storyboard */,
+				A8436A9E1C4984BD006BCB09 /* Assets.xcassets */,
+				A8436AA01C4984BD006BCB09 /* LaunchScreen.storyboard */,
+				A8436AA31C4984BD006BCB09 /* Info.plist */,
+				A8436AC51C498531006BCB09 /* Frameworks */,
+			);
+			path = SenseOS;
+			sourceTree = "<group>";
+		};
+		A8436AAB1C4984BD006BCB09 /* SenseOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				A8436AAC1C4984BD006BCB09 /* SenseOSTests.swift */,
+				A8436AAE1C4984BD006BCB09 /* Info.plist */,
+			);
+			path = SenseOSTests;
+			sourceTree = "<group>";
+		};
+		A8436AB61C4984BD006BCB09 /* SenseOSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A8436AB71C4984BD006BCB09 /* SenseOSUITests.swift */,
+				A8436AB91C4984BD006BCB09 /* Info.plist */,
+			);
+			path = SenseOSUITests;
+			sourceTree = "<group>";
+		};
+		A8436AC51C498531006BCB09 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A8436AEB1C499D3F006BCB09 /* IHS */,
+				A8436AC61C49855A006BCB09 /* IHS.framework */,
+				A8436ADA1C499B62006BCB09 /* libc++.1.tbd */,
+				A8436ADB1C499B62006BCB09 /* libc++.tbd */,
+				A8436ADC1C499B62006BCB09 /* libc++abi.tbd */,
+				A8436AD81C499B45006BCB09 /* SystemConfiguration.framework */,
+				A8436AD61C499B34006BCB09 /* MobileCoreServices.framework */,
+				A8436AD41C499B28006BCB09 /* ExternalAccessory.framework */,
+				A8436AD21C499B1F006BCB09 /* CoreBluetooth.framework */,
+				A8436AD01C499B13006BCB09 /* CoreMotion.framework */,
+				A8436ACE1C499B05006BCB09 /* CoreLocation.framework */,
+				A8436ACC1C499AF6006BCB09 /* CFNetwork.framework */,
+				A8436ACA1C499AE7006BCB09 /* AVFoundation.framework */,
+				A8436AC81C499AD7006BCB09 /* AudioToolbox.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A8436A931C4984BD006BCB09 /* SenseOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A8436ABC1C4984BD006BCB09 /* Build configuration list for PBXNativeTarget "SenseOS" */;
+			buildPhases = (
+				A8436A901C4984BD006BCB09 /* Sources */,
+				A8436A911C4984BD006BCB09 /* Frameworks */,
+				A8436A921C4984BD006BCB09 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SenseOS;
+			productName = SenseOS;
+			productReference = A8436A941C4984BD006BCB09 /* SenseOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A8436AA71C4984BD006BCB09 /* SenseOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A8436ABF1C4984BD006BCB09 /* Build configuration list for PBXNativeTarget "SenseOSTests" */;
+			buildPhases = (
+				A8436AA41C4984BD006BCB09 /* Sources */,
+				A8436AA51C4984BD006BCB09 /* Frameworks */,
+				A8436AA61C4984BD006BCB09 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A8436AAA1C4984BD006BCB09 /* PBXTargetDependency */,
+			);
+			name = SenseOSTests;
+			productName = SenseOSTests;
+			productReference = A8436AA81C4984BD006BCB09 /* SenseOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A8436AB21C4984BD006BCB09 /* SenseOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A8436AC21C4984BD006BCB09 /* Build configuration list for PBXNativeTarget "SenseOSUITests" */;
+			buildPhases = (
+				A8436AAF1C4984BD006BCB09 /* Sources */,
+				A8436AB01C4984BD006BCB09 /* Frameworks */,
+				A8436AB11C4984BD006BCB09 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A8436AB51C4984BD006BCB09 /* PBXTargetDependency */,
+			);
+			name = SenseOSUITests;
+			productName = SenseOSUITests;
+			productReference = A8436AB31C4984BD006BCB09 /* SenseOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A8436A8C1C4984BD006BCB09 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Conversant Labs";
+				TargetAttributes = {
+					A8436A931C4984BD006BCB09 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+					A8436AA71C4984BD006BCB09 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = A8436A931C4984BD006BCB09;
+					};
+					A8436AB21C4984BD006BCB09 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = A8436A931C4984BD006BCB09;
+					};
+				};
+			};
+			buildConfigurationList = A8436A8F1C4984BD006BCB09 /* Build configuration list for PBXProject "SenseOS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A8436A8B1C4984BD006BCB09;
+			productRefGroup = A8436A951C4984BD006BCB09 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A8436A931C4984BD006BCB09 /* SenseOS */,
+				A8436AA71C4984BD006BCB09 /* SenseOSTests */,
+				A8436AB21C4984BD006BCB09 /* SenseOSUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A8436A921C4984BD006BCB09 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A8436AA21C4984BD006BCB09 /* LaunchScreen.storyboard in Resources */,
+				A8436A9F1C4984BD006BCB09 /* Assets.xcassets in Resources */,
+				A8436A9D1C4984BD006BCB09 /* Main.storyboard in Resources */,
+				A8436AEC1C499D3F006BCB09 /* IHS in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A8436AA61C4984BD006BCB09 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A8436AB11C4984BD006BCB09 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A8436A901C4984BD006BCB09 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A8436A9A1C4984BD006BCB09 /* ViewController.swift in Sources */,
+				A8436AE91C499C32006BCB09 /* AudioDelegate.swift in Sources */,
+				A8436AE81C499C32006BCB09 /* SensorDelegate.swift in Sources */,
+				A8436A981C4984BD006BCB09 /* AppDelegate.swift in Sources */,
+				A8436AE71C499C32006BCB09 /* DeviceDelegate.swift in Sources */,
+				A8436AEA1C499C32006BCB09 /* Device.swift in Sources */,
+				A8436AE61C499C32006BCB09 /* ButtonDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A8436AA41C4984BD006BCB09 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A8436AAD1C4984BD006BCB09 /* SenseOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A8436AAF1C4984BD006BCB09 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A8436AB81C4984BD006BCB09 /* SenseOSUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A8436AAA1C4984BD006BCB09 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A8436A931C4984BD006BCB09 /* SenseOS */;
+			targetProxy = A8436AA91C4984BD006BCB09 /* PBXContainerItemProxy */;
+		};
+		A8436AB51C4984BD006BCB09 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A8436A931C4984BD006BCB09 /* SenseOS */;
+			targetProxy = A8436AB41C4984BD006BCB09 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A8436A9B1C4984BD006BCB09 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A8436A9C1C4984BD006BCB09 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A8436AA01C4984BD006BCB09 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A8436AA11C4984BD006BCB09 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A8436ABA1C4984BD006BCB09 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A8436ABB1C4984BD006BCB09 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A8436ABD1C4984BD006BCB09 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SenseOS",
+				);
+				INFOPLIST_FILE = SenseOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.conversantlabs.SenseOS.SenseOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SenseOS/IHS-Bridging-header.h";
+			};
+			name = Debug;
+		};
+		A8436ABE1C4984BD006BCB09 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SenseOS",
+				);
+				INFOPLIST_FILE = SenseOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.conversantlabs.SenseOS.SenseOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SenseOS/IHS-Bridging-header.h";
+			};
+			name = Release;
+		};
+		A8436AC01C4984BD006BCB09 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = SenseOSTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.conversantlabs.SenseOS.SenseOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SenseOS.app/SenseOS";
+			};
+			name = Debug;
+		};
+		A8436AC11C4984BD006BCB09 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = SenseOSTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.conversantlabs.SenseOS.SenseOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SenseOS.app/SenseOS";
+			};
+			name = Release;
+		};
+		A8436AC31C4984BD006BCB09 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SenseOSUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.conversantlabs.SenseOS.SenseOSUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = SenseOS;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		A8436AC41C4984BD006BCB09 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SenseOSUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.conversantlabs.SenseOS.SenseOSUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = SenseOS;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A8436A8F1C4984BD006BCB09 /* Build configuration list for PBXProject "SenseOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A8436ABA1C4984BD006BCB09 /* Debug */,
+				A8436ABB1C4984BD006BCB09 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A8436ABC1C4984BD006BCB09 /* Build configuration list for PBXNativeTarget "SenseOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A8436ABD1C4984BD006BCB09 /* Debug */,
+				A8436ABE1C4984BD006BCB09 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		A8436ABF1C4984BD006BCB09 /* Build configuration list for PBXNativeTarget "SenseOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A8436AC01C4984BD006BCB09 /* Debug */,
+				A8436AC11C4984BD006BCB09 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		A8436AC21C4984BD006BCB09 /* Build configuration list for PBXNativeTarget "SenseOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A8436AC31C4984BD006BCB09 /* Debug */,
+				A8436AC41C4984BD006BCB09 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A8436A8C1C4984BD006BCB09 /* Project object */;
+}
