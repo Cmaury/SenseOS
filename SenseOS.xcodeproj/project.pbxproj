@@ -273,6 +273,7 @@
 				TargetAttributes = {
 					A8436A931C4984BD006BCB09 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = BVC5TXXXMZ;
 					};
 					A8436AA71C4984BD006BCB09 = {
 						CreatedOnToolsVersion = 7.2;
@@ -485,6 +486,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -502,6 +504,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -582,6 +585,7 @@
 				A8436ABE1C4984BD006BCB09 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A8436ABF1C4984BD006BCB09 /* Build configuration list for PBXNativeTarget "SenseOSTests" */ = {
 			isa = XCConfigurationList;
@@ -590,6 +594,7 @@
 				A8436AC11C4984BD006BCB09 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A8436AC21C4984BD006BCB09 /* Build configuration list for PBXNativeTarget "SenseOSUITests" */ = {
 			isa = XCConfigurationList;
@@ -598,6 +603,7 @@
 				A8436AC41C4984BD006BCB09 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

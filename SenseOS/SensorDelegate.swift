@@ -12,16 +12,20 @@ class SensorDelegate: NSObject, IHSSensorsDelegate {
     
     @objc func ihsDevice(ihs: IHSDevice!, accelerometer3AxisDataChanged data: IHSAHRS3AxisStruct) {
         print("accelerometer data changed")
+        
+        if ihs.gyroCalibrated {
+            ihs.accelerometerData
+        }
+    }
+    
+    @objc func ihsDevice(ihs: IHSDevice!, didChangeYaw yaw: Float, pitch: Float, andRoll roll: Float) {
+        
     }
     
     @objc func ihsDevice(ihs: IHSDevice!, fusedHeadingChanged heading: Float) {
     }
     
     @objc func ihsDevice(ihs: IHSDevice!, compassHeadingChanged heading: Float) {
-        
-    }
-    
-    @objc func ihsDevice(ihs: IHSDevice!, didChangeYaw yaw: Float, pitch: Float, andRoll roll: Float) {
         
     }
     

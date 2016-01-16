@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var ConsoleLog: UITextView!
+    @IBOutlet weak var ConnectionState: UILabel!
 
     var headset: IHSDevice!
     let sensorDelegate = SensorDelegate()
@@ -18,14 +19,12 @@ class ViewController: UIViewController {
     let deviceDelegate = DeviceDelegate()
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let headset = IHSDevice(deviceDelegate: deviceDelegate)
         headset.connect()
-        
-        
-        ConsoleLog.text = ConsoleLog.text + "connections state is " + "\(headset.connectionState)"
-        print("connections state is \(headset.connectionState)")
+        ConnectionState.text = connectionStateString
         ConsoleLog.text = ConsoleLog.text + "accelerometer data \(headset.pitch)" + "," + "\(headset.roll)" + "," + "\(headset.yaw)"
     }
 
