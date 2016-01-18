@@ -10,22 +10,48 @@ import UIKit
 
 class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, IHS3DAudioDelegate, IHSButtonDelegate {
     
-    @IBOutlet weak var ConsoleLog: UITextView!
-    @IBOutlet weak var ConnectionState: UILabel!
-    
-    @IBAction func RefreshData(sender: UIButton) {
-    }
     
     
     let headset = IHSDevice(deviceDelegate: ViewController.self as! IHSDeviceDelegate)
-//    let sensorDelegate = SensorDelegate()
-//    let audioDelegate = AudioDelegate()
-//    let buttonDelegate = ButtonDelegate()
+    
+    @IBOutlet weak var accelX: UILabel!
+    @IBOutlet weak var accelY: UILabel!
+    @IBOutlet weak var accelZ: UILabel!
+
+    @IBOutlet weak var ConnectionState: UILabel!
+    
+    @IBAction func shareButton(sender: UIBarButtonItem) {
+        var fileText = ""
+        var fileIndex = ""
+        if sender.title == "Accel" {
+            fileIndex = "accel_Data"
+        }
+        else { fileIndex = "raw_Accel_Data" }
+        print("file name " + fileIndex)
+        //get file to share from button
+        if let dir : NSString = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true).first {
+            let path = dir.stringByAppendingPathComponent(fileIndex);
+            
+            //get file text
+                do {
+                    print("getting contents of file \(path)")
+                fileText = try String(contentsOfFile: path)
+                }
+                catch {
+                    fileText = "there was an error pulling file data"
+                    print(error)
+            }
+            let myWebsite = NSURL(string: "http://conversantlabs.com")
+            let activityViewController = UIActivityViewController(activityItems: [fileText, myWebsite!], applicationActivities: nil)
+            self.presentViewController(activityViewController, animated: true, completion: nil)
+        }
+    }
+    
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("connection state is \(headset.connectionState.rawValue)")
+
         if headset.connectionState != IHSDeviceConnectionState.Connected {
             ConnectionState.text = "not connected"
             print("trying to connect")
@@ -37,6 +63,34 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
             print("\(headset.connectionState.rawValue)")
         }
         print("connection state is \(headset.connectionState.rawValue)")
+    }
+    
+    
+    
+    func updateLog(text:String, file: String) {
+        let text = text + ", " + NSDate().description
+        let data = text.dataUsingEncoding(NSUTF8StringEncoding)!
+        if let dir : NSString = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true).first {
+            let path = dir.stringByAppendingPathComponent(file);
+            if NSFileManager.defaultManager().fileExistsAtPath(path) {
+                if let fileHandle = NSFileHandle(forWritingAtPath: path) {
+                    fileHandle.seekToEndOfFile()
+                    fileHandle.writeData(data)
+                    fileHandle.closeFile()
+                    print("wrote to file \(file)")
+                }
+                else {
+                    print("can't open file because reasons")
+                }
+                
+            }
+            else {
+                let pathURL = NSURL(string: path)!
+                data.writeToURL(pathURL, atomically: true)
+                print("created file: \(file)")
+            }
+            
+        }
     }
     
     
@@ -68,14 +122,24 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     
     //Sensor Delegate Methods
     @objc func ihsDevice(ihs: IHSDevice!, accelerometer3AxisDataChanged data: IHSAHRS3AxisStruct) {
-        ConsoleLog.text = ConsoleLog.text + "accelerometer data \(headset.pitch)" + "," + "\(headset.roll)" + "," + "\(headset.yaw)"
+        accelX.text = " \(headset.pitch)"
+        accelY.text = "\(headset.roll)"
+        accelZ.text =  "\(headset.yaw)"
         
         if ihs.gyroCalibrated {
-            ihs.accelerometerData
+            let file = "accel_Data"
+            let text = "\(ihs.accelerometerData.x), \(ihs.accelerometerData.y), \(ihs.accelerometerData.z)"
+            updateLog(text, file: file)
+            print(text)
+            
         }
     }
     
     @objc func ihsDevice(ihs: IHSDevice!, didChangeYaw yaw: Float, pitch: Float, andRoll roll: Float) {
+        let file = "raw_Accel_Data"
+        let text = "\(ihs.yaw), \(ihs.pitch), \(ihs.roll)"
+        updateLog(text, file: file)
+        print(text)
         
     }
     
