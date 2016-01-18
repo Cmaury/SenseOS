@@ -27,11 +27,6 @@
 		A8436ADD1C499B62006BCB09 /* libc++.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A8436ADA1C499B62006BCB09 /* libc++.1.tbd */; };
 		A8436ADE1C499B62006BCB09 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A8436ADB1C499B62006BCB09 /* libc++.tbd */; };
 		A8436ADF1C499B62006BCB09 /* libc++abi.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A8436ADC1C499B62006BCB09 /* libc++abi.tbd */; };
-		A8436AE61C499C32006BCB09 /* ButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8436AE11C499C32006BCB09 /* ButtonDelegate.swift */; };
-		A8436AE71C499C32006BCB09 /* DeviceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8436AE21C499C32006BCB09 /* DeviceDelegate.swift */; };
-		A8436AE81C499C32006BCB09 /* SensorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8436AE31C499C32006BCB09 /* SensorDelegate.swift */; };
-		A8436AE91C499C32006BCB09 /* AudioDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8436AE41C499C32006BCB09 /* AudioDelegate.swift */; };
-		A8436AEA1C499C32006BCB09 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8436AE51C499C32006BCB09 /* Device.swift */; };
 		A8436AEC1C499D3F006BCB09 /* IHS in Resources */ = {isa = PBXBuildFile; fileRef = A8436AEB1C499D3F006BCB09 /* IHS */; };
 /* End PBXBuildFile section */
 
@@ -80,11 +75,6 @@
 		A8436ADB1C499B62006BCB09 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		A8436ADC1C499B62006BCB09 /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
 		A8436AE01C499C17006BCB09 /* IHS-Bridging-header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IHS-Bridging-header.h"; sourceTree = "<group>"; };
-		A8436AE11C499C32006BCB09 /* ButtonDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonDelegate.swift; sourceTree = "<group>"; };
-		A8436AE21C499C32006BCB09 /* DeviceDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceDelegate.swift; sourceTree = "<group>"; };
-		A8436AE31C499C32006BCB09 /* SensorDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorDelegate.swift; sourceTree = "<group>"; };
-		A8436AE41C499C32006BCB09 /* AudioDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioDelegate.swift; sourceTree = "<group>"; };
-		A8436AE51C499C32006BCB09 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		A8436AEB1C499D3F006BCB09 /* IHS */ = {isa = PBXFileReference; lastKnownFileType = folder; path = IHS; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -152,11 +142,6 @@
 				A8436A971C4984BD006BCB09 /* AppDelegate.swift */,
 				A8436AE01C499C17006BCB09 /* IHS-Bridging-header.h */,
 				A8436A991C4984BD006BCB09 /* ViewController.swift */,
-				A8436AE11C499C32006BCB09 /* ButtonDelegate.swift */,
-				A8436AE21C499C32006BCB09 /* DeviceDelegate.swift */,
-				A8436AE31C499C32006BCB09 /* SensorDelegate.swift */,
-				A8436AE41C499C32006BCB09 /* AudioDelegate.swift */,
-				A8436AE51C499C32006BCB09 /* Device.swift */,
 				A8436A9B1C4984BD006BCB09 /* Main.storyboard */,
 				A8436A9E1C4984BD006BCB09 /* Assets.xcassets */,
 				A8436AA01C4984BD006BCB09 /* LaunchScreen.storyboard */,
@@ -339,12 +324,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8436A9A1C4984BD006BCB09 /* ViewController.swift in Sources */,
-				A8436AE91C499C32006BCB09 /* AudioDelegate.swift in Sources */,
-				A8436AE81C499C32006BCB09 /* SensorDelegate.swift in Sources */,
 				A8436A981C4984BD006BCB09 /* AppDelegate.swift in Sources */,
-				A8436AE71C499C32006BCB09 /* DeviceDelegate.swift in Sources */,
-				A8436AEA1C499C32006BCB09 /* Device.swift in Sources */,
-				A8436AE61C499C32006BCB09 /* ButtonDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

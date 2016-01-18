@@ -17,15 +17,14 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     }
     
     
-    var headset: IHSDevice!
-    let sensorDelegate = SensorDelegate()
-    let audioDelegate = AudioDelegate()
-    let buttonDelegate = ButtonDelegate()
+    let headset = IHSDevice(deviceDelegate: ViewController.self as! IHSDeviceDelegate)
+//    let sensorDelegate = SensorDelegate()
+//    let audioDelegate = AudioDelegate()
+//    let buttonDelegate = ButtonDelegate()
     
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        let headset = IHSDevice(deviceDelegate: self)
         print("connection state is \(headset.connectionState.rawValue)")
         if headset.connectionState != IHSDeviceConnectionState.Connected {
             ConnectionState.text = "not connected"
@@ -38,7 +37,6 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
             print("\(headset.connectionState.rawValue)")
         }
         print("connection state is \(headset.connectionState.rawValue)")
-        ConsoleLog.text = ConsoleLog.text + "accelerometer data \(headset.pitch)" + "," + "\(headset.roll)" + "," + "\(headset.yaw)"
     }
     
     
@@ -70,7 +68,7 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     
     //Sensor Delegate Methods
     @objc func ihsDevice(ihs: IHSDevice!, accelerometer3AxisDataChanged data: IHSAHRS3AxisStruct) {
-        print("accelerometer data changed")
+        ConsoleLog.text = ConsoleLog.text + "accelerometer data \(headset.pitch)" + "," + "\(headset.roll)" + "," + "\(headset.yaw)"
         
         if ihs.gyroCalibrated {
             ihs.accelerometerData
