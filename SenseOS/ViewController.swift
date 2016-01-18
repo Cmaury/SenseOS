@@ -9,10 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, IHS3DAudioDelegate, IHSButtonDelegate {
-    
-    
-    
-    let headset = IHSDevice(deviceDelegate: ViewController.self as! IHSDeviceDelegate)
+        
     
     @IBOutlet weak var accelX: UILabel!
     @IBOutlet weak var accelY: UILabel!
@@ -47,7 +44,7 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
         }
     }
     
-    
+    let headset = IHSDevice(deviceDelegate: ViewController.self as! IHSDeviceDelegate)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,7 +65,7 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     
     
     func updateLog(text:String, file: String) {
-        let text = text + ", " + NSDate().description
+        let text = text + ", " + NSDate().description + "\n"
         let data = text.dataUsingEncoding(NSUTF8StringEncoding)!
         if let dir : NSString = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true).first {
             let path = dir.stringByAppendingPathComponent(file);
