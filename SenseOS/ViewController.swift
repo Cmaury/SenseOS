@@ -46,6 +46,8 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     
     let headset = IHSDevice(deviceDelegate: ViewController.self as! IHSDeviceDelegate)
 
+    let gestureRecognizer = SAYGestureRecognizer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -119,6 +121,9 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     
     //Sensor Delegate Methods
     @objc func ihsDevice(ihs: IHSDevice!, accelerometer3AxisDataChanged data: IHSAHRS3AxisStruct) {
+        
+        gestureRecognizer.accelPointCache = SAY3DPoint(x:headset.roll, y: headset.pitch, z: headset.yaw)
+        
         accelX.text = " \(headset.pitch)"
         accelY.text = "\(headset.roll)"
         accelZ.text =  "\(headset.yaw)"

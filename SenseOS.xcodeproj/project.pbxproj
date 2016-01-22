@@ -28,6 +28,9 @@
 		A8436ADE1C499B62006BCB09 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A8436ADB1C499B62006BCB09 /* libc++.tbd */; };
 		A8436ADF1C499B62006BCB09 /* libc++abi.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A8436ADC1C499B62006BCB09 /* libc++abi.tbd */; };
 		A8436AEC1C499D3F006BCB09 /* IHS in Resources */ = {isa = PBXBuildFile; fileRef = A8436AEB1C499D3F006BCB09 /* IHS */; };
+		A8436AF21C512F76006BCB09 /* GLGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = A8436AEF1C512F76006BCB09 /* GLGestureRecognizer.m */; };
+		A8436AF31C512F76006BCB09 /* GLGestureRecognizer+JSONTemplates.m in Sources */ = {isa = PBXBuildFile; fileRef = A8436AF11C512F76006BCB09 /* GLGestureRecognizer+JSONTemplates.m */; };
+		A8436AF51C513266006BCB09 /* SAYGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8436AF41C513266006BCB09 /* SAYGestureRecognizer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +79,11 @@
 		A8436ADC1C499B62006BCB09 /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
 		A8436AE01C499C17006BCB09 /* IHS-Bridging-header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IHS-Bridging-header.h"; sourceTree = "<group>"; };
 		A8436AEB1C499D3F006BCB09 /* IHS */ = {isa = PBXFileReference; lastKnownFileType = folder; path = IHS; sourceTree = "<group>"; };
+		A8436AEE1C512F76006BCB09 /* GLGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGestureRecognizer.h; sourceTree = "<group>"; };
+		A8436AEF1C512F76006BCB09 /* GLGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGestureRecognizer.m; sourceTree = "<group>"; };
+		A8436AF01C512F76006BCB09 /* GLGestureRecognizer+JSONTemplates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GLGestureRecognizer+JSONTemplates.h"; sourceTree = "<group>"; };
+		A8436AF11C512F76006BCB09 /* GLGestureRecognizer+JSONTemplates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GLGestureRecognizer+JSONTemplates.m"; sourceTree = "<group>"; };
+		A8436AF41C513266006BCB09 /* SAYGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAYGestureRecognizer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +147,7 @@
 		A8436A961C4984BD006BCB09 /* SenseOS */ = {
 			isa = PBXGroup;
 			children = (
+				A8436AED1C512F62006BCB09 /* GestureRecognizer */,
 				A8436A971C4984BD006BCB09 /* AppDelegate.swift */,
 				A8436AE01C499C17006BCB09 /* IHS-Bridging-header.h */,
 				A8436A991C4984BD006BCB09 /* ViewController.swift */,
@@ -188,6 +197,18 @@
 				A8436AC81C499AD7006BCB09 /* AudioToolbox.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A8436AED1C512F62006BCB09 /* GestureRecognizer */ = {
+			isa = PBXGroup;
+			children = (
+				A8436AEE1C512F76006BCB09 /* GLGestureRecognizer.h */,
+				A8436AEF1C512F76006BCB09 /* GLGestureRecognizer.m */,
+				A8436AF01C512F76006BCB09 /* GLGestureRecognizer+JSONTemplates.h */,
+				A8436AF11C512F76006BCB09 /* GLGestureRecognizer+JSONTemplates.m */,
+				A8436AF41C513266006BCB09 /* SAYGestureRecognizer.swift */,
+			);
+			name = GestureRecognizer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -323,6 +344,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8436AF31C512F76006BCB09 /* GLGestureRecognizer+JSONTemplates.m in Sources */,
+				A8436AF51C513266006BCB09 /* SAYGestureRecognizer.swift in Sources */,
+				A8436AF21C512F76006BCB09 /* GLGestureRecognizer.m in Sources */,
 				A8436A9A1C4984BD006BCB09 /* ViewController.swift in Sources */,
 				A8436A981C4984BD006BCB09 /* AppDelegate.swift in Sources */,
 			);
