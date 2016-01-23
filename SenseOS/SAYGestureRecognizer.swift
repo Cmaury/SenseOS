@@ -26,12 +26,12 @@ class SAYGestureRecognizer {
     
     var accelPoints = [SAY3DPoint]()
     var resampledPoints = [SAY3DPoint]()
-    var templates = [String: SAY3DPoint]()
+    var templates = [String: [SAY3DPoint]]()
     
     init() {
         self.accelPoints = []
         self.resampledPoints = []
-        self.templates = ["":SAY3DPointOrigin]
+        self.templates = ["": []]
         self.accelPointCache = [SAY3DPointOrigin]
         
     }
@@ -42,6 +42,22 @@ class SAYGestureRecognizer {
     }
     
     func startRecognition() {
+        let gestureTemplates = SAYGestureTemplateCGFloat()
+        templates = ["Nod Up": gestureTemplates.shortNodUpandBack,
+            "LongNodStartUp": gestureTemplates.LongNodStartUp,
+            "longNodStartDown": gestureTemplates.longNodStartDown,
+            "shortNodDownandBack": gestureTemplates.shortNodDownandBack,
+            "lookLeftandBack": gestureTemplates.lookLeftandBack,
+            "lookRightandBack": gestureTemplates.lookRightandBack,
+            "shakeHeadStartLeft": gestureTemplates.shakeHeadStartLeft,
+            "shakeHeadStartRight": gestureTemplates.shakeHeadStartRight,
+            "iltLeftandBack": gestureTemplates.tiltLeftandBack,
+            "tiltRightandBack": gestureTemplates.tiltRightandBack,
+            "twistLeftandBack": gestureTemplates.twistLeftandBack,
+            "twistRightandBack": gestureTemplates.twistRightandBack,
+            "jerkBack": gestureTemplates.jerkBack
+        ]
+
         if accelPointCache.count > 10 {
             let delta = Distance(accelPointCache.last!, p2: accelPointCache[accelPointCache.count - 2])
             print("distance delta is \(delta)")
@@ -61,7 +77,6 @@ class SAYGestureRecognizer {
                 }
                 string.appendContentsOf("], \n")
                 print("read:\n \(string)")
-
             }
         }
     }
@@ -131,7 +146,9 @@ class SAYGestureRecognizer {
             //get all sample points
             let templateIndex = templates.indexForKey(templateName)
             var templateSamples = [SAY3DPoint]()
-            templateSamples.append(templates[templateIndex!].1)
+            for item in templates[templateIndex!].1 {
+                templateSamples.append(item)
+            }
             
             var template = [SAY3DPoint](count:samplePoints, repeatedValue: SAY3DPointOrigin)
             assert(samplePoints == templateSamples.count)

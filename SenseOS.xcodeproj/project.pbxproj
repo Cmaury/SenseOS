@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A816719B1C54107B00472E59 /* GestureTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A816719A1C54107B00472E59 /* GestureTemplates.swift */; };
+		A816719B1C54107B00472E59 /* SAYGestureTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A816719A1C54107B00472E59 /* SAYGestureTemplates.swift */; };
 		A8436A981C4984BD006BCB09 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8436A971C4984BD006BCB09 /* AppDelegate.swift */; };
 		A8436A9A1C4984BD006BCB09 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8436A991C4984BD006BCB09 /* ViewController.swift */; };
 		A8436A9D1C4984BD006BCB09 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8436A9B1C4984BD006BCB09 /* Main.storyboard */; };
@@ -50,7 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		A816719A1C54107B00472E59 /* GestureTemplates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureTemplates.swift; sourceTree = "<group>"; };
+		A816719A1C54107B00472E59 /* SAYGestureTemplates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAYGestureTemplates.swift; sourceTree = "<group>"; };
 		A8436A941C4984BD006BCB09 /* SenseOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SenseOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8436A971C4984BD006BCB09 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A8436A991C4984BD006BCB09 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -199,7 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				A8436AF41C513266006BCB09 /* SAYGestureRecognizer.swift */,
-				A816719A1C54107B00472E59 /* GestureTemplates.swift */,
+				A816719A1C54107B00472E59 /* SAYGestureTemplates.swift */,
 			);
 			name = GestureRecognizer;
 			sourceTree = "<group>";
@@ -340,7 +340,7 @@
 				A8436AF51C513266006BCB09 /* SAYGestureRecognizer.swift in Sources */,
 				A8436A9A1C4984BD006BCB09 /* ViewController.swift in Sources */,
 				A8436A981C4984BD006BCB09 /* AppDelegate.swift in Sources */,
-				A816719B1C54107B00472E59 /* GestureTemplates.swift in Sources */,
+				A816719B1C54107B00472E59 /* SAYGestureTemplates.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
