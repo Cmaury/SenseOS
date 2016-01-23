@@ -18,9 +18,11 @@ let SAY3DPointOrigin = SAY3DPoint(x: 0, y: 0, z: 0)
 
 class SAYGestureRecognizer {
     
-    var accelPointCache: SAY3DPoint
+    var accelPointCache: [SAY3DPoint]
     
     let kSamplePoints = 16
+    let recognitionThreshold = CGFloat(0.5)
+    var isRecognizing = false
     
     var accelPoints = [SAY3DPoint]()
     var resampledPoints = [SAY3DPoint]()
@@ -30,19 +32,48 @@ class SAYGestureRecognizer {
         self.accelPoints = []
         self.resampledPoints = []
         self.templates = ["":SAY3DPointOrigin]
-        self.accelPointCache = SAY3DPointOrigin
+        self.accelPointCache = [SAY3DPointOrigin]
+        
+    }
+    func testDistance() -> CGFloat {
+        let delta = Distance(accelPointCache.last!, p2: accelPointCache[accelPointCache.count - 2])
+        print("distance delta is \(delta)")
+        return delta
+    }
+    
+    func startRecognition() {
+        if accelPointCache.count > 10 {
+            let delta = Distance(accelPointCache.last!, p2: accelPointCache[accelPointCache.count - 2])
+            print("distance delta is \(delta)")
+            if delta > recognitionThreshold {
+                isRecognizing = true
+                print("started recognizing")
+                addAccelData()
+            }
+            else {
+                isRecognizing = false
+                //findBestMatch()
+                print("Stored \(accelPoints.count) data points")
+                print("stopped recognizing")
+                var string = "[ "
+                for point in accelPoints {
+                    string.appendContentsOf("[ \(point.x), \(point.y), \(point.z)], ")
+                }
+                string.appendContentsOf("], \n")
+                print("read:\n \(string)")
+
+            }
+        }
+    }
+    
+    func stopRecognition() {
         
     }
     
     func addAccelData() {
-        let currentPoint = accelPointCache
-        addAccelPoint(currentPoint)
+        let currentPoint = accelPointCache.last
+        accelPoints.append((currentPoint!))
         print("wrote accel data point to array of accel data points")
-        
-    }
-    
-    func addAccelPoint(point: SAY3DPoint) {
-        
     }
     
     func resetAccelData() {
@@ -137,7 +168,7 @@ class SAYGestureRecognizer {
 //            print("read:\n \(string)")
 //            return bestTemplateName
         }
-        
+        resetAccelData()
         let returnString = bestTemplateName + " with score: \(best)"
         return returnString
     }

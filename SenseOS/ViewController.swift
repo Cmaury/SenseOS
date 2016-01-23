@@ -14,6 +14,7 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     @IBOutlet weak var accelX: UILabel!
     @IBOutlet weak var accelY: UILabel!
     @IBOutlet weak var accelZ: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
 
     @IBOutlet weak var ConnectionState: UILabel!
     
@@ -98,13 +99,14 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     @objc func ihsDevice(ihs: IHSDevice!, connectionStateChanged connectionState: IHSDeviceConnectionState) {
         
         switch connectionState {
-        case IHSDeviceConnectionState.None:
+        case IHSDeviceConnectionState.Connected:
+            ConnectionState.text = "Connected"
             
-            ConnectionState.text = "None"
+        case IHSDeviceConnectionState.None: ConnectionState.text = "None"
         case IHSDeviceConnectionState.Disconnected: ConnectionState.text = "Disconnected"
+            gestureRecognizer.stopRecognition()
         case IHSDeviceConnectionState.Discovering: ConnectionState.text = "Discovering"
         case IHSDeviceConnectionState.Connecting: ConnectionState.text = "Connecting..."
-        case IHSDeviceConnectionState.Connected: ConnectionState.text = "Connected"
         case IHSDeviceConnectionState.ConnectionFailed:
             ConnectionState.text = "Connection Failed"
         case IHSDeviceConnectionState.BluetoothOff: ConnectionState.text = "Bluetooth is off"
@@ -122,7 +124,9 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     //Sensor Delegate Methods
     @objc func ihsDevice(ihs: IHSDevice!, accelerometer3AxisDataChanged data: IHSAHRS3AxisStruct) {
         
-        gestureRecognizer.accelPointCache = SAY3DPoint(x:headset.roll, y: headset.pitch, z: headset.yaw)
+        gestureRecognizer.accelPointCache.append(SAY3DPoint(x:CGFloat(headset.roll), y: CGFloat(headset.pitch), z: CGFloat(headset.yaw)))
+        gestureRecognizer.startRecognition()
+        distanceLabel.text = "\(gestureRecognizer.testDistance())"
         
         accelX.text = " \(headset.pitch)"
         accelY.text = "\(headset.roll)"
@@ -169,7 +173,6 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     }
     
     @objc func ihsDevice(ihs: IHSDevice!, gyroCalibrated: Bool) {
-        
     }
     
     
