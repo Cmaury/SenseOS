@@ -24,12 +24,14 @@ class SAYGestureRecognizer {
     
     var accelPoints = [SAY3DPoint]()
     var resampledPoints = [SAY3DPoint]()
-    var templates = [String: String]()
+    var templates = [String: SAY3DPoint]()
     
     init() {
         self.accelPoints = []
         self.resampledPoints = []
-        self.templates = ["":""]
+        self.templates = ["":SAY3DPointOrigin]
+        self.accelPointCache = SAY3DPointOrigin
+        
     }
     
     func addAccelData() {
@@ -70,10 +72,11 @@ class SAYGestureRecognizer {
         
         
         //scale gesture
-        var lowerFrontLeft, upperBackRight: SAY3DPoint
+        var lowerFrontLeft: SAY3DPoint = SAY3DPointOrigin
+        var upperBackRight: SAY3DPoint = SAY3DPointOrigin
         
         for var i = 0; i < samplePoints; i++ {
-            var pt: SAY3DPoint = samples[i]
+            let pt: SAY3DPoint = samples[i]
             if (pt.x < lowerFrontLeft.x) { lowerFrontLeft.x = pt.x }
             if (pt.y < lowerFrontLeft.y) { lowerFrontLeft.y = pt.y }
             if (pt.z < lowerFrontLeft.z) { lowerFrontLeft.z = pt.z }
@@ -82,7 +85,7 @@ class SAYGestureRecognizer {
             if (pt.z > upperBackRight.z) { upperBackRight.z = pt.z }
         }
         
-        var scale: CGFloat = 2 / max(upperBackRight.x - lowerFrontLeft.x, max(upperBackRight.y - lowerFrontLeft.y, upperBackRight.z - lowerFrontLeft.z))
+        let scale: CGFloat = 2 / max(upperBackRight.x - lowerFrontLeft.x, max(upperBackRight.y - lowerFrontLeft.y, upperBackRight.z - lowerFrontLeft.z))
         
         Scale(&samples, samplePoints: samplePoints, xscale: scale, yscale: scale, zscale: scale)
         
@@ -91,10 +94,12 @@ class SAYGestureRecognizer {
         Translate(&samples, samplePoints: samplePoints, center: center)
         
         var bestTemplateName = ""
-        var best = Float(99.999)
+        var best = CGFloat(99.999)
         for templateName in templates.keys {
+            
+            //get all sample points
             let templateIndex = templates.indexForKey(templateName)
-            var templateSamples = [String]()
+            var templateSamples = [SAY3DPoint]()
             templateSamples.append(templates[templateIndex!].1)
             
             var template = [SAY3DPoint](count:samplePoints, repeatedValue: SAY3DPointOrigin)
@@ -104,7 +109,7 @@ class SAYGestureRecognizer {
                 template[index] = templateSample
             }
             
-            var score = DistanceAtBestAngle(samples, samplePoints: samplePoints, template: template)
+            let score = DistanceAtBestAngle(samples, samplePoints: samplePoints, template: template)
             print("[(templateName) match score is \(score)")
             
             if score < best {
@@ -115,7 +120,7 @@ class SAYGestureRecognizer {
             print("Best match is \(bestTemplateName ) with score \(best)")
             
             //not sure if should be set here
-            var outscore = best
+            //var outscore = best
             
             self.resampledPoints = [SAY3DPoint]()
             
@@ -124,16 +129,17 @@ class SAYGestureRecognizer {
             }
             
             //serialize the samples as JSON
-            var string = "\"template_name\": [ "
-            for sample in samples {
-                var pt = sample
-                string.appendContentsOf("\(sample.x), \(sample.y), \(sample.z)], ")
-            }
-            string.appendContentsOf("], \n")
-            print("read:\n \(string)")
-            return bestTemplateName
+//            var string = "\"template_name\": [ "
+//            for sample in samples {
+//                string.appendContentsOf("\(sample.x), \(sample.y), \(sample.z)], ")
+//            }
+//            string.appendContentsOf("], \n")
+//            print("read:\n \(string)")
+//            return bestTemplateName
         }
         
+        let returnString = bestTemplateName + " with score: \(best)"
+        return returnString
     }
     
     func Centroid(samples: [SAY3DPoint], samplePoints: Int) -> SAY3DPoint{
@@ -183,17 +189,18 @@ class SAYGestureRecognizer {
         let dy = p2.y - p1.y
         let dz = p2.z - p1.z
         
-        return sqrt(dx*dx + dy*dy + dz*dz)
+        return CGFloat(sqrt(dx*dx + dy*dy + dz*dz))
     }
     
-    func PathDistance(p1: [SAY3DPoint], p2: [SAY3DPoint], count: Int) {
+    func PathDistance(p1: [SAY3DPoint], p2: [SAY3DPoint], count: Int) -> CGFloat {
         var d: CGFloat = 0.0
         for var i = 0; i < count; i++ {
             d = d + Distance(p1[i], p2: p2[i])
         }
+        return d
     }
     
-    func DistanceAtAngle(samples: [SAY3DPoint], samplePoints: Int, template: SAY3DPoint, theta: CGFloat) {
+    func DistanceAtAngle(samples: [SAY3DPoint], samplePoints: Int, template: [SAY3DPoint], theta: CGFloat) -> CGFloat {
         
         var newPoints = [SAY3DPoint](count:128, repeatedValue: SAY3DPointOrigin)
         assert(samplePoints <= newPoints.count)
@@ -202,7 +209,7 @@ class SAYGestureRecognizer {
         return PathDistance(newPoints, p2: samples, count: samplePoints)
     }
     
-    func DistanceAtBestAngle(samples: SAY3DPoint, samplePoints: Int, template: SAY3DPoint) -> CGFloat {
+    func DistanceAtBestAngle(samples: [SAY3DPoint], samplePoints: Int, template: [SAY3DPoint]) -> CGFloat {
         
         var a = CGFloat(-0.25 * M_PI)
         var b = -a
@@ -210,10 +217,10 @@ class SAYGestureRecognizer {
         let Phi = CGFloat(0.5 * (-1.0 + sqrtf(5.0)))
         
         var x1 = Phi * a + (1.0 - Phi) * b
-        var f1 = DistanceAtAngle(samples, samplePoints: samplePoints, template: template, theta: x1)
+        var f1: CGFloat = DistanceAtAngle(samples, samplePoints: samplePoints, template: template, theta: x1)
         
         var x2 = (1.0 - Phi) * a + Phi * b
-        var f2 = DistanceAtAngle(samples, samplePoints: samplePoints, template: template, theta: x2)
+        var f2:CGFloat = DistanceAtAngle(samples, samplePoints: samplePoints, template: template, theta: x2)
         
         while (fabs(b-a) > threshold) {
             if (f1 < f2) {
