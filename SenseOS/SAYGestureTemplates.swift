@@ -74,12 +74,28 @@ func convertStringtoTemplate(string: String) -> [SAY3DPoint] {
     for item in arrayRaw {
         arrayCleaned.append(item.stringByReplacingOccurrencesOfString("[", withString: "").stringByReplacingOccurrencesOfString("]", withString: ""))
     }
+    var arrayNoCommas = [String]()
+    for item in arrayCleaned {
+        let temp = item.componentsSeparatedByString(",")
+        arrayNoCommas = arrayNoCommas + temp
+    }
+    
+    for var i = 0; i < arrayNoCommas.count; i++ {
+        if arrayNoCommas[i] == "nil" || arrayNoCommas[i] == "" || arrayNoCommas[i] == " " {
+            arrayNoCommas.removeAtIndex(i)
+            i = i - 1  //account for removal of item
+        }
+    }
+    
     var say3DPoints = [SAY3DPoint]()
-    while arrayCleaned.count >= 3 {
-        let z = Float(arrayCleaned.popLast()!)
-        let y = Float(arrayCleaned.popLast()!)
-        let x = Float(arrayCleaned.popLast()!)
-        say3DPoints.append(SAY3DPoint(x: CGFloat(x!), y: CGFloat(y!), z: CGFloat(z!)))
+    while arrayNoCommas.count >= 3 {
+        let z = (arrayNoCommas.popLast()! as NSString).floatValue
+        let y = (arrayNoCommas.popLast()! as NSString).floatValue
+        let x = (arrayNoCommas.popLast()! as NSString).floatValue
+        
+        say3DPoints.append(SAY3DPoint(x: CGFloat(x), y: CGFloat(y), z: CGFloat(z)))
+        say3DPoints = say3DPoints.reverse()
+        
     }
     
     return say3DPoints

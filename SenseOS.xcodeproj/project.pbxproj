@@ -145,12 +145,12 @@
 			children = (
 				A8436AED1C512F62006BCB09 /* GestureRecognizer */,
 				A8436A971C4984BD006BCB09 /* AppDelegate.swift */,
-				A8436AE01C499C17006BCB09 /* IHS-Bridging-header.h */,
 				A8436A991C4984BD006BCB09 /* ViewController.swift */,
 				A8436A9B1C4984BD006BCB09 /* Main.storyboard */,
 				A8436A9E1C4984BD006BCB09 /* Assets.xcassets */,
 				A8436AA01C4984BD006BCB09 /* LaunchScreen.storyboard */,
 				A8436AA31C4984BD006BCB09 /* Info.plist */,
+				A8436AE01C499C17006BCB09 /* IHS-Bridging-header.h */,
 				A8436AC51C498531006BCB09 /* Frameworks */,
 			);
 			path = SenseOS;

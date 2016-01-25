@@ -77,7 +77,7 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
                     fileHandle.seekToEndOfFile()
                     fileHandle.writeData(data)
                     fileHandle.closeFile()
-                    print("wrote to file \(file)")
+                    //print("wrote to file \(file)")
                 }
                 else {
                     print("can't open file because reasons")
@@ -127,6 +127,9 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
         gestureRecognizer.accelPointCache.append(SAY3DPoint(x:CGFloat(headset.roll), y: CGFloat(headset.pitch), z: CGFloat(headset.yaw)))
         gestureRecognizer.startRecognition()
         distanceLabel.text = "\(gestureRecognizer.testDistance())"
+        if !gestureRecognizer.isRecognizing {
+            gestureRecognizer.findBestMatch()
+        }
         
         accelX.text = " \(headset.pitch)"
         accelY.text = "\(headset.roll)"
@@ -136,7 +139,7 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
             let file = "accel_Data"
             let text = "\(ihs.accelerometerData.x), \(ihs.accelerometerData.y), \(ihs.accelerometerData.z)"
             updateLog(text, file: file)
-            print(text)
+            //print(text)
             
         }
     }
@@ -145,7 +148,7 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
         let file = "raw_Accel_Data"
         let text = "\(ihs.yaw), \(ihs.pitch), \(ihs.roll)"
         updateLog(text, file: file)
-        print(text)
+        //print(text)
         
     }
     

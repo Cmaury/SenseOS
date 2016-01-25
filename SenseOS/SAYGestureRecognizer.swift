@@ -24,9 +24,9 @@ class SAYGestureRecognizer {
     let recognitionThreshold = CGFloat(0.5)
     var isRecognizing = false
     
-    var accelPoints = [SAY3DPoint]()
-    var resampledPoints = [SAY3DPoint]()
-    var templates = [String: [SAY3DPoint]]()
+    var accelPoints: [SAY3DPoint]
+    var resampledPoints: [SAY3DPoint]
+    var templates: [String: [SAY3DPoint]]
     
     init() {
         self.accelPoints = []
@@ -35,42 +35,31 @@ class SAYGestureRecognizer {
         self.accelPointCache = [SAY3DPointOrigin]
         
     }
+    
     func testDistance() -> CGFloat {
         let delta = Distance(accelPointCache.last!, p2: accelPointCache[accelPointCache.count - 2])
-        print("distance delta is \(delta)")
+        //print("distance delta is \(delta)")
         return delta
     }
     
     func startRecognition() {
-        let gestureTemplates = SAYGestureTemplateCGFloat()
-        templates = ["Nod Up": gestureTemplates.shortNodUpandBack,
-            "LongNodStartUp": gestureTemplates.LongNodStartUp,
-            "longNodStartDown": gestureTemplates.longNodStartDown,
-            "shortNodDownandBack": gestureTemplates.shortNodDownandBack,
-            "lookLeftandBack": gestureTemplates.lookLeftandBack,
-            "lookRightandBack": gestureTemplates.lookRightandBack,
-            "shakeHeadStartLeft": gestureTemplates.shakeHeadStartLeft,
-            "shakeHeadStartRight": gestureTemplates.shakeHeadStartRight,
-            "iltLeftandBack": gestureTemplates.tiltLeftandBack,
-            "tiltRightandBack": gestureTemplates.tiltRightandBack,
-            "twistLeftandBack": gestureTemplates.twistLeftandBack,
-            "twistRightandBack": gestureTemplates.twistRightandBack,
-            "jerkBack": gestureTemplates.jerkBack
-        ]
 
         if accelPointCache.count > 10 {
             let delta = Distance(accelPointCache.last!, p2: accelPointCache[accelPointCache.count - 2])
-            print("distance delta is \(delta)")
+            //print("distance delta is \(delta)")
             if delta > recognitionThreshold {
                 isRecognizing = true
-                print("started recognizing")
                 addAccelData()
             }
             else {
                 isRecognizing = false
-                //findBestMatch()
-                print("Stored \(accelPoints.count) data points")
-                print("stopped recognizing")
+                
+//                if accelPoints.count > 0 {
+//                    print("started recognizing")
+//                    findBestMatch()
+//                }
+                //print("Stored \(accelPoints.count) data points")
+                //print("stopped recognizing")
                 var string = "[ "
                 for point in accelPoints {
                     string.appendContentsOf("[ \(point.x), \(point.y), \(point.z)], ")
@@ -88,7 +77,7 @@ class SAYGestureRecognizer {
     func addAccelData() {
         let currentPoint = accelPointCache.last
         accelPoints.append((currentPoint!))
-        print("wrote accel data point to array of accel data points")
+        //print("wrote accel data point to array of accel data points")
     }
     
     func resetAccelData() {
@@ -101,16 +90,34 @@ class SAYGestureRecognizer {
     
     func findBestMatchCenter(outCenter: SAY3DPoint, angle: CGFloat, score: CGFloat) -> String {
         
-        var i: Int
-        let samplePoints = kSamplePoints
-        var samples  = [SAY3DPoint]()
-        let c = accelPoints.count
+
+        var samplePoints = kSamplePoints
+        var samples: [SAY3DPoint]?
+        //let c = accelPoints.count
         
-        for i = 0; i < min(samplePoints, c); i + 1 {
-            let index = max(0, (c-1) * i / (samplePoints-1))
-            samples[i] = accelPoints[index]        }
+//        for var i = 0; i < min(samplePoints, c); i + 1 {
+//            let index = max(0, (c-1) * i / (samplePoints-1))
+//            print("samplePoints index = \(index) and count of accelpoints = \(c) and i = \(i)")
+//            samples.append(accelPoints[index])
+//            
+//        }
+        
+        if accelPoints.count > 1 {
+            samples = accelPoints
+        }
+
+        if accelPoints.count > samplePoints {
+            if samples != nil {
+                for var i = 0; i < (accelPoints.count - samplePoints); i++ {
+                    samples!.popLast()
+                }
+                samplePoints = samples!.count
+            }
+        }
+
         
         var center: SAY3DPoint = Centroid(samples, samplePoints: samplePoints)
+        print("\(center)")
         
         Translate(&samples, samplePoints: samplePoints, center: center)
         
@@ -120,16 +127,18 @@ class SAYGestureRecognizer {
         //scale gesture
         var lowerFrontLeft: SAY3DPoint = SAY3DPointOrigin
         var upperBackRight: SAY3DPoint = SAY3DPointOrigin
-        
-        for var i = 0; i < samplePoints; i++ {
-            let pt: SAY3DPoint = samples[i]
-            if (pt.x < lowerFrontLeft.x) { lowerFrontLeft.x = pt.x }
-            if (pt.y < lowerFrontLeft.y) { lowerFrontLeft.y = pt.y }
-            if (pt.z < lowerFrontLeft.z) { lowerFrontLeft.z = pt.z }
-            if (pt.x > upperBackRight.x) { upperBackRight.x = pt.x }
-            if (pt.y > upperBackRight.y) { upperBackRight.y = pt.y }
-            if (pt.z > upperBackRight.z) { upperBackRight.z = pt.z }
+        if samples != nil {
+            for var i = 0; i < samplePoints; i++ {
+                let pt = samples![i]
+                if (pt.x < lowerFrontLeft.x) { lowerFrontLeft.x = pt.x }
+                if (pt.y < lowerFrontLeft.y) { lowerFrontLeft.y = pt.y }
+                if (pt.z < lowerFrontLeft.z) { lowerFrontLeft.z = pt.z }
+                if (pt.x > upperBackRight.x) { upperBackRight.x = pt.x }
+                if (pt.y > upperBackRight.y) { upperBackRight.y = pt.y }
+                if (pt.z > upperBackRight.z) { upperBackRight.z = pt.z }
+            }
         }
+        
         
         let scale: CGFloat = 2 / max(upperBackRight.x - lowerFrontLeft.x, max(upperBackRight.y - lowerFrontLeft.y, upperBackRight.z - lowerFrontLeft.z))
         
@@ -138,6 +147,23 @@ class SAYGestureRecognizer {
         center = Centroid(samples, samplePoints: samplePoints)
         
         Translate(&samples, samplePoints: samplePoints, center: center)
+        
+        //initialize templates
+        let gestureTemplates = SAYGestureTemplateCGFloat()
+        templates = ["Nod Up": gestureTemplates.shortNodUpandBack,
+            "LongNodStartUp": gestureTemplates.LongNodStartUp,
+            "longNodStartDown": gestureTemplates.longNodStartDown,
+            "shortNodDownandBack": gestureTemplates.shortNodDownandBack,
+            "lookLeftandBack": gestureTemplates.lookLeftandBack,
+            "lookRightandBack": gestureTemplates.lookRightandBack,
+            "shakeHeadStartLeft": gestureTemplates.shakeHeadStartLeft,
+            "shakeHeadStartRight": gestureTemplates.shakeHeadStartRight,
+            "iltLeftandBack": gestureTemplates.tiltLeftandBack,
+            "tiltRightandBack": gestureTemplates.tiltRightandBack,
+            "twistLeftandBack": gestureTemplates.twistLeftandBack,
+            "twistRightandBack": gestureTemplates.twistRightandBack,
+            "jerkBack": gestureTemplates.jerkBack
+        ]
         
         var bestTemplateName = ""
         var best = CGFloat(99.999)
@@ -150,7 +176,8 @@ class SAYGestureRecognizer {
                 templateSamples.append(item)
             }
             
-            var template = [SAY3DPoint](count:samplePoints, repeatedValue: SAY3DPointOrigin)
+            var template = [SAY3DPoint](count: samplePoints, repeatedValue: SAY3DPointOrigin)
+            print("sample Points are \(samplePoints) and temaplte points are \(templateSamples.count)")
             assert(samplePoints == templateSamples.count)
             
             for (index, templateSample) in templateSamples.enumerate() {
@@ -172,9 +199,12 @@ class SAYGestureRecognizer {
             
             self.resampledPoints = [SAY3DPoint]()
             
-            for var i = 0; i < samplePoints; i++ {
-                self.resampledPoints.append(samples[i])
+            if samples != nil {
+                for var i = 0; i < samplePoints; i++ {
+                    self.resampledPoints.append(samples![i])
+                }
             }
+            
             
             //serialize the samples as JSON
 //            var string = "\"template_name\": [ "
@@ -190,45 +220,50 @@ class SAYGestureRecognizer {
         return returnString
     }
     
-    func Centroid(samples: [SAY3DPoint], samplePoints: Int) -> SAY3DPoint{
-        
+    func Centroid(samples: [SAY3DPoint]?, samplePoints: Int) -> SAY3DPoint{
         var center = SAY3DPointOrigin
-        for var i = 0; i < samplePoints; i++ {
-            let pt = samples[i]
-            center.x = pt.x
-            center.y = pt.y
-            center.z = pt.z
+        if samples != nil {
+            
+            for var i = 0; i < samplePoints; i++ {
+                let pt = samples![i]
+                center.x = pt.x
+                center.y = pt.y
+                center.z = pt.z
+            }
+            center.x /= CGFloat(samplePoints)
+            center.y /= CGFloat(samplePoints)
+            center.z /= CGFloat(samplePoints)
+            
         }
-        center.x /= CGFloat(samplePoints)
-        center.y /= CGFloat(samplePoints)
-        center.z /= CGFloat(samplePoints)
         return center
     }
     
  
-    func Translate(inout samples: [SAY3DPoint], samplePoints: Int, center: SAY3DPoint) {
-        
-        for var i = 0; i < samplePoints; i++ {
-            
-            let x = -center.x
-            let y = -center.y
-            let z = -center.z
-            let pt = samples[i]
-            samples[i] = SAY3DPoint(x: pt.x+x, y: pt.y+y, z: pt.z+z)
+    func Translate(inout samples: [SAY3DPoint]?, samplePoints: Int, center: SAY3DPoint) {
+        if samples != nil {
+            for var i = 0; i < samplePoints; i++ {
+                
+                let x = -center.x
+                let y = -center.y
+                let z = -center.z
+                let pt = samples![i]
+                samples![i] = SAY3DPoint(x: pt.x+x, y: pt.y+y, z: pt.z+z)
+            }
         }
+        
     }
     
-    func Scale(inout samples: [SAY3DPoint], samplePoints: Int, xscale: CGFloat, yscale: CGFloat, zscale: CGFloat) {
-        
-        
-        let makeScale = CATransform3DMakeScale(xscale, yscale, zscale)
-        
-        for var i = 0; i < samplePoints; i++ {
-            let pt0 = samples[i]
-            let pt = CATransform3DScale(makeScale, pt0.x, pt0.y, pt0.z)
-            samples[i].x = pt.m11
-            samples[i].y = pt.m22
-            samples[i].z = pt.m33
+    func Scale(inout samples: [SAY3DPoint]?, samplePoints: Int, xscale: CGFloat, yscale: CGFloat, zscale: CGFloat) {
+        if samples != nil {
+            let makeScale = CATransform3DMakeScale(xscale, yscale, zscale)
+            
+            for var i = 0; i < samplePoints; i++ {
+                let pt0 = samples![i]
+                let pt = CATransform3DScale(makeScale, pt0.x, pt0.y, pt0.z)
+                samples![i].x = pt.m11
+                samples![i].y = pt.m22
+                samples![i].z = pt.m33
+            }
         }
     }
     
@@ -248,16 +283,16 @@ class SAYGestureRecognizer {
         return d
     }
     
-    func DistanceAtAngle(samples: [SAY3DPoint], samplePoints: Int, template: [SAY3DPoint], theta: CGFloat) -> CGFloat {
+    func DistanceAtAngle(samples: [SAY3DPoint]?, samplePoints: Int, template: [SAY3DPoint], theta: CGFloat) -> CGFloat {
         
         var newPoints = [SAY3DPoint](count:128, repeatedValue: SAY3DPointOrigin)
         assert(samplePoints <= newPoints.count)
         //is this equivalent to memccpy(newPoints, samples,...)?
-        newPoints.replaceRange(0...samples.count, with: samples)
-        return PathDistance(newPoints, p2: samples, count: samplePoints)
+        newPoints.replaceRange(0...samples!.count, with: samples!)
+        return PathDistance(newPoints, p2: samples!, count: samplePoints)
     }
     
-    func DistanceAtBestAngle(samples: [SAY3DPoint], samplePoints: Int, template: [SAY3DPoint]) -> CGFloat {
+    func DistanceAtBestAngle(samples: [SAY3DPoint]?, samplePoints: Int, template: [SAY3DPoint]) -> CGFloat {
         
         var a = CGFloat(-0.25 * M_PI)
         var b = -a
