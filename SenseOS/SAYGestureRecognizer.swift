@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Accelerate
 
 struct SAY3DPoint {
     var x: CGFloat
@@ -140,13 +141,24 @@ class SAYGestureRecognizer {
         Translate(&samples, samplePoints: samplePoints, center: center)
         
         //angle calculation goes here
-        CGPoint firstPoint = samples[0];
-        float firstPointAngle = atan2(firstPoint.y, firstPoint.x);
-        NSLog(@"firstPointAngle=%0.2f", firstPointAngle*360.0f/(2.0f*M_PI));
-        if (outRadians)
-        *outRadians = firstPointAngle;       
+        var firstPoint: SAY3DPoint
+        var firstPointAngle: CGFloat
+        var outRadians: CGFloat
         
-        Rotate(&samples, samplePoints: samplePoints, angle: -firstPointAngle)
+        if samples != nil {
+            firstPoint = samples![0]
+            firstPointAngle =
+        }
+        
+        //describing a vector angle
+        //angle 1 = acos(y/length)
+        //angle 2 = atan(x/z)
+        
+        outRadians = firstPointAngle
+        
+        outRadians = firstPointAngle;
+        
+        Rotate(&samples, samplePoints: samplePoints, angle: -firstPointAngle, vector: firstPoint)
         
         
         //scale gesture
@@ -291,10 +303,11 @@ class SAYGestureRecognizer {
         }
     }
     
-    func Rotate(inout samples: [SAY3DPoint]?, samplePoints: Int, angle: CGFloat) {
-        if samples != nil {
+    func Rotate(inout samples: [SAY3DPoint]?, samplePoints: Int, angle: CGFloat, vector: SAY3DPoint?) {
+        if samples != nil && vector != nil {
+            let t = CATransform3DMakeRotation(angle, vector!.x, vector!.y, vector!.z)
             for  (i, sample) in samples!.enumerate() {
-                let pt = CATransform3DMakeRotation(angle, sample.x, sample.y,  sample.z)
+                let pt = CATransform3DRotate(t, angle, sample.x, sample.y,  sample.z)
                 samples![i].x = pt.m11
                 samples![i].y = pt.m22
                 samples![i].z = pt.m33
@@ -336,7 +349,7 @@ class SAYGestureRecognizer {
             newPoints!.replaceRange(0...samples!.count, with: samples!)
             //print("path distance is \(newPoints))")
             let count = min(samples!.count, template.count)
-            Rotate(&newPoints, samplePoints: samplePoints, angle: -theta)
+            Rotate(&newPoints, samplePoints: samplePoints, angle: -theta, vector: newPoints![0])
             return PathDistance(newPoints, p2: template, count: count)
         }
         else {
