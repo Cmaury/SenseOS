@@ -16,6 +16,8 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     @IBOutlet weak var accelZ: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
 
+    @IBOutlet weak var originDistance: UILabel!
+    
     @IBOutlet weak var ConnectionState: UILabel!
     
     @IBAction func shareButton(sender: UIBarButtonItem) {
@@ -124,9 +126,14 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     //Sensor Delegate Methods
     @objc func ihsDevice(ihs: IHSDevice!, accelerometer3AxisDataChanged data: IHSAHRS3AxisStruct) {
         
+        if gestureRecognizer.origin.x == SAY3DPointOrigin.x {
+            gestureRecognizer.origin = SAY3DPoint(x: CGFloat(headset.pitch), y: CGFloat(headset.roll), z: CGFloat(headset.yaw))
+        }
+        
         gestureRecognizer.accelPointCache.append(SAY3DPoint(x:CGFloat(headset.roll), y: CGFloat(headset.pitch), z: CGFloat(headset.yaw)))
         gestureRecognizer.startRecognition()
-        distanceLabel.text = "\(gestureRecognizer.testDistance())"
+        distanceLabel.text = "\(gestureRecognizer.testDistance().0)"
+        originDistance.text = "\(gestureRecognizer.testDistance().1)"
         if !gestureRecognizer.isRecognizing {
             gestureRecognizer.findBestMatch()
         }
@@ -176,6 +183,7 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     }
     
     @objc func ihsDevice(ihs: IHSDevice!, gyroCalibrated: Bool) {
+        
     }
     
     
