@@ -49,7 +49,6 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     
     let headset = IHSDevice(deviceDelegate: ViewController.self as! IHSDeviceDelegate)
 
-    let gestureRecognizer = SAYGestureRecognizer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,7 +105,6 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
             
         case IHSDeviceConnectionState.None: ConnectionState.text = "None"
         case IHSDeviceConnectionState.Disconnected: ConnectionState.text = "Disconnected"
-            gestureRecognizer.stopRecognition()
         case IHSDeviceConnectionState.Discovering: ConnectionState.text = "Discovering"
         case IHSDeviceConnectionState.Connecting: ConnectionState.text = "Connecting..."
         case IHSDeviceConnectionState.ConnectionFailed:
@@ -125,18 +123,6 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     
     //Sensor Delegate Methods
     @objc func ihsDevice(ihs: IHSDevice!, accelerometer3AxisDataChanged data: IHSAHRS3AxisStruct) {
-        
-        if gestureRecognizer.origin.x == SAY3DPointOrigin.x {
-            gestureRecognizer.origin = SAY3DPoint(x: CGFloat(headset.pitch), y: CGFloat(headset.roll), z: CGFloat(headset.yaw))
-        }
-        
-        gestureRecognizer.accelPointCache.append(SAY3DPoint(x:CGFloat(headset.roll), y: CGFloat(headset.pitch), z: CGFloat(headset.yaw)))
-        gestureRecognizer.startRecognition()
-        distanceLabel.text = "\(gestureRecognizer.testDistance().0)"
-        originDistance.text = "\(gestureRecognizer.testDistance().1)"
-        if !gestureRecognizer.isRecognizing {
-            gestureRecognizer.findBestMatch()
-        }
         
         accelX.text = " \(headset.pitch)"
         accelY.text = "\(headset.roll)"
