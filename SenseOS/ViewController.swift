@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, IHS3DAudioDelegate, IHSButtonDelegate {
     
-    
+    // UI
     @IBOutlet weak var accelX: UILabel!
     @IBOutlet weak var accelY: UILabel!
     @IBOutlet weak var accelZ: UILabel!
@@ -18,6 +19,9 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     @IBOutlet weak var originDistance: UILabel!
     @IBOutlet weak var ConnectionState: UILabel!
     @IBOutlet weak var pitchRateLabel: UILabel!
+    // Sound
+    var dingSound: AVAudioPlayer?
+    
     
     @IBAction func shareButton(sender: UIBarButtonItem) {
         var fileText = ""
@@ -48,11 +52,17 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     
     let headset = IHSDevice(deviceDelegate: ViewController.self as! IHSDeviceDelegate)
     let gestureRecognizer = SAYGestureRecognizer()
-    let nodDetector = NodDetector(windowSize: 10)
+    let nodDetector = NodDetector(windowSize: 5)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // setup osund
+        dingSound = AVAudioPlayer()
+        let url:NSURL = NSBundle.mainBundle().URLForResource("chime_bell_ding", withExtension: "wav")!
+        do { dingSound = try AVAudioPlayer(contentsOfURL: url, fileTypeHint: nil) }
+        catch let error as NSError { print(error.description) }
+        // other
         if headset.connectionState != IHSDeviceConnectionState.Connected {
             ConnectionState.text = "not connected"
             print("trying to connect")
@@ -66,7 +76,11 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
         print("connection state is \(headset.connectionState.rawValue)")
     }
     
-    
+    func playDing() {
+        dingSound?.numberOfLoops = 1
+        dingSound?.prepareToPlay()
+        dingSound?.play()
+    }
     
     func updateLog(text:String, file: String) {
         let text = text + ", " + NSDate().description + "\n"
@@ -145,6 +159,7 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
         nodDetector.addPitchAngle(headset.pitch)
         // update UI
         pitchRateLabel.text = String(nodDetector.getPitchRate())
+        
         
         if ihs.gyroCalibrated {
             let file = "accel_Data"
