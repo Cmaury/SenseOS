@@ -10,7 +10,6 @@
 #define IHS_Bridging_header_h
 
 #import <IHS/IHS.h>
-#import "GLGestureRecognizer.h"
-#import "GLGestureRecognizer+JSONTemplates.h"
+#import <SayKit/SayKit.h>
 
 #endif /* IHS_Bridging_header_h */

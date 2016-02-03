@@ -14,10 +14,9 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     @IBOutlet weak var accelX: UILabel!
     @IBOutlet weak var accelY: UILabel!
     @IBOutlet weak var accelZ: UILabel!
-    @IBOutlet weak var distanceLabel: UILabel!
 
-    @IBOutlet weak var originDistance: UILabel!
-    
+    @IBOutlet weak var audioOutput: UILabel!
+   
     @IBOutlet weak var ConnectionState: UILabel!
     
     @IBAction func shareButton(sender: UIBarButtonItem) {
@@ -47,11 +46,57 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
         }
     }
     
+    @IBAction func playNotificaiton(sender: AnyObject) {
+        
+        let random = arc4random_uniform(2)
+    
+            
+        player!.volume = 1.0
+        if random == 0 {
+            player!.pan = -1.0
+        }
+        else {
+            player!.pan = 1.0
+            
+        }
+        player!.play()
+        
+        
+    }
+    
+    @IBAction func gestureUp(sender: AnyObject) {
+    }
+    @IBAction func gestureDown(sender: AnyObject) {
+    }
+    
+    @IBAction func gestureLeft(sender: AnyObject) {
+    }
+    @IBAction func gestureRight(sender: AnyObject) {
+    }
+    
+    @IBAction func gestureShakeUp(sender: AnyObject) {
+    }
+    
+    @IBAction func gestureShakeLeft(sender: AnyObject) {
+    }
+    
+    
     let headset = IHSDevice(deviceDelegate: ViewController.self as! IHSDeviceDelegate)
-
+    
+    var soundBoard: SAYSoundBoard?
+    
+    let gestureRecognizer = SAYGestureRecognizer()
+    let stateManager = SAYStateManager(viewController: self)
+    
+    var player: AVAudioPlayer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let path = NSBundle.mainBundle().pathForResource("notiftone", ofType: "wav")
+        let url = NSURL(fileURLWithPath: path!)
+
+        player = try! AVAudioPlayer(contentsOfURL: url)
 
         if headset.connectionState != IHSDeviceConnectionState.Connected {
             ConnectionState.text = "not connected"
@@ -61,11 +106,20 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
             headset.audioDelegate = self
             headset.buttonDelegate = self
             headset.connect()
+            stateManager.state = SAYState.resting
             print("\(headset.connectionState.rawValue)")
         }
         print("connection state is \(headset.connectionState.rawValue)")
     }
     
+    
+    //sayKit integration
+    func presentResultText(text: String) {
+        dispatch_async(dispatch_get_main_queue()){
+            self.audioOutput.text = text
+        }
+        soundBoard?.speakText(text)
+    }
     
     
     func updateLog(text:String, file: String) {

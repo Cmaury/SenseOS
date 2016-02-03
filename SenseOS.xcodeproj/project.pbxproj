@@ -28,6 +28,13 @@
 		A8436ADE1C499B62006BCB09 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A8436ADB1C499B62006BCB09 /* libc++.tbd */; };
 		A8436ADF1C499B62006BCB09 /* libc++abi.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A8436ADC1C499B62006BCB09 /* libc++abi.tbd */; };
 		A8436AEC1C499D3F006BCB09 /* IHS in Resources */ = {isa = PBXBuildFile; fileRef = A8436AEB1C499D3F006BCB09 /* IHS */; };
+		A88B566B1C6258DD0099D57F /* SayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A88B566A1C6258DD0099D57F /* SayKit.framework */; };
+		A88B566C1C6259D00099D57F /* SayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A88B566A1C6258DD0099D57F /* SayKit.framework */; };
+		A88B566D1C6259D00099D57F /* SayKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A88B566A1C6258DD0099D57F /* SayKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A88B56731C6271B60099D57F /* notiftone.wav in Resources */ = {isa = PBXBuildFile; fileRef = A88B56721C6271B60099D57F /* notiftone.wav */; };
+		A88B56751C6292460099D57F /* SAYStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88B56741C6292460099D57F /* SAYStateManager.swift */; };
+		A88B56771C6299DF0099D57F /* SAYGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88B56761C6299DF0099D57F /* SAYGestureRecognizer.swift */; };
+		A88B56791C62A0C50099D57F /* SAYStateResting.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88B56781C62A0C50099D57F /* SAYStateResting.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +53,20 @@
 			remoteInfo = SenseOS;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A88B566E1C6259D00099D57F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A88B566D1C6259D00099D57F /* SayKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		A8436A941C4984BD006BCB09 /* SenseOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SenseOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,6 +97,11 @@
 		A8436ADC1C499B62006BCB09 /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
 		A8436AE01C499C17006BCB09 /* IHS-Bridging-header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IHS-Bridging-header.h"; sourceTree = "<group>"; };
 		A8436AEB1C499D3F006BCB09 /* IHS */ = {isa = PBXFileReference; lastKnownFileType = folder; path = IHS; sourceTree = "<group>"; };
+		A88B566A1C6258DD0099D57F /* SayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SayKit.framework; path = ../SayKit.framework; sourceTree = "<group>"; };
+		A88B56721C6271B60099D57F /* notiftone.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = notiftone.wav; sourceTree = "<group>"; };
+		A88B56741C6292460099D57F /* SAYStateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAYStateManager.swift; sourceTree = "<group>"; };
+		A88B56761C6299DF0099D57F /* SAYGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAYGestureRecognizer.swift; sourceTree = "<group>"; };
+		A88B56781C62A0C50099D57F /* SAYStateResting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAYStateResting.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,10 +114,12 @@
 				A8436ADF1C499B62006BCB09 /* libc++abi.tbd in Frameworks */,
 				A8436AD91C499B45006BCB09 /* SystemConfiguration.framework in Frameworks */,
 				A8436AD71C499B34006BCB09 /* MobileCoreServices.framework in Frameworks */,
+				A88B566B1C6258DD0099D57F /* SayKit.framework in Frameworks */,
 				A8436AD51C499B28006BCB09 /* ExternalAccessory.framework in Frameworks */,
 				A8436AD31C499B1F006BCB09 /* CoreBluetooth.framework in Frameworks */,
 				A8436AD11C499B13006BCB09 /* CoreMotion.framework in Frameworks */,
 				A8436ACF1C499B05006BCB09 /* CoreLocation.framework in Frameworks */,
+				A88B566C1C6259D00099D57F /* SayKit.framework in Frameworks */,
 				A8436ACD1C499AF6006BCB09 /* CFNetwork.framework in Frameworks */,
 				A8436ACB1C499AE7006BCB09 /* AVFoundation.framework in Frameworks */,
 				A8436AC91C499AD7006BCB09 /* AudioToolbox.framework in Frameworks */,
@@ -141,11 +169,16 @@
 			children = (
 				A8436A971C4984BD006BCB09 /* AppDelegate.swift */,
 				A8436A991C4984BD006BCB09 /* ViewController.swift */,
+				A88B56741C6292460099D57F /* SAYStateManager.swift */,
+				A88B56781C62A0C50099D57F /* SAYStateResting.swift */,
+				A88B56761C6299DF0099D57F /* SAYGestureRecognizer.swift */,
 				A8436A9B1C4984BD006BCB09 /* Main.storyboard */,
 				A8436A9E1C4984BD006BCB09 /* Assets.xcassets */,
 				A8436AA01C4984BD006BCB09 /* LaunchScreen.storyboard */,
 				A8436AA31C4984BD006BCB09 /* Info.plist */,
 				A8436AE01C499C17006BCB09 /* IHS-Bridging-header.h */,
+				A88B56721C6271B60099D57F /* notiftone.wav */,
+				A88B56711C6271100099D57F /* Sounds */,
 				A8436AC51C498531006BCB09 /* Frameworks */,
 			);
 			path = SenseOS;
@@ -172,6 +205,7 @@
 		A8436AC51C498531006BCB09 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A88B566A1C6258DD0099D57F /* SayKit.framework */,
 				A8436AEB1C499D3F006BCB09 /* IHS */,
 				A8436AC61C49855A006BCB09 /* IHS.framework */,
 				A8436ADA1C499B62006BCB09 /* libc++.1.tbd */,
@@ -190,6 +224,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A88B56711C6271100099D57F /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Sounds;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -200,6 +241,7 @@
 				A8436A901C4984BD006BCB09 /* Sources */,
 				A8436A911C4984BD006BCB09 /* Frameworks */,
 				A8436A921C4984BD006BCB09 /* Resources */,
+				A88B566E1C6259D00099D57F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -298,6 +340,7 @@
 				A8436AA21C4984BD006BCB09 /* LaunchScreen.storyboard in Resources */,
 				A8436A9F1C4984BD006BCB09 /* Assets.xcassets in Resources */,
 				A8436A9D1C4984BD006BCB09 /* Main.storyboard in Resources */,
+				A88B56731C6271B60099D57F /* notiftone.wav in Resources */,
 				A8436AEC1C499D3F006BCB09 /* IHS in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -323,6 +366,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A88B56791C62A0C50099D57F /* SAYStateResting.swift in Sources */,
+				A88B56751C6292460099D57F /* SAYStateManager.swift in Sources */,
+				A88B56771C6299DF0099D57F /* SAYGestureRecognizer.swift in Sources */,
 				A8436A9A1C4984BD006BCB09 /* ViewController.swift in Sources */,
 				A8436A981C4984BD006BCB09 /* AppDelegate.swift in Sources */,
 			);
@@ -471,6 +517,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SenseOS",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = SenseOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -489,6 +536,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SenseOS",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = SenseOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
