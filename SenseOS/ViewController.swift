@@ -9,16 +9,15 @@
 import UIKit
 
 class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, IHS3DAudioDelegate, IHSButtonDelegate {
-        
+    
     
     @IBOutlet weak var accelX: UILabel!
     @IBOutlet weak var accelY: UILabel!
     @IBOutlet weak var accelZ: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
-
     @IBOutlet weak var originDistance: UILabel!
-    
     @IBOutlet weak var ConnectionState: UILabel!
+    @IBOutlet weak var pitchRateLabel: UILabel!
     
     @IBAction func shareButton(sender: UIBarButtonItem) {
         var fileText = ""
@@ -48,8 +47,8 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     }
     
     let headset = IHSDevice(deviceDelegate: ViewController.self as! IHSDeviceDelegate)
-
     let gestureRecognizer = SAYGestureRecognizer()
+    let nodDetector = NodDetector(windowSize: 10)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,7 +88,7 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
             else {
                 let pathURL = NSURL(string: path)!
                 data.writeToURL(pathURL, atomically: true)
-                print("created file: \(file)")
+//                print("created file: \(file)")
             }
             
         }
@@ -141,6 +140,11 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
         accelX.text = " \(headset.pitch)"
         accelY.text = "\(headset.roll)"
         accelZ.text =  "\(headset.yaw)"
+        
+        // add data to NodDetector
+        nodDetector.addPitchAngle(headset.pitch)
+        // update UI
+        pitchRateLabel.text = String(nodDetector.getPitchRate())
         
         if ihs.gyroCalibrated {
             let file = "accel_Data"
