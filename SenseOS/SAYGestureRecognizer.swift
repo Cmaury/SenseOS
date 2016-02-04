@@ -145,20 +145,20 @@ class SAYGestureRecognizer {
         var firstPointAngle: CGFloat
         var outRadians: CGFloat
         
-        if samples != nil {
-            firstPoint = samples![0]
-            firstPointAngle =
-        }
-        
+//        if samples != nil {
+//            firstPoint = samples![0]
+//            firstPointAngle =
+//        }
+//        
         //describing a vector angle
         //angle 1 = acos(y/length)
         //angle 2 = atan(x/z)
         
-        outRadians = firstPointAngle
+//        outRadians = firstPointAngle
         
-        outRadians = firstPointAngle;
+//        outRadians = firstPointAngle;
         
-        Rotate(&samples, samplePoints: samplePoints, angle: -firstPointAngle, vector: firstPoint)
+//        Rotate(&samples, samplePoints: samplePoints, angle: -firstPointAngle, vector: firstPoint)
         
         
         //scale gesture

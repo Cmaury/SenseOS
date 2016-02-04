@@ -77,7 +77,8 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     }
     
     func playDing() {
-        dingSound?.numberOfLoops = 1
+        dingSound?.numberOfLoops = 0
+        dingSound?.volume = 15.0
         dingSound?.prepareToPlay()
         dingSound?.play()
     }
@@ -157,8 +158,13 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
         
         // add data to NodDetector
         nodDetector.addPitchAngle(headset.pitch)
+        nodDetector.tick()
         // update UI
         pitchRateLabel.text = String(nodDetector.getPitchRate())
+        // check for head nod
+        if(nodDetector.isUpNod()){
+            playDing()
+        }
         
         
         if ihs.gyroCalibrated {
