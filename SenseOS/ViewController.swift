@@ -61,39 +61,53 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
         }
         player!.play()
         
+        stateManager.state = SAYState.notification
         
     }
     
-    @IBAction func gestureUp(sender: AnyObject) {
+    @IBAction func gestureButton(sender: UIButton) {
+        print("\(sender.titleLabel?.text)")
+        if let text = sender.titleLabel {
+                switch text.text! {
+                case "Nod Up":
+                    soundBoard?.speakText("Nodded up")
+                    stateManager.gestureRecognizer.recognizedGesture(SAYGesture.up)
+                case " Nod Down":
+                    stateManager.gestureRecognizer.recognizedGesture(SAYGesture.down)
+                case "Look Left":
+                    stateManager.gestureRecognizer.recognizedGesture(SAYGesture.left)
+                case "Look Right":
+                    stateManager.gestureRecognizer.recognizedGesture(SAYGesture.right)
+                case "Shake Up/Down":
+                    stateManager.gestureRecognizer.recognizedGesture(SAYGesture.shakeVertical)
+                case "Shake Left/Right":
+                    stateManager.gestureRecognizer.recognizedGesture(SAYGesture.shakeHorizontal)
+                default: break
+                }
+            
+        }
+
+        
     }
-    @IBAction func gestureDown(sender: AnyObject) {
-    }
-    
-    @IBAction func gestureLeft(sender: AnyObject) {
-    }
-    @IBAction func gestureRight(sender: AnyObject) {
-    }
-    
-    @IBAction func gestureShakeUp(sender: AnyObject) {
-    }
-    
-    @IBAction func gestureShakeLeft(sender: AnyObject) {
-    }
-    
     
     let headset = IHSDevice(deviceDelegate: ViewController.self as! IHSDeviceDelegate)
     
-    var soundBoard: SAYSoundBoard?
-    
-    let gestureRecognizer = SAYGestureRecognizer()
-    let stateManager = SAYStateManager(viewController: self)
-    
+    //var gestureRecognizer: SAYGestureRecognizer!
+    var soundBoard: SAYSoundBoard? {
+        didSet {
+            print("Set soundboard")
+        }
+    }
+    var stateManager: SAYStateManager!
     var player: AVAudioPlayer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let path = NSBundle.mainBundle().pathForResource("notiftone", ofType: "wav")
+        stateManager = SAYStateManager(viewController: self)
+        
+        
+        let path = NSBundle.mainBundle().pathForResource("thinking", ofType: "wav")
         let url = NSURL(fileURLWithPath: path!)
 
         player = try! AVAudioPlayer(contentsOfURL: url)

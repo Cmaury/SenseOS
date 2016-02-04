@@ -1,3 +1,4 @@
+
 //
 //  AppDelegate.swift
 //  SenseOS
@@ -16,16 +17,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
+        
         let catalog = SAYCommandRecognizerCatalog()
         SAYConversationManager.systemManager().commandRegistry = catalog
         
         let soundBoard = SAYSoundBoard()
         SAYConversationManager.systemManager().addAudioSource(soundBoard, forTrack: SAYAudioTrackMainIdentifier)
         
+        
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateInitialViewController() as! ViewController
         
         viewController.soundBoard = soundBoard
+        
+        window?.rootViewController = viewController
         
         SAYAPIKeyManager.sharedInstance().prefetchAPIKeys() 
         

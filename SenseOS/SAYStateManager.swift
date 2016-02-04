@@ -9,46 +9,48 @@
 import Foundation
 
 enum SAYState {
-    case resting
+    case resting 
     case notification
     case openMic
     case quickFeed
 }
 
-class SAYStateManager  {
+class SAYStateManager: SAYGestureRecognizerDelegate  {
     
     let viewController: ViewController
+    var activeState: SAYGestureRecognizerDelegate
+    var gestureRecognizer: SAYGestureRecognizer
     
     init(viewController: ViewController)
     {
         self.viewController = viewController
+        self.activeState = SAYStateResting(manager: nil)
+        self.gestureRecognizer = SAYGestureRecognizer(viewController: viewController, delegate: self.activeState)
+    }
+    
+    func didRecognizeGesture(gesture: SAYGesture) {
+        switch gesture {
+            default: print("active state not set")
+        }
+    }
+    
+    func setActiveDelegate(state: SAYGestureRecognizerDelegate) {
     }
     
     var state = SAYState.resting {
         
         didSet(currentState) {
 
-            
-           viewController.gestureRecognizer.setActiveState(currentState)
-
             switch state {
                 case .resting:
-                    self.viewController.gestureRecognizer.enableGestures(
-                        up: true,
-                        down: true)
+                    activeState = SAYStateResting(manager: self)
                 case .notification:
-                    ViewController.gestureRecognizer.enableGestures(
-                        left: true,
-                        right: true,
-                        shakeHorizontal: true,
-                        shakeVertical: true)
+                    activeState = SAYStateNotification(manager: self)
                 case .openMic:
-                    ViewController.gestureRecognizer.enableGestures(
-                        down: true,
-                        shakeHorizontal: true)
+                    activeState = SAYStateOpenMic(manager: self)
                 case .quickFeed:
-                    ViewController.gestureRecognizer.enableGestures(
-                        up: true,
+                    	gestureRecognizer.enableGestures(
+                        true,
                         down: true,
                         left: true,
                         right: true,

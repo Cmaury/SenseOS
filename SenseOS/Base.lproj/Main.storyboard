@@ -98,53 +98,53 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pvc-HY-OgH">
-                                <rect key="frame" x="20" y="285" width="53" height="30"/>
-                                <state key="normal" title="Nod Up"/>
-                                <connections>
-                                    <action selector="gestureUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lW9-ew-xgZ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l44-wP-1wf">
-                                <rect key="frame" x="90" y="285" width="72" height="30"/>
-                                <state key="normal" title="Nod Down"/>
-                                <connections>
-                                    <action selector="gestureDown:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ola-YM-BNh"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ke0-WJ-OfS">
-                                <rect key="frame" x="180" y="285" width="64" height="30"/>
-                                <state key="normal" title="Look Left"/>
-                                <connections>
-                                    <action selector="gestureLeft:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VU0-9E-n5n"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sgV-gD-SIQ">
-                                <rect key="frame" x="258" y="285" width="73" height="30"/>
-                                <state key="normal" title="Look Right"/>
-                                <connections>
-                                    <action selector="gestureRight:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8FH-eK-bJR"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ry-q4-qNb">
-                                <rect key="frame" x="20" y="323" width="110" height="30"/>
-                                <state key="normal" title="Shake Up/Down"/>
-                                <connections>
-                                    <action selector="gestureShakeUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zyI-fy-CGx"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TNc-uQ-9lO">
-                                <rect key="frame" x="155" y="323" width="114" height="30"/>
-                                <state key="normal" title="Shake Left/Right"/>
-                                <connections>
-                                    <action selector="gestureShakeLeft:" destination="BYZ-38-t0r" eventType="touchUpInside" id="M6n-2S-u9z"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bxa-VH-p68">
                                 <rect key="frame" x="283" y="323" width="112" height="30"/>
                                 <state key="normal" title="Play Notification"/>
                                 <connections>
-                                    <action selector="playNotificaiton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3y6-EI-caS"/>
+                                    <action selector="playNotificaiton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7dx-vC-BFo"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NcG-Hi-PMU">
+                                <rect key="frame" x="9" y="272" width="53" height="30"/>
+                                <state key="normal" title="Nod Up"/>
+                                <connections>
+                                    <action selector="gestureButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6dl-cB-3TE"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SuQ-a7-Bjp">
+                                <rect key="frame" x="77" y="272" width="72" height="30"/>
+                                <state key="normal" title="Nod Down"/>
+                                <connections>
+                                    <action selector="gestureButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fXT-Aj-fLn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9qX-0S-waK">
+                                <rect key="frame" x="173" y="272" width="64" height="30"/>
+                                <state key="normal" title="Look Left"/>
+                                <connections>
+                                    <action selector="gestureButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jtc-Th-Omi"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d77-6n-a3q">
+                                <rect key="frame" x="264" y="272" width="73" height="30"/>
+                                <state key="normal" title="Look Right"/>
+                                <connections>
+                                    <action selector="gestureButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1R7-j0-ikR"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EU3-iC-YKe">
+                                <rect key="frame" x="9" y="323" width="110" height="30"/>
+                                <state key="normal" title="Shake Up/Down"/>
+                                <connections>
+                                    <action selector="gestureButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4Hx-Fp-a3i"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0z-Mc-QNp">
+                                <rect key="frame" x="137" y="323" width="114" height="30"/>
+                                <state key="normal" title="Shake Left/Right"/>
+                                <connections>
+                                    <action selector="gestureButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zoD-RP-B0Z"/>
                                 </connections>
                             </button>
                         </subviews>
