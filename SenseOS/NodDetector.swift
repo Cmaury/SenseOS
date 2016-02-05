@@ -41,6 +41,7 @@ public class NodDetector {
     
     public func tick(){
         ticks++
+        
         // update upNodTracker
         if(getPitchRate() >= sensitivityThreshold) {
             // check for new UP head movement FIRST
@@ -48,19 +49,16 @@ public class NodDetector {
             upNodTracker["lastUp"] = ticks
             upNodTracker["lastDisturbance"] = ticks
             upNodTracker["disturbanceCount"]!++
-//            disturbanceCount++
         }
         if(getPitchRate() <= -sensitivityThreshold) {
             upNodTracker["lastDisturbance"] = ticks
             upNodTracker["disturbanceCount"]!++
-//            disturbanceCount++
         }
         if(getPitchRate() <= -sensitivityThreshold && upNodTracker["up"]! == 1) {
             // check for new DOWN head movement SECOND
             upNodTracker["down"] = 1
             upNodTracker["lastDown"] = ticks
             upNodTracker["lastNod"] = ticks
-            upNodTracker["lastDisturbance"] = ticks
         }
         if(upNodTracker["up"]! == 1 && (ticks-upNodTracker["lastUp"]! > boolTimeout)){
             // check for timeout of UP head movement
@@ -70,10 +68,42 @@ public class NodDetector {
             // check for timeout of DOWN head movement
             upNodTracker["down"] = 0
         }
-        if(ticks - upNodTracker["lastDisturbance"]! > disturbanceTimeout * 6){
+        if(ticks - upNodTracker["lastDisturbance"]! > disturbanceTimeout * 4){
+            // check for timeout on disturbanceCount
             upNodTracker["disturbanceCount"] = 0
-//            disturbanceCount = 0
         }
+        
+        // update downNodTracker
+        if(getPitchRate() <= -sensitivityThreshold) {
+            // check for new DOWN head movement FIRST
+            downNodTracker["down"] = 1
+            downNodTracker["lastDown"] = ticks
+            downNodTracker["lastDisturbance"] = ticks
+            downNodTracker["disturbanceCount"]!++
+        }
+        if(getPitchRate() >= sensitivityThreshold) {
+            downNodTracker["lastDisturbance"] = ticks
+            downNodTracker["disturbanceCount"]!++
+        }
+        if(getPitchRate() >= sensitivityThreshold && downNodTracker["down"]! == 1){
+            // check for new UP head movement SECOND
+            downNodTracker["up"] = 1
+            downNodTracker["lastUp"] = ticks
+            downNodTracker["lastNod"] = ticks
+        }
+        if(downNodTracker["up"]! == 1 && (ticks-downNodTracker["lastUp"]! > boolTimeout)){
+            // check for timeout of UP head movement
+            downNodTracker["up"] = 0
+        }
+        if(downNodTracker["down"]! == 1 && (ticks-downNodTracker["lastDown"]! > boolTimeout)){
+            // check for timeout of DOWN head movement
+            downNodTracker["down"] = 0
+        }
+        if(ticks - downNodTracker["lastDisturbance"]! > disturbanceTimeout * 4){
+            // check for timeout on disturbanceCount
+            downNodTracker["disturbanceCount"] = 0
+        }
+        
     }
     
     // check for nods
@@ -86,6 +116,19 @@ public class NodDetector {
             upNodTracker["lastNod"] = 0
             upNodTracker["lastDisturbance"] = 0
             return true
+        } else {
+            return false
+        }
+    }
+    
+    public func isDownNod() -> Bool {
+        if((ticks-downNodTracker["lastNod"]!) < nodTimeout && (ticks-downNodTracker["lastDisturbance"]!) > disturbanceTimeout &&
+            downNodTracker["disturbanceCount"] < shakeThreshold){
+                downNodTracker["up"] = 0
+                downNodTracker["down"] = 0
+                downNodTracker["lastNod"] = 0
+                downNodTracker["lastDisturbance"] = 0
+                return true
         } else {
             return false
         }
@@ -129,8 +172,20 @@ public class NodDetector {
         return getGradient(rollArray)
     }
     
+    // has to take care of 360 -> 0 and 0 -> 360
     public func getYawRate() -> Float {
-        return getGradient(yawArray)
+        let diffThreshold: Float = 10
+        var sumOfDiffs: Float = 0.0
+        for (var i = 1; i < yawArray.count; i++){
+            var diff = yawArray[i] - yawArray[i-1]
+            if(diff > diffThreshold){
+                diff = 360 - diff + 1
+            } else if(diff < -diffThreshold){
+                diff = 360 + diff + 1
+            }
+            sumOfDiffs += diff
+        }
+        return (sumOfDiffs / Float(yawArray.count-1))
     }
     
     // tick (must be called once every sample)

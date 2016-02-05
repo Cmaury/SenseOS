@@ -12,17 +12,22 @@ import AVFoundation
 class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, IHS3DAudioDelegate, IHSButtonDelegate {
     
     // UI
+    @IBOutlet weak var ConnectionState: UILabel!
     @IBOutlet weak var accelX: UILabel!
     @IBOutlet weak var accelY: UILabel!
     @IBOutlet weak var accelZ: UILabel!
-    @IBOutlet weak var distanceLabel: UILabel!
-    @IBOutlet weak var originDistance: UILabel!
-    @IBOutlet weak var ConnectionState: UILabel!
     @IBOutlet weak var pitchRateLabel: UILabel!
+    @IBOutlet weak var rollRateLabel: UILabel!
+    @IBOutlet weak var yawRateLabel: UILabel!
     @IBOutlet weak var nodCountLabel: UILabel!
     // Sound
     var dingSound: AVAudioPlayer?
-    
+    func playDing() {
+        dingSound?.numberOfLoops = 0
+        dingSound?.volume = 15.0
+        dingSound?.prepareToPlay()
+        dingSound?.play()
+    }
     
     @IBAction func shareButton(sender: UIBarButtonItem) {
         var fileText = ""
@@ -75,13 +80,6 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
             print("\(headset.connectionState.rawValue)")
         }
         print("connection state is \(headset.connectionState.rawValue)")
-    }
-    
-    func playDing() {
-        dingSound?.numberOfLoops = 0
-        dingSound?.volume = 15.0
-        dingSound?.prepareToPlay()
-        dingSound?.play()
     }
     
     func updateLog(text:String, file: String) {
@@ -147,8 +145,7 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
         
         gestureRecognizer.accelPointCache.append(SAY3DPoint(x:CGFloat(headset.roll), y: CGFloat(headset.pitch), z: CGFloat(headset.yaw)))
         gestureRecognizer.startRecognition()
-        distanceLabel.text = "\(gestureRecognizer.testDistance().0)"
-        originDistance.text = "\(gestureRecognizer.testDistance().1)"
+
         if !gestureRecognizer.isRecognizing {
             gestureRecognizer.findBestMatch()
         }
@@ -159,12 +156,16 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
         
         // add data to NodDetector
         nodDetector.addPitchAngle(headset.pitch)
+        nodDetector.addRollAngle(headset.roll)
+        nodDetector.addYawAngle(headset.yaw)
         nodDetector.tick()
         // update UI
         pitchRateLabel.text = String(nodDetector.getPitchRate())
+        rollRateLabel.text = String(nodDetector.getRollRate())
+        yawRateLabel.text = String(nodDetector.getYawRate())
         nodCountLabel.text = String(nodDetector.getUpNodDisturbanceCount())
         // check for head nod
-        if(nodDetector.isUpNod()){
+        if(nodDetector.isDownNod()){
             playDing()
         }
         
@@ -173,7 +174,6 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
             let file = "accel_Data"
             let text = "\(ihs.accelerometerData.x), \(ihs.accelerometerData.y), \(ihs.accelerometerData.z)"
             updateLog(text, file: file)
-            //print(text)
             
         }
     }
@@ -219,8 +219,6 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     @objc func ihsDevice(ihs: IHSDevice!, didPressIHSButton button: IHSButton, withEvent event: IHSButtonEvent, fromSource source: IHSButtonSource) {
         
     }
-    
-
     
     //Audio Delegate Methods
     @objc func ihsDevice(ihs: IHSDevice!, playerDidStartSuccessfully success: Bool) {
