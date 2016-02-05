@@ -27,6 +27,7 @@ class SAYStateOpenMic: SAYGestureRecognizerDelegate {
         
     }
     
+    
     func setActiveDelegate(state: SAYGestureRecognizerDelegate) {
         manager!.gestureRecognizer.activeDelegate = state
     }
@@ -38,7 +39,10 @@ class SAYStateOpenMic: SAYGestureRecognizerDelegate {
         case .shakeVertical:
             print("pressed down")
         case .shakeHorizontal:
-            SAYStandardVoiceRequest.can
+            //SAYSpeechRecognitionManager.stopListeningNow()
+            
+            manager?.activeState = SAYStateResting(manager: manager)
+            print("shook horizontally")
         default: print("this gesture doesn't do anything")
             
             

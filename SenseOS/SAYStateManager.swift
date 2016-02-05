@@ -18,14 +18,14 @@ enum SAYState {
 class SAYStateManager: SAYGestureRecognizerDelegate  {
     
     let viewController: ViewController
-    var activeState: SAYGestureRecognizerDelegate
+    var activeState: SAYGestureRecognizerDelegate?
     var gestureRecognizer: SAYGestureRecognizer
     
     init(viewController: ViewController)
     {
         self.viewController = viewController
         self.activeState = SAYStateResting(manager: nil)
-        self.gestureRecognizer = SAYGestureRecognizer(viewController: viewController, delegate: self.activeState)
+        self.gestureRecognizer = SAYGestureRecognizer(viewController: viewController, delegate: self.activeState!)
     }
     
     func didRecognizeGesture(gesture: SAYGesture) {
@@ -39,6 +39,10 @@ class SAYStateManager: SAYGestureRecognizerDelegate  {
     
     var state = SAYState.resting {
         
+        willSet {
+            activeState = nil
+        }
+        
         didSet(currentState) {
 
             switch state {
@@ -49,13 +53,7 @@ class SAYStateManager: SAYGestureRecognizerDelegate  {
                 case .openMic:
                     activeState = SAYStateOpenMic(manager: self)
                 case .quickFeed:
-                    	gestureRecognizer.enableGestures(
-                        true,
-                        down: true,
-                        left: true,
-                        right: true,
-                        shakeHorizontal: true,
-                        shakeVertical: true)
+                    	activeState = SAYStateQuickFeed(manager: self)
             }
         }
     }

@@ -38,6 +38,8 @@
 		A88B567B1C63E6270099D57F /* SAYStateNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88B567A1C63E6270099D57F /* SAYStateNotification.swift */; };
 		A88B567D1C63F6630099D57F /* thinking.wav in Resources */ = {isa = PBXBuildFile; fileRef = A88B567C1C63F6630099D57F /* thinking.wav */; };
 		A88B567F1C63F8000099D57F /* SAYStateOpenMic.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88B567E1C63F8000099D57F /* SAYStateOpenMic.swift */; };
+		A88B56811C6505CA0099D57F /* SAYStateQuickFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88B56801C6505CA0099D57F /* SAYStateQuickFeed.swift */; };
+		A88B56851C6542BE0099D57F /* SAYNodDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88B56841C6542BE0099D57F /* SAYNodDetector.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +110,8 @@
 		A88B567A1C63E6270099D57F /* SAYStateNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SAYStateNotification.swift; path = ../SAYStateNotification.swift; sourceTree = "<group>"; };
 		A88B567C1C63F6630099D57F /* thinking.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = thinking.wav; sourceTree = "<group>"; };
 		A88B567E1C63F8000099D57F /* SAYStateOpenMic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAYStateOpenMic.swift; sourceTree = "<group>"; };
+		A88B56801C6505CA0099D57F /* SAYStateQuickFeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAYStateQuickFeed.swift; sourceTree = "<group>"; };
+		A88B56841C6542BE0099D57F /* SAYNodDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAYNodDetector.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,8 +181,10 @@
 				A8436A991C4984BD006BCB09 /* ViewController.swift */,
 				A88B56741C6292460099D57F /* SAYStateManager.swift */,
 				A88B56781C62A0C50099D57F /* SAYStateResting.swift */,
-				A88B567E1C63F8000099D57F /* SAYStateOpenMic.swift */,
 				A88B567A1C63E6270099D57F /* SAYStateNotification.swift */,
+				A88B56801C6505CA0099D57F /* SAYStateQuickFeed.swift */,
+				A88B567E1C63F8000099D57F /* SAYStateOpenMic.swift */,
+				A88B56841C6542BE0099D57F /* SAYNodDetector.swift */,
 				A88B56761C6299DF0099D57F /* SAYGestureRecognizer.swift */,
 				A8436A9B1C4984BD006BCB09 /* Main.storyboard */,
 				A8436A9E1C4984BD006BCB09 /* Assets.xcassets */,
@@ -377,7 +383,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A88B567B1C63E6270099D57F /* SAYStateNotification.swift in Sources */,
+				A88B56811C6505CA0099D57F /* SAYStateQuickFeed.swift in Sources */,
 				A88B56791C62A0C50099D57F /* SAYStateResting.swift in Sources */,
+				A88B56851C6542BE0099D57F /* SAYNodDetector.swift in Sources */,
 				A88B567F1C63F8000099D57F /* SAYStateOpenMic.swift in Sources */,
 				A88B56751C6292460099D57F /* SAYStateManager.swift in Sources */,
 				A88B56771C6299DF0099D57F /* SAYGestureRecognizer.swift in Sources */,

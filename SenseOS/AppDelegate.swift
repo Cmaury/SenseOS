@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window?.rootViewController = viewController
         
-        SAYAPIKeyManager.sharedInstance().prefetchAPIKeys() 
+        SAYAPIKeyManager.sharedInstance().prefetchAPIKeys()
         
         return true
     }

@@ -48,21 +48,20 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     
     @IBAction func playNotificaiton(sender: AnyObject) {
         
+        stateManager.state = SAYState.notification
         let random = arc4random_uniform(2)
     
             
         player!.volume = 1.0
         if random == 0 {
             player!.pan = -1.0
+            (stateManager.activeState as! SAYStateNotification).direction = "left"
         }
         else {
             player!.pan = 1.0
-            
+            (stateManager.activeState as! SAYStateNotification).direction = "right"
         }
         player!.play()
-        
-        stateManager.state = SAYState.notification
-        
     }
     
     @IBAction func gestureButton(sender: UIButton) {
@@ -70,9 +69,8 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
         if let text = sender.titleLabel {
                 switch text.text! {
                 case "Nod Up":
-                    soundBoard?.speakText("Nodded up")
                     stateManager.gestureRecognizer.recognizedGesture(SAYGesture.up)
-                case " Nod Down":
+                case "Nod Down":
                     stateManager.gestureRecognizer.recognizedGesture(SAYGesture.down)
                 case "Look Left":
                     stateManager.gestureRecognizer.recognizedGesture(SAYGesture.left)
@@ -101,10 +99,13 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     var stateManager: SAYStateManager!
     var player: AVAudioPlayer?
     
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         stateManager = SAYStateManager(viewController: self)
+        stateManager.state = SAYState.resting
         
         
         let path = NSBundle.mainBundle().pathForResource("thinking", ofType: "wav")
@@ -210,6 +211,9 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
         let text = "\(ihs.yaw), \(ihs.pitch), \(ihs.roll)"
         updateLog(text, file: file)
         //print(text)
+        
+        
+        stateManager.gestureRecognizer.detectGesture()
         
     }
     

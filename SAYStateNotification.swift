@@ -33,17 +33,33 @@ class SAYStateNotification: SAYGestureRecognizerDelegate {
         manager!.gestureRecognizer.activeDelegate = state
     }
     
+    var direction = ""
+    
     func didRecognizeGesture(gesture: SAYGesture) {
         switch gesture {
             case .left:
-                print("I should be speaking")
-                manager?.viewController.player?.stop()
-                manager?.viewController.soundBoard?.speakText("New Email from Greg. What's the good word?")
+                if direction == "left" {
+                    print("I should be speaking")
+                    manager?.viewController.player?.stop()
+                    manager?.viewController.soundBoard?.speakText("New Email from Greg. What's the good word?")
+                }
+                else {
+                    manager?.viewController.player?.stop()
+                    manager?.activeState = SAYStateResting(manager: manager)
+            }
+            
             case .right:
-                manager?.viewController.player?.stop()
-                manager?.viewController.soundBoard?.speakText("New Email from Greg. What's the good word?")
+                if direction == "right" {
+                    manager?.viewController.player?.stop()
+                    manager?.viewController.soundBoard?.speakText("New Email from Greg. What's the good word?")
+                }
+                else {
+                    manager?.viewController.player?.stop()
+                    manager?.activeState = SAYStateResting(manager: manager)
+            }
             case .shakeHorizontal:
                 manager?.viewController.player?.stop()
+                manager?.activeState = SAYStateResting(manager: manager)
             case .shakeVertical:
                 manager?.viewController.player?.stop()
                 manager?.viewController.soundBoard?.speakText("New Email from Greg. What's the good word?")
