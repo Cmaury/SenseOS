@@ -16,13 +16,18 @@ public class NodDetector {
     var rollArray = [Float]()
     var yawArray = [Float]()
     var ticks = 0
-    // up nod tracking
-    var upNodTracker = ["up": 0, "lastUp": 0, "down": 0, "lastDown": 0, "lastNod": 0, "lastDisturbance": 0]
-    var sensitivityThreshold: Float = 0.8
+    
+    // nod tracking variables
+    var sensitivityThreshold: Float = 1
     var boolTimeout = 10
     var nodTimeout = 10
     var disturbanceTimeout = 5
-    var upNodCount = 0
+    var disturbanceCount = 0
+    var shakeThreshold = 16
+    // up nod tracking
+    var upNodTracker = ["up": 0, "lastUp": 0, "down": 0, "lastDown": 0, "lastNod": 0, "disturbanceCount": 0, "lastDisturbance": 0]
+    // down nod tracking
+    var downNodTracker = ["up": 0, "lastUp": 0, "down": 0, "lastDown": 0, "lastNod": 0, "disturbanceCount": 0, "lastDisturbance": 0]
     // constructor
     init(windowSize: Int) {
         self.windowSize = windowSize
@@ -42,9 +47,13 @@ public class NodDetector {
             upNodTracker["up"] = 1
             upNodTracker["lastUp"] = ticks
             upNodTracker["lastDisturbance"] = ticks
+            upNodTracker["disturbanceCount"]!++
+//            disturbanceCount++
         }
         if(getPitchRate() <= -sensitivityThreshold) {
             upNodTracker["lastDisturbance"] = ticks
+            upNodTracker["disturbanceCount"]!++
+//            disturbanceCount++
         }
         if(getPitchRate() <= -sensitivityThreshold && upNodTracker["up"]! == 1) {
             // check for new DOWN head movement SECOND
@@ -61,25 +70,30 @@ public class NodDetector {
             // check for timeout of DOWN head movement
             upNodTracker["down"] = 0
         }
+        if(ticks - upNodTracker["lastDisturbance"]! > disturbanceTimeout * 6){
+            upNodTracker["disturbanceCount"] = 0
+//            disturbanceCount = 0
+        }
     }
     
     // check for nods
     
     public func isUpNod() -> Bool {
-        if((ticks-upNodTracker["lastNod"]!) < nodTimeout && (ticks-upNodTracker["lastDisturbance"]!) > disturbanceTimeout){
+        if((ticks-upNodTracker["lastNod"]!) < nodTimeout && (ticks-upNodTracker["lastDisturbance"]!) > disturbanceTimeout &&
+            upNodTracker["disturbanceCount"] < shakeThreshold){
             upNodTracker["up"] = 0
             upNodTracker["down"] = 0
             upNodTracker["lastNod"] = 0
             upNodTracker["lastDisturbance"] = 0
-            upNodCount++
             return true
         } else {
             return false
         }
     }
     
-    public func getUpNodCount() -> Int {
-        return upNodCount
+    // note: disturbance count resets after some timeout
+    public func getUpNodDisturbanceCount() -> Int {
+        return upNodTracker["disturbanceCount"]!
     }
     
     // add angles

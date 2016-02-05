@@ -19,6 +19,7 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     @IBOutlet weak var originDistance: UILabel!
     @IBOutlet weak var ConnectionState: UILabel!
     @IBOutlet weak var pitchRateLabel: UILabel!
+    @IBOutlet weak var nodCountLabel: UILabel!
     // Sound
     var dingSound: AVAudioPlayer?
     
@@ -161,6 +162,7 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
         nodDetector.tick()
         // update UI
         pitchRateLabel.text = String(nodDetector.getPitchRate())
+        nodCountLabel.text = String(nodDetector.getUpNodDisturbanceCount())
         // check for head nod
         if(nodDetector.isUpNod()){
             playDing()
