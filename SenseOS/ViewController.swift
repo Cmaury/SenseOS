@@ -19,7 +19,23 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     @IBOutlet weak var pitchRateLabel: UILabel!
     @IBOutlet weak var rollRateLabel: UILabel!
     @IBOutlet weak var yawRateLabel: UILabel!
-    @IBOutlet weak var nodCountLabel: UILabel!
+    @IBOutlet weak var upCountLabel: UILabel!
+    @IBOutlet weak var downCountLabel: UILabel!
+    @IBOutlet weak var leftCountLabel: UILabel!
+    @IBOutlet weak var rightCountLabel: UILabel!
+    @IBOutlet weak var shakevCountLabel: UILabel!
+    @IBOutlet weak var shakehCountLabel: UILabel!
+    @IBOutlet weak var shakevEndCountLabel: UILabel!
+    @IBOutlet weak var shakehEndCountLabel: UILabel!
+    // counters
+    var upCount = 0
+    var downCount = 0
+    var leftCount = 0
+    var rightCount = 0
+    var shakevCount = 0
+    var shakehCount = 0
+    var shakevEndCount = 0
+    var shakehEndCount = 0
     // Sound
     var dingSound: AVAudioPlayer?
     func playDing() {
@@ -135,7 +151,6 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
         print("found ambiguous device")
     }
     
-    
     //Sensor Delegate Methods
     @objc func ihsDevice(ihs: IHSDevice!, accelerometer3AxisDataChanged data: IHSAHRS3AxisStruct) {
         
@@ -159,15 +174,44 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
         nodDetector.addRollAngle(headset.roll)
         nodDetector.addYawAngle(headset.yaw)
         nodDetector.tick()
+        // check nods
+        if(nodDetector.isUpNod()){
+            upCount++
+        }
+        if(nodDetector.isDownNod()){
+            downCount++
+        }
+        if(nodDetector.isLeftNod()){
+            leftCount++
+        }
+        if(nodDetector.isRightNod()){
+            rightCount++
+        }
+        if(nodDetector.isShakeHorizontal()){
+            shakehCount++
+        }
+        if(nodDetector.isShakeVertical()){
+            shakevCount++
+        }
+        if(nodDetector.isHShakeRecentlyEnded()){
+            shakehEndCount++
+        }
+        if(nodDetector.isVShakeRecentlyEnded()){
+            shakevEndCount++
+        }
         // update UI
         pitchRateLabel.text = String(nodDetector.getPitchRate())
         rollRateLabel.text = String(nodDetector.getRollRate())
         yawRateLabel.text = String(nodDetector.getYawRate())
-        nodCountLabel.text = String(nodDetector.getUpNodDisturbanceCount())
-        // check for head nod
-        if(nodDetector.isDownNod()){
-            playDing()
-        }
+        upCountLabel.text = String(upCount)
+        downCountLabel.text = String(downCount)
+        leftCountLabel.text = String(leftCount)
+        rightCountLabel.text = String(rightCount)
+        shakehCountLabel.text = String(shakehCount)
+        shakevCountLabel.text = String(shakevCount)
+        shakehEndCountLabel.text = String(shakehEndCount)
+        shakevEndCountLabel.text = String(shakevEndCount)
+        
         
         
         if ihs.gyroCalibrated {
