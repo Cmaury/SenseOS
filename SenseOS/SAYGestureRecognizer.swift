@@ -44,36 +44,49 @@ class SAYGestureRecognizer {
         nodDetector.addYawAngle(viewController.headset.yaw)
         nodDetector.tick()
         
-        for item in enabledGestures {
-                switch item {
-                case .up:
-                    if nodDetector.isUpNod() {
-                        recognizedGesture(SAYGesture.up)
-                        print("Recognized Up")
+            for item in enabledGestures {
+                if !nodDetector.isShakeHorizontal() && !nodDetector.isShakeVertical() {
+                    switch item {
+                    case .up:
+                        if nodDetector.isUpNod() {
+                            recognizedGesture(SAYGesture.up)
+                            print("Recognized Up")
+                        }
+                    case .down:
+                        if nodDetector.isDownNod() {
+                            recognizedGesture(SAYGesture.down)
+                            print("Recognized Down")
+                        }
+                    case .left:
+                        if nodDetector.isLeftNod() {
+                            recognizedGesture(SAYGesture.left)
+                            print("Recognized Look Left")
+                        }
+                    case .right:
+                        if nodDetector.isRightNod() {
+                            recognizedGesture(SAYGesture.right)
+                            print("Recognized Look Right")
+                        }
+                    case .shakeHorizontal:
+                        if nodDetector.isHShakeRecentlyEnded() {
+                            recognizedGesture(SAYGesture.shakeHorizontal)
+                            print("Recognized Shake Horizontal")
+                        }
+                    case .shakeVertical:
+                        if nodDetector.isVShakeRecentlyEnded() {
+                            recognizedGesture(SAYGesture.shakeVertical)
+                            print("Recognized Shake Vertical")
+                        }
                     }
-                case .down:
-                    if nodDetector.isDownNod() {
-                        recognizedGesture(SAYGesture.down)
-                        print("Recognized Down")
-                    }
-                case .left:
-                    if nodDetector.isLeftNod() {
-                        recognizedGesture(SAYGesture.left)
-                        print("Recognized Look Left")
-                    }
-                case .right:
-                    if nodDetector.isRightNod() {
-                        recognizedGesture(SAYGesture.right)
-                        print("Recognized Look Right")
-                    }
-                case .shakeHorizontal:
-                    if nodDetector.isHShakeRecentlyEnded() {
-                        recognizedGesture(SAYGesture.shakeHorizontal)
+                    
+                }
+                else {
+                    if self.nodDetector.isHShakeRecentlyEnded() && item == SAYGesture.shakeHorizontal {
+                        self.recognizedGesture(SAYGesture.shakeHorizontal)
                         print("Recognized Shake Horizontal")
                     }
-                case .shakeVertical:
-                    if nodDetector.isVShakeRecentlyEnded() {
-                        recognizedGesture(SAYGesture.shakeVertical)
+                    if self.nodDetector.isVShakeRecentlyEnded() && item == SAYGesture.shakeVertical {
+                        self.recognizedGesture(SAYGesture.shakeVertical)
                         print("Recognized Shake Vertical")
                     }
                 }

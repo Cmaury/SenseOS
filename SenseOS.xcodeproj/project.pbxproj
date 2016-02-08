@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A816719D1C67B9DC00472E59 /* SAYNotificationFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = A816719C1C67B9DC00472E59 /* SAYNotificationFeed.swift */; };
 		A8436A981C4984BD006BCB09 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8436A971C4984BD006BCB09 /* AppDelegate.swift */; };
 		A8436A9A1C4984BD006BCB09 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8436A991C4984BD006BCB09 /* ViewController.swift */; };
 		A8436A9D1C4984BD006BCB09 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8436A9B1C4984BD006BCB09 /* Main.storyboard */; };
@@ -74,6 +75,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A816719C1C67B9DC00472E59 /* SAYNotificationFeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAYNotificationFeed.swift; sourceTree = "<group>"; };
 		A8436A941C4984BD006BCB09 /* SenseOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SenseOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8436A971C4984BD006BCB09 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A8436A991C4984BD006BCB09 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				A88B56781C62A0C50099D57F /* SAYStateResting.swift */,
 				A88B567A1C63E6270099D57F /* SAYStateNotification.swift */,
 				A88B56801C6505CA0099D57F /* SAYStateQuickFeed.swift */,
+				A816719C1C67B9DC00472E59 /* SAYNotificationFeed.swift */,
 				A88B567E1C63F8000099D57F /* SAYStateOpenMic.swift */,
 				A88B56841C6542BE0099D57F /* SAYNodDetector.swift */,
 				A88B56761C6299DF0099D57F /* SAYGestureRecognizer.swift */,
@@ -315,7 +318,7 @@
 				TargetAttributes = {
 					A8436A931C4984BD006BCB09 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = BVC5TXXXMZ;
+						DevelopmentTeam = RL9PP7V9LK;
 					};
 					A8436AA71C4984BD006BCB09 = {
 						CreatedOnToolsVersion = 7.2;
@@ -390,6 +393,7 @@
 				A88B56751C6292460099D57F /* SAYStateManager.swift in Sources */,
 				A88B56771C6299DF0099D57F /* SAYGestureRecognizer.swift in Sources */,
 				A8436A9A1C4984BD006BCB09 /* ViewController.swift in Sources */,
+				A816719D1C67B9DC00472E59 /* SAYNotificationFeed.swift in Sources */,
 				A8436A981C4984BD006BCB09 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -541,7 +545,7 @@
 				);
 				INFOPLIST_FILE = SenseOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.conversantlabs.SenseOS.SenseOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.conversantlabs.SenseOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SenseOS/IHS-Bridging-header.h";
 			};
@@ -560,7 +564,7 @@
 				);
 				INFOPLIST_FILE = SenseOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.conversantlabs.SenseOS.SenseOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.conversantlabs.SenseOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SenseOS/IHS-Bridging-header.h";
 			};

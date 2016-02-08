@@ -31,6 +31,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         viewController.soundBoard = soundBoard
         
+        
+        // Audio track coordinator set up
+        let synth = SAYManagedSynthesizer()
+        let audioCoordinator = SAYAudioTrackCoordinator(managedSynthesizer: synth)
+        
+        viewController.audioCoordinator = audioCoordinator
+        
         window?.rootViewController = viewController
         
         SAYAPIKeyManager.sharedInstance().prefetchAPIKeys()

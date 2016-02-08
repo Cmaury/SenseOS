@@ -22,8 +22,16 @@ class SAYStateQuickFeed: SAYGestureRecognizerDelegate {
                 shakeHorizontal: true,
                 shakeVertical: true)
             setActiveDelegate(self)
+            var notificationArry = [""]
+            notificationArry.append("New Notifications:  eye message from Greg")
+            notificationArry.append("Email from Meredith. No Subject")
+            notificationArry.append("NY Times breaking news...")
             
-            manager.viewController.soundBoard?.speakText("New message from Greg. Email from Meredith. No Subject. NY Times breaking news...")
+            for var i = 0; i < notificationArry.count; i+0 {
+                manager.viewController.soundBoard?.speakText(notificationArry[i], then: {i++})
+            }
+           
+
             
            // let request = SAYVerbalCommandRequest(commandRegistry: SAYConversationManager.systemManager().commandRegistry!)
             //SAYConversationManager.systemManager().presentVoiceRequest(request)
@@ -73,7 +81,7 @@ class SAYStateQuickFeed: SAYGestureRecognizerDelegate {
         case .shakeHorizontal:
             feedIndex = 0
             manager?.activeState = SAYStateResting(manager: manager)
-            manager?.viewController.soundBoard
+            
             
         case .left:
             if feedIndex == 1 {

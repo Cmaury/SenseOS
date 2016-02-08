@@ -33,9 +33,9 @@ class SAYStateResting: SAYGestureRecognizerDelegate {
     let commandRegistry = SAYConversationManager.systemManager().commandRegistry as! SAYCommandRecognizerCatalog
     
     func uberRecognizerCall() {
-        let uberRecognizer = SAYCustomCommandRecognizer(customType: "uberRide", actionBlock:  { command in
-            self.manager?.viewController.soundBoard!.speakText("an Uber is on it's way and will be there in about 5 minutes.")
-        })
+        //let uberRecognizer = SAYCustomCommandRecognizer(customType: "uberRide", actionBlock:  { command in
+            //self.manager?.viewController.soundBoard!.speakText("an Uber is on it's way and will be there in about 5 minutes.")
+        //})
     }
     
 

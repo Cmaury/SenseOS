@@ -25,7 +25,7 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
         if sender.title == "Accel" {
             fileIndex = "accel_Data"
         }
-        else { fileIndex = "raw_Accel_Data" }
+        else { fileIndex = "Gyro_Data" }
         print("file name " + fileIndex)
         //get file to share from button
         if let dir : NSString = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true).first {
@@ -91,13 +91,11 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     let headset = IHSDevice(deviceDelegate: ViewController.self as! IHSDeviceDelegate)
     
     //var gestureRecognizer: SAYGestureRecognizer!
-    var soundBoard: SAYSoundBoard? {
-        didSet {
-            print("Set soundboard")
-        }
-    }
+    var soundBoard: SAYSoundBoard?
+    var audioCoordinator: SAYAudioTrackCoordinator?
     var stateManager: SAYStateManager!
     var player: AVAudioPlayer?
+    var showedDeviceSelection = false
     
 
     
@@ -157,7 +155,10 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
             else {
                 let pathURL = NSURL(string: path)!
                 data.writeToURL(pathURL, atomically: true)
-                print("created file: \(file)")
+                
+                
+                //saving data to file is broken. fix later.
+                //print("created file: \(file)")
             }
             
         }
@@ -187,7 +188,14 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     
     func ihsDeviceFoundAmbiguousDevices(ihs: IHSDevice!) {
         print("found ambiguous device")
+        ihs.connect()
+        if !showedDeviceSelection {
+            ihs.showDeviceSelection(self)
+            showedDeviceSelection = true
+        }
+        
     }
+    
     
     
     //Sensor Delegate Methods
@@ -207,7 +215,7 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     }
     
     @objc func ihsDevice(ihs: IHSDevice!, didChangeYaw yaw: Float, pitch: Float, andRoll roll: Float) {
-        let file = "raw_Accel_Data"
+        let file = "Gyro_Data"
         let text = "\(ihs.yaw), \(ihs.pitch), \(ihs.roll)"
         updateLog(text, file: file)
         //print(text)
