@@ -102,6 +102,7 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
         stateManager = SAYStateManager(viewController: self)
         stateManager.state = SAYState.resting
         
