@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F2929081C625713000170D8 /* NodDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2929071C625713000170D8 /* NodDetector.swift */; };
+		8F29290C1C625FF3000170D8 /* chime_bell_ding.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8F29290B1C625FF3000170D8 /* chime_bell_ding.wav */; };
 		A816719B1C54107B00472E59 /* SAYGestureTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A816719A1C54107B00472E59 /* SAYGestureTemplates.swift */; };
 		A8436A981C4984BD006BCB09 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8436A971C4984BD006BCB09 /* AppDelegate.swift */; };
 		A8436A9A1C4984BD006BCB09 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8436A991C4984BD006BCB09 /* ViewController.swift */; };
@@ -50,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8F2929071C625713000170D8 /* NodDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodDetector.swift; sourceTree = "<group>"; };
+		8F29290B1C625FF3000170D8 /* chime_bell_ding.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = chime_bell_ding.wav; path = ../../../Desktop/projects/light/sound/chime_bell_ding.wav; sourceTree = "<group>"; };
 		A816719A1C54107B00472E59 /* SAYGestureTemplates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAYGestureTemplates.swift; sourceTree = "<group>"; };
 		A8436A941C4984BD006BCB09 /* SenseOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SenseOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8436A971C4984BD006BCB09 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +124,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8F2929091C625FC6000170D8 /* Media */ = {
+			isa = PBXGroup;
+			children = (
+				8F29290A1C625FCE000170D8 /* Sound */,
+			);
+			name = Media;
+			sourceTree = "<group>";
+		};
+		8F29290A1C625FCE000170D8 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				8F29290B1C625FF3000170D8 /* chime_bell_ding.wav */,
+			);
+			name = Sound;
+			sourceTree = "<group>";
+		};
 		A8436A8B1C4984BD006BCB09 = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +163,7 @@
 		A8436A961C4984BD006BCB09 /* SenseOS */ = {
 			isa = PBXGroup;
 			children = (
+				8F2929091C625FC6000170D8 /* Media */,
 				A8436AED1C512F62006BCB09 /* GestureRecognizer */,
 				A8436A971C4984BD006BCB09 /* AppDelegate.swift */,
 				A8436A991C4984BD006BCB09 /* ViewController.swift */,
@@ -200,6 +221,7 @@
 			children = (
 				A8436AF41C513266006BCB09 /* SAYGestureRecognizer.swift */,
 				A816719A1C54107B00472E59 /* SAYGestureTemplates.swift */,
+				8F2929071C625713000170D8 /* NodDetector.swift */,
 			);
 			name = GestureRecognizer;
 			sourceTree = "<group>";
@@ -272,7 +294,7 @@
 				TargetAttributes = {
 					A8436A931C4984BD006BCB09 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = BVC5TXXXMZ;
+						DevelopmentTeam = RL9PP7V9LK;
 					};
 					A8436AA71C4984BD006BCB09 = {
 						CreatedOnToolsVersion = 7.2;
@@ -310,6 +332,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8436AA21C4984BD006BCB09 /* LaunchScreen.storyboard in Resources */,
+				8F29290C1C625FF3000170D8 /* chime_bell_ding.wav in Resources */,
 				A8436A9F1C4984BD006BCB09 /* Assets.xcassets in Resources */,
 				A8436A9D1C4984BD006BCB09 /* Main.storyboard in Resources */,
 				A8436AEC1C499D3F006BCB09 /* IHS in Resources */,
@@ -340,6 +363,7 @@
 				A8436AF51C513266006BCB09 /* SAYGestureRecognizer.swift in Sources */,
 				A8436A9A1C4984BD006BCB09 /* ViewController.swift in Sources */,
 				A8436A981C4984BD006BCB09 /* AppDelegate.swift in Sources */,
+				8F2929081C625713000170D8 /* NodDetector.swift in Sources */,
 				A816719B1C54107B00472E59 /* SAYGestureTemplates.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -483,15 +507,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SenseOS",
 				);
 				INFOPLIST_FILE = SenseOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.conversantlabs.SenseOS.SenseOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.conversantlabs.SenseOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SenseOS/IHS-Bridging-header.h";
 			};
 			name = Debug;
@@ -501,15 +528,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SenseOS",
 				);
 				INFOPLIST_FILE = SenseOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.conversantlabs.SenseOS.SenseOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.conversantlabs.SenseOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SenseOS/IHS-Bridging-header.h";
 			};
 			name = Release;
