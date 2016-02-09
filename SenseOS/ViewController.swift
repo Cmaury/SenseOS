@@ -16,33 +16,23 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     @IBOutlet weak var accelX: UILabel!
     @IBOutlet weak var accelY: UILabel!
     @IBOutlet weak var accelZ: UILabel!
-    @IBOutlet weak var pitchRateLabel: UILabel!
-    @IBOutlet weak var rollRateLabel: UILabel!
-    @IBOutlet weak var yawRateLabel: UILabel!
-    @IBOutlet weak var upCountLabel: UILabel!
-    @IBOutlet weak var downCountLabel: UILabel!
-    @IBOutlet weak var leftCountLabel: UILabel!
-    @IBOutlet weak var rightCountLabel: UILabel!
-    @IBOutlet weak var shakevCountLabel: UILabel!
-    @IBOutlet weak var shakehCountLabel: UILabel!
-    @IBOutlet weak var shakevEndCountLabel: UILabel!
-    @IBOutlet weak var shakehEndCountLabel: UILabel!
-    // counters
-    var upCount = 0
-    var downCount = 0
-    var leftCount = 0
-    var rightCount = 0
-    var shakevCount = 0
-    var shakehCount = 0
-    var shakevEndCount = 0
-    var shakehEndCount = 0
-    // Sound
-    var dingSound: AVAudioPlayer?
-    func playDing() {
-        dingSound?.numberOfLoops = 0
-        dingSound?.volume = 15.0
-        dingSound?.prepareToPlay()
-        dingSound?.play()
+    
+    let headset = IHSDevice(deviceDelegate: ViewController.self as! IHSDeviceDelegate)
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // other
+        if headset.connectionState != IHSDeviceConnectionState.Connected {
+            ConnectionState.text = "not connected"
+            print("trying to connect")
+            headset.deviceDelegate = self
+            headset.sensorsDelegate = self
+            headset.audioDelegate = self
+            headset.buttonDelegate = self
+            headset.connect()
+            print(String(headset.connectionState.rawValue))
+        }
+        print("connection state is " + String(headset.connectionState.rawValue))
     }
     
     @IBAction func shareButton(sender: UIBarButtonItem) {
@@ -70,32 +60,6 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
             let activityViewController = UIActivityViewController(activityItems: [fileText, myWebsite!], applicationActivities: nil)
             self.presentViewController(activityViewController, animated: true, completion: nil)
         }
-    }
-    
-    let headset = IHSDevice(deviceDelegate: ViewController.self as! IHSDeviceDelegate)
-    let gestureRecognizer = SAYGestureRecognizer()
-    let nodDetector = NodDetector(windowSize: 5)
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // setup osund
-        dingSound = AVAudioPlayer()
-        let url:NSURL = NSBundle.mainBundle().URLForResource("chime_bell_ding", withExtension: "wav")!
-        do { dingSound = try AVAudioPlayer(contentsOfURL: url, fileTypeHint: nil) }
-        catch let error as NSError { print(error.description) }
-        // other
-        if headset.connectionState != IHSDeviceConnectionState.Connected {
-            ConnectionState.text = "not connected"
-            print("trying to connect")
-            headset.deviceDelegate = self
-            headset.sensorsDelegate = self
-            headset.audioDelegate = self
-            headset.buttonDelegate = self
-            headset.connect()
-            print("\(headset.connectionState.rawValue)")
-        }
-        print("connection state is \(headset.connectionState.rawValue)")
     }
     
     func updateLog(text:String, file: String) {
@@ -130,18 +94,14 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     @objc func ihsDevice(ihs: IHSDevice!, connectionStateChanged connectionState: IHSDeviceConnectionState) {
         
         switch connectionState {
-        case IHSDeviceConnectionState.Connected:
-            ConnectionState.text = "Connected"
-            
-        case IHSDeviceConnectionState.None: ConnectionState.text = "None"
-        case IHSDeviceConnectionState.Disconnected: ConnectionState.text = "Disconnected"
-            gestureRecognizer.stopRecognition()
-        case IHSDeviceConnectionState.Discovering: ConnectionState.text = "Discovering"
-        case IHSDeviceConnectionState.Connecting: ConnectionState.text = "Connecting..."
-        case IHSDeviceConnectionState.ConnectionFailed:
-            ConnectionState.text = "Connection Failed"
-        case IHSDeviceConnectionState.BluetoothOff: ConnectionState.text = "Bluetooth is off"
-        default: break
+            case IHSDeviceConnectionState.Connected: ConnectionState.text = "Connected"
+            case IHSDeviceConnectionState.None: ConnectionState.text = "None"
+            case IHSDeviceConnectionState.Disconnected: ConnectionState.text = "Disconnected"
+            case IHSDeviceConnectionState.Discovering: ConnectionState.text = "Discovering"
+            case IHSDeviceConnectionState.Connecting: ConnectionState.text = "Connecting..."
+            case IHSDeviceConnectionState.ConnectionFailed: ConnectionState.text = "Connection Failed"
+            case IHSDeviceConnectionState.BluetoothOff: ConnectionState.text = "Bluetooth is off"
+            default: break
         }
         print("device state changed to " + ConnectionState.text!)
         
@@ -153,66 +113,9 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     
     //Sensor Delegate Methods
     @objc func ihsDevice(ihs: IHSDevice!, accelerometer3AxisDataChanged data: IHSAHRS3AxisStruct) {
-        
-        if gestureRecognizer.origin.x == SAY3DPointOrigin.x {
-            gestureRecognizer.origin = SAY3DPoint(x: CGFloat(headset.pitch), y: CGFloat(headset.roll), z: CGFloat(headset.yaw))
-        }
-        
-        gestureRecognizer.accelPointCache.append(SAY3DPoint(x:CGFloat(headset.roll), y: CGFloat(headset.pitch), z: CGFloat(headset.yaw)))
-        gestureRecognizer.startRecognition()
-
-        if !gestureRecognizer.isRecognizing {
-            gestureRecognizer.findBestMatch()
-        }
-        
-        accelX.text = " \(headset.pitch)"
-        accelY.text = "\(headset.roll)"
-        accelZ.text =  "\(headset.yaw)"
-        
-        // add data to NodDetector
-        nodDetector.addPitchAngle(headset.pitch)
-        nodDetector.addRollAngle(headset.roll)
-        nodDetector.addYawAngle(headset.yaw)
-        nodDetector.tick()
-        // check nods
-        if(nodDetector.isUpNod()){
-            upCount++
-        }
-        if(nodDetector.isDownNod()){
-            downCount++
-        }
-        if(nodDetector.isLeftNod()){
-            leftCount++
-        }
-        if(nodDetector.isRightNod()){
-            rightCount++
-        }
-        if(nodDetector.isShakeHorizontal()){
-            shakehCount++
-        }
-        if(nodDetector.isShakeVertical()){
-            shakevCount++
-        }
-        if(nodDetector.isHShakeRecentlyEnded()){
-            shakehEndCount++
-        }
-        if(nodDetector.isVShakeRecentlyEnded()){
-            shakevEndCount++
-        }
-        // update UI
-        pitchRateLabel.text = String(nodDetector.getPitchRate())
-        rollRateLabel.text = String(nodDetector.getRollRate())
-        yawRateLabel.text = String(nodDetector.getYawRate())
-        upCountLabel.text = String(upCount)
-        downCountLabel.text = String(downCount)
-        leftCountLabel.text = String(leftCount)
-        rightCountLabel.text = String(rightCount)
-        shakehCountLabel.text = String(shakehCount)
-        shakevCountLabel.text = String(shakevCount)
-        shakehEndCountLabel.text = String(shakehEndCount)
-        shakevEndCountLabel.text = String(shakevEndCount)
-        
-        
+        accelX.text = String(headset.pitch)
+        accelY.text = String(headset.roll)
+        accelZ.text = String(headset.yaw)
         
         if ihs.gyroCalibrated {
             let file = "accel_Data"
