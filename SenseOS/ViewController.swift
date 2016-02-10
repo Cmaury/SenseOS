@@ -13,18 +13,24 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     
     // UI
     @IBOutlet weak var ConnectionState: UILabel!
-    @IBOutlet weak var accelX: UILabel!
-    @IBOutlet weak var accelY: UILabel!
-    @IBOutlet weak var accelZ: UILabel!
-    
+    @IBOutlet weak var pitchLabel: UILabel!
+    @IBOutlet weak var rollLabel: UILabel!
+    @IBOutlet weak var yawLabel: UILabel!
+    @IBOutlet weak var xLabel: UILabel!
+    @IBOutlet weak var yLabel: UILabel!
+    @IBOutlet weak var zLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    // headset
     let headset = IHSDevice(deviceDelegate: ViewController.self as! IHSDeviceDelegate)
+    // data collection
+    let dataFileName = "data.csv"
+    var gestureUID = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // other
         if headset.connectionState != IHSDeviceConnectionState.Connected {
-            ConnectionState.text = "not connected"
-            print("trying to connect")
+            ConnectionState.text = "Not connected"
+            print("Trying to connect...")
             headset.deviceDelegate = self
             headset.sensorsDelegate = self
             headset.audioDelegate = self
@@ -32,67 +38,73 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
             headset.connect()
             print(String(headset.connectionState.rawValue))
         }
-        print("connection state is " + String(headset.connectionState.rawValue))
+        print("Connection state is " + String(headset.connectionState.rawValue))
+        clearFile(dataFileName) // start new data file each time you open the app
     }
     
+    // export data (share)
     @IBAction func shareButton(sender: UIBarButtonItem) {
         var fileText = ""
-        var fileIndex = ""
-        if sender.title == "Accel" {
-            fileIndex = "accel_Data"
-        }
-        else { fileIndex = "raw_Accel_Data" }
-        print("file name " + fileIndex)
+        let fileIndex = dataFileName
         //get file to share from button
         if let dir : NSString = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true).first {
             let path = dir.stringByAppendingPathComponent(fileIndex);
-            
             //get file text
-                do {
-                    print("getting contents of file \(path)")
+            do {
+                print("Getting contents of file " + String(path))
                 fileText = try String(contentsOfFile: path)
-                }
-                catch {
-                    fileText = "there was an error pulling file data"
-                    print(error)
+            } catch {
+                fileText = "There was an error pulling file data"
+                print(error)
             }
-            let myWebsite = NSURL(string: "http://conversantlabs.com")
-            let activityViewController = UIActivityViewController(activityItems: [fileText, myWebsite!], applicationActivities: nil)
+            let activityViewController = UIActivityViewController(activityItems: [fileText], applicationActivities: nil)
             self.presentViewController(activityViewController, animated: true, completion: nil)
         }
     }
     
-    func updateLog(text:String, file: String) {
-        let text = text + ", " + NSDate().description + "\n"
+    // write to the end of a file
+    // file is created if it does not exist
+    func writeToFile(text:String, file:String){
         let data = text.dataUsingEncoding(NSUTF8StringEncoding)!
-        if let dir : NSString = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true).first {
-            let path = dir.stringByAppendingPathComponent(file);
-            if NSFileManager.defaultManager().fileExistsAtPath(path) {
-                if let fileHandle = NSFileHandle(forWritingAtPath: path) {
-                    fileHandle.seekToEndOfFile()
-                    fileHandle.writeData(data)
-                    fileHandle.closeFile()
-                    //print("wrote to file \(file)")
-                }
-                else {
-                    print("can't open file because reasons")
-                }
-                
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
+        let filePath = paths.stringByAppendingPathComponent(file)
+        if let fileHandle = NSFileHandle(forWritingAtPath: filePath) {
+            fileHandle.seekToEndOfFile()
+            fileHandle.writeData(data)
+            fileHandle.closeFile()
+            print("Wrote to file " + String(file))
+        } else {
+            print("Can't open file " + String(file) + "...")
+            do {
+                try text.writeToFile(filePath, atomically: true, encoding: NSUTF8StringEncoding)
+            } catch {
+                print("Can't write to file " + String(file) + "...")
             }
-            else {
-                let pathURL = NSURL(string: path)!
-                data.writeToURL(pathURL, atomically: true)
-//                print("created file: \(file)")
-            }
+            print("Created and wrote new file: " + String(file))
+        }
+    }
+    
+    // clears file by writing nothing to it
+    func clearFile(file:String){
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
+        let filePath = paths.stringByAppendingPathComponent(file)
+        do {
+            try "".writeToFile(filePath, atomically: true, encoding: NSUTF8StringEncoding)
+            print("Cleared file " + String(file))
+        } catch {
             
         }
     }
     
+    // log headset data
+    // TODO: not complete, just test
+    func logData(pitch: Float, roll: Float, yaw: Float, label: Int){
+        let str = String(pitch) + "," + String(roll) + "," + String(yaw) + "," + String(label) + "\n"
+        writeToFile(str, file: dataFileName);
+    }
     
     // Device Delegate Methods
-    
     @objc func ihsDevice(ihs: IHSDevice!, connectionStateChanged connectionState: IHSDeviceConnectionState) {
-        
         switch connectionState {
             case IHSDeviceConnectionState.Connected: ConnectionState.text = "Connected"
             case IHSDeviceConnectionState.None: ConnectionState.text = "None"
@@ -103,34 +115,27 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
             case IHSDeviceConnectionState.BluetoothOff: ConnectionState.text = "Bluetooth is off"
             default: break
         }
-        print("device state changed to " + ConnectionState.text!)
+        print("Device state changed to " + ConnectionState.text!)
         
     }
     
     func ihsDeviceFoundAmbiguousDevices(ihs: IHSDevice!) {
-        print("found ambiguous device")
+        print("Found ambiguous device")
     }
     
     //Sensor Delegate Methods
     @objc func ihsDevice(ihs: IHSDevice!, accelerometer3AxisDataChanged data: IHSAHRS3AxisStruct) {
-        accelX.text = String(headset.pitch)
-        accelY.text = String(headset.roll)
-        accelZ.text = String(headset.yaw)
-        
-        if ihs.gyroCalibrated {
-            let file = "accel_Data"
-            let text = "\(ihs.accelerometerData.x), \(ihs.accelerometerData.y), \(ihs.accelerometerData.z)"
-            updateLog(text, file: file)
-            
-        }
+        pitchLabel.text = String(headset.pitch)
+        rollLabel.text = String(headset.roll)
+        yawLabel.text = String(headset.yaw)
+        xLabel.text = String(headset.accelerometerData.x)
+        yLabel.text = String(headset.accelerometerData.y)
+        zLabel.text = String(headset.accelerometerData.z)
+        timeLabel.text = "\(NSDate().timeIntervalSince1970 * 1000)"
+        logData(headset.pitch, roll: headset.roll, yaw: headset.yaw, label: 1)
     }
     
     @objc func ihsDevice(ihs: IHSDevice!, didChangeYaw yaw: Float, pitch: Float, andRoll roll: Float) {
-        let file = "raw_Accel_Data"
-        let text = "\(ihs.yaw), \(ihs.pitch), \(ihs.roll)"
-        updateLog(text, file: file)
-        //print(text)
-        
     }
     
     @objc func ihsDevice(ihs: IHSDevice!, fusedHeadingChanged heading: Float) {
@@ -162,7 +167,6 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     
     
     //Button Delegate methods
-
     @objc func ihsDevice(ihs: IHSDevice!, didPressIHSButton button: IHSButton, withEvent event: IHSButtonEvent, fromSource source: IHSButtonSource) {
         
     }
