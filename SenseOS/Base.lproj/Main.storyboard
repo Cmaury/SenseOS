@@ -27,7 +27,7 @@
                                     <action selector="shareButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="07x-cq-Lkr"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Z7-IB-GWl">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Z7-IB-GWl">
                                 <rect key="frame" x="216" y="57" width="168" height="42"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="NOD UP">
@@ -39,7 +39,7 @@
                                     <action selector="NodUpTouchDown:" destination="BYZ-38-t0r" eventType="touchDown" id="nq4-oV-pNy"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DJW-9q-mi3">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DJW-9q-mi3">
                                 <rect key="frame" x="216" y="107" width="168" height="42"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="NOD DOWN">
@@ -51,7 +51,7 @@
                                     <action selector="NodDownTouchDown:" destination="BYZ-38-t0r" eventType="touchDown" id="P5P-fw-zCV"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E78-CQ-ng8">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E78-CQ-ng8">
                                 <rect key="frame" x="216" y="157" width="168" height="42"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="NOD RIGHT">
@@ -63,7 +63,7 @@
                                     <action selector="NodRightTouchDown:" destination="BYZ-38-t0r" eventType="touchDown" id="Mly-ej-gJk"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SnQ-2a-L2M">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SnQ-2a-L2M">
                                 <rect key="frame" x="216" y="207" width="168" height="42"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="NOD LEFT">
@@ -75,7 +75,7 @@
                                     <action selector="NodLeftTouchDown:" destination="BYZ-38-t0r" eventType="touchDown" id="b2j-RG-NVj"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="luH-Qk-Jtr">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="luH-Qk-Jtr">
                                 <rect key="frame" x="216" y="257" width="168" height="42"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="LOOK RIGHT">
@@ -87,7 +87,7 @@
                                     <action selector="NoGesture:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zAz-vd-h69"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4k9-mf-AjB">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4k9-mf-AjB">
                                 <rect key="frame" x="216" y="307" width="168" height="42"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="LOOK LEFT">
@@ -105,7 +105,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qHy-ou-aIF">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qHy-ou-aIF">
                                 <rect key="frame" x="216" y="357" width="168" height="42"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="SHAKE-H">
@@ -117,7 +117,7 @@
                                     <action selector="ShakeHTouchDown:" destination="BYZ-38-t0r" eventType="touchDown" id="alg-mG-PrC"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zhP-NG-awZ">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zhP-NG-awZ">
                                 <rect key="frame" x="216" y="407" width="168" height="42"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="SHAKE-V">
@@ -129,14 +129,14 @@
                                     <action selector="ShakeVTouchDown:" destination="BYZ-38-t0r" eventType="touchDown" id="qSV-A2-swm"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Current Gesture: None" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6RK-V2-1ZC">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Gesture: None" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6RK-V2-1ZC">
                                 <rect key="frame" x="213" y="465" width="173" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A7M-81-jFu">
-                                <rect key="frame" x="395" y="531" width="30" height="70"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A7M-81-jFu">
+                                <rect key="frame" x="395" y="531" width="30" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="X">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -166,7 +166,6 @@
                             <constraint firstItem="luH-Qk-Jtr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="DEf-Vj-FX9"/>
                             <constraint firstItem="E78-CQ-ng8" firstAttribute="top" secondItem="DJW-9q-mi3" secondAttribute="bottom" constant="8" id="DZD-6C-CnC"/>
                             <constraint firstItem="Hpd-MO-Jqt" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="Ghk-8Z-CEN"/>
-                            <constraint firstItem="A7M-81-jFu" firstAttribute="top" secondItem="6RK-V2-1ZC" secondAttribute="bottom" constant="45" id="INc-dv-QxK"/>
                             <constraint firstItem="A7M-81-jFu" firstAttribute="leading" secondItem="dCA-4R-yAJ" secondAttribute="trailing" constant="11" id="IVh-Qd-u3e"/>
                             <constraint firstItem="Hpd-MO-Jqt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LA9-eY-Zqk"/>
                             <constraint firstItem="qHy-ou-aIF" firstAttribute="width" secondItem="zhP-NG-awZ" secondAttribute="width" id="Oy6-IG-Gvj"/>
