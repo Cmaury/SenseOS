@@ -41,6 +41,8 @@
 		A88B567F1C63F8000099D57F /* SAYStateOpenMic.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88B567E1C63F8000099D57F /* SAYStateOpenMic.swift */; };
 		A88B56811C6505CA0099D57F /* SAYStateQuickFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88B56801C6505CA0099D57F /* SAYStateQuickFeed.swift */; };
 		A88B56851C6542BE0099D57F /* SAYNodDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88B56841C6542BE0099D57F /* SAYNodDetector.swift */; };
+		A88B56871C6937F60099D57F /* SayOpenMicTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88B56861C6937F60099D57F /* SayOpenMicTopic.swift */; };
+		A88B568B1C6BA7370099D57F /* SayStateTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88B568A1C6BA7370099D57F /* SayStateTutorial.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +116,8 @@
 		A88B567E1C63F8000099D57F /* SAYStateOpenMic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAYStateOpenMic.swift; sourceTree = "<group>"; };
 		A88B56801C6505CA0099D57F /* SAYStateQuickFeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAYStateQuickFeed.swift; sourceTree = "<group>"; };
 		A88B56841C6542BE0099D57F /* SAYNodDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAYNodDetector.swift; sourceTree = "<group>"; };
+		A88B56861C6937F60099D57F /* SayOpenMicTopic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SayOpenMicTopic.swift; sourceTree = "<group>"; };
+		A88B568A1C6BA7370099D57F /* SayStateTutorial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SayStateTutorial.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,11 +186,13 @@
 				A8436A971C4984BD006BCB09 /* AppDelegate.swift */,
 				A8436A991C4984BD006BCB09 /* ViewController.swift */,
 				A88B56741C6292460099D57F /* SAYStateManager.swift */,
+				A88B568A1C6BA7370099D57F /* SayStateTutorial.swift */,
 				A88B56781C62A0C50099D57F /* SAYStateResting.swift */,
 				A88B567A1C63E6270099D57F /* SAYStateNotification.swift */,
 				A88B56801C6505CA0099D57F /* SAYStateQuickFeed.swift */,
-				A816719C1C67B9DC00472E59 /* SAYNotificationFeed.swift */,
 				A88B567E1C63F8000099D57F /* SAYStateOpenMic.swift */,
+				A816719C1C67B9DC00472E59 /* SAYNotificationFeed.swift */,
+				A88B56861C6937F60099D57F /* SayOpenMicTopic.swift */,
 				A88B56841C6542BE0099D57F /* SAYNodDetector.swift */,
 				A88B56761C6299DF0099D57F /* SAYGestureRecognizer.swift */,
 				A8436A9B1C4984BD006BCB09 /* Main.storyboard */,
@@ -385,6 +391,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A88B56871C6937F60099D57F /* SayOpenMicTopic.swift in Sources */,
 				A88B567B1C63E6270099D57F /* SAYStateNotification.swift in Sources */,
 				A88B56811C6505CA0099D57F /* SAYStateQuickFeed.swift in Sources */,
 				A88B56791C62A0C50099D57F /* SAYStateResting.swift in Sources */,
@@ -393,6 +400,7 @@
 				A88B56751C6292460099D57F /* SAYStateManager.swift in Sources */,
 				A88B56771C6299DF0099D57F /* SAYGestureRecognizer.swift in Sources */,
 				A8436A9A1C4984BD006BCB09 /* ViewController.swift in Sources */,
+				A88B568B1C6BA7370099D57F /* SayStateTutorial.swift in Sources */,
 				A816719D1C67B9DC00472E59 /* SAYNotificationFeed.swift in Sources */,
 				A8436A981C4984BD006BCB09 /* AppDelegate.swift in Sources */,
 			);

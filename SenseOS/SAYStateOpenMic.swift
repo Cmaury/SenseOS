@@ -10,8 +10,11 @@ import Foundation
 
 class SAYStateOpenMic: SAYGestureRecognizerDelegate {
     
+    var caller = SAYStateResting(manager: nil) as AnyObject
+    var callerState = 0
     let manager: SAYStateManager?
-    init(manager: SAYStateManager?) {
+    
+    init(manager: SAYStateManager?, caller: AnyObject = SAYStateResting(manager: nil) as AnyObject, callerState: Int = 0) {
         if let manager = manager {
             self.manager = manager
             manager.gestureRecognizer.enableGestures(
@@ -19,6 +22,11 @@ class SAYStateOpenMic: SAYGestureRecognizerDelegate {
                 shakeVertical: true,
                 shakeHorizontal: true)
             setActiveDelegate(self)
+            self.caller = caller
+            self.callerState = callerState          
+
+            let request = SAYVerbalCommandRequest(commandRegistry: SAYConversationManager.systemManager().commandRegistry!)
+            SAYConversationManager.systemManager().presentVoiceRequest(request)
         }
         else {
             self.manager = nil

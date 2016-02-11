@@ -18,6 +18,7 @@ class SAYStateResting: SAYGestureRecognizerDelegate {
                 true,
                 down: true)
             setActiveDelegate(self)
+            manager.viewController.topicHandler?.clearQueue()
         }
         else {
             self.manager = nil
@@ -30,7 +31,7 @@ class SAYStateResting: SAYGestureRecognizerDelegate {
         manager!.gestureRecognizer.activeDelegate = state
     }
     
-    let commandRegistry = SAYConversationManager.systemManager().commandRegistry as! SAYCommandRecognizerCatalog
+
     
     func uberRecognizerCall() {
         //let uberRecognizer = SAYCustomCommandRecognizer(customType: "uberRide", actionBlock:  { command in
@@ -46,9 +47,7 @@ class SAYStateResting: SAYGestureRecognizerDelegate {
                 manager?.activeState = SAYStateQuickFeed(manager: manager)
             case .down:
                 print("pressed down")
-                let request = SAYVerbalCommandRequest(commandRegistry: SAYConversationManager.systemManager().commandRegistry!)
-                SAYConversationManager.systemManager().presentVoiceRequest(	 request)
-                manager?.activeState = SAYStateOpenMic(manager: manager)
+                manager?.activeState = SAYStateOpenMic(manager: manager, caller: self, callerState: 0)
             default: print("this gesture doesn't do anything")
 
             

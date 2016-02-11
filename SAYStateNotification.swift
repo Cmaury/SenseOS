@@ -16,11 +16,13 @@ class SAYStateNotification: SAYGestureRecognizerDelegate {
         if let manager = manager {
             self.manager = manager
             manager.gestureRecognizer.enableGestures(
+                down: true,
                 left: true,
                 right: true,
                 shakeHorizontal: true,
                 shakeVertical: true)
             setActiveDelegate(self)
+            manager.viewController.topicHandler?.clearQueue()
         }
         else {
             self.manager = nil
@@ -37,6 +39,8 @@ class SAYStateNotification: SAYGestureRecognizerDelegate {
     
     func didRecognizeGesture(gesture: SAYGesture) {
         switch gesture {
+            case .down:
+                manager?.activeState = SAYStateOpenMic(manager: manager, caller: self)
             case .left:
                 if direction == "left" {
                     print("I should be speaking")
@@ -69,3 +73,4 @@ class SAYStateNotification: SAYGestureRecognizerDelegate {
         }
     }
 }
+    

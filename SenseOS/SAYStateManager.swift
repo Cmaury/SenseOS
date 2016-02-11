@@ -13,6 +13,7 @@ enum SAYState {
     case notification
     case openMic
     case quickFeed
+    case tutorial
 }
 
 class SAYStateManager: SAYGestureRecognizerDelegate  {
@@ -41,17 +42,20 @@ class SAYStateManager: SAYGestureRecognizerDelegate  {
         
         willSet {
             activeState = nil
+            
         }
         
         didSet(currentState) {
 
             switch state {
+                case .tutorial:
+                    activeState = SAYStateTutorial(manager: self)
                 case .resting:
                     activeState = SAYStateResting(manager: self)
                 case .notification:
                     activeState = SAYStateNotification(manager: self)
                 case .openMic:
-                    activeState = SAYStateOpenMic(manager: self)
+                    activeState = SAYStateOpenMic(manager: self, callerState: 0)
                 case .quickFeed:
                     	activeState = SAYStateQuickFeed(manager: self)
             }

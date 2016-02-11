@@ -23,7 +23,7 @@ public class SAYNodDetector {
     var boolTimeout = 10
     var nodTimeout = 10
     var disturbanceTimeout = 5
-    var shakeThreshold = 35
+    var shakeThreshold = 25
     // up nod tracking
     var upNodTracker = ["up": 0, "lastUp": 0, "down": 0, "lastDown": 0, "lastNod": 0, "disturbanceCount": 0, "lastDisturbance": 0]
     // down nod tracking
