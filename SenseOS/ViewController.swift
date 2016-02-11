@@ -12,20 +12,45 @@ import AVFoundation
 class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, IHS3DAudioDelegate, IHSButtonDelegate {
     
     // UI
+    // labels
     @IBOutlet weak var ConnectionState: UILabel!
-    @IBOutlet weak var pitchLabel: UILabel!
-    @IBOutlet weak var rollLabel: UILabel!
-    @IBOutlet weak var yawLabel: UILabel!
-    @IBOutlet weak var xLabel: UILabel!
-    @IBOutlet weak var yLabel: UILabel!
-    @IBOutlet weak var zLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var pitchLabel: UILabel?
+    @IBOutlet weak var rollLabel: UILabel?
+    @IBOutlet weak var yawLabel: UILabel?
+    @IBOutlet weak var xLabel: UILabel?
+    @IBOutlet weak var yLabel: UILabel?
+    @IBOutlet weak var zLabel: UILabel?
+    @IBOutlet weak var timeLabel: UILabel?
+    // buttons
+    @IBOutlet weak var exportDataButton: UIButton!
+    @IBOutlet weak var nodUpButton: UIButton!
+    @IBOutlet weak var nodDownButton: UIButton!
+    @IBOutlet weak var nodRightButton: UIButton!
+    @IBOutlet weak var nodLeftButton: UIButton!
+    @IBOutlet weak var lookRightButton: UIButton!
+    @IBOutlet weak var lookLeftButton: UIButton!
+    @IBOutlet weak var shakeHorizontalButton: UIButton!
+    @IBOutlet weak var shakeVerticalButton: UIButton!
+    @IBOutlet weak var deleteButton: UIButton!
     // headset
     let headset = IHSDevice(deviceDelegate: ViewController.self as! IHSDeviceDelegate)
     // data collection
     let dataFileName = "data.csv"
     var gestureUID = 0
-    
+    enum gestureLabel: String {
+        case None
+        case NodUp
+        case NodDown
+        case NodLeft
+        case NodRight
+        case LookLeft
+        case LookRight
+        case ShakeVertical
+        case ShakeHorizontal
+    }
+    var currentGestureLabel = gestureLabel.None
+    @IBOutlet weak var gestureText: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         if headset.connectionState != IHSDeviceConnectionState.Connected {
@@ -40,6 +65,29 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
         }
         print("Connection state is " + String(headset.connectionState.rawValue))
         clearFile(dataFileName) // start new data file each time you open the app
+        logDataHeader() // create first row (header) in data file
+        // set up buttons
+        exportDataButton.backgroundColor = UIColor.blackColor()
+        nodUpButton.backgroundColor = UIColor.grayColor()
+        nodDownButton.backgroundColor = UIColor.grayColor()
+        nodRightButton.backgroundColor = UIColor.grayColor()
+        nodLeftButton.backgroundColor = UIColor.grayColor()
+        lookRightButton.backgroundColor = UIColor.grayColor()
+        lookLeftButton.backgroundColor = UIColor.grayColor()
+        shakeHorizontalButton.backgroundColor = UIColor.grayColor()
+        shakeVerticalButton.backgroundColor = UIColor.grayColor()
+        deleteButton.backgroundColor = UIColor.redColor()
+        nodUpButton.exclusiveTouch = true
+        nodDownButton.exclusiveTouch = true
+        nodRightButton.exclusiveTouch = true
+        nodLeftButton.exclusiveTouch = true
+        lookRightButton.exclusiveTouch = true
+        lookLeftButton.exclusiveTouch = true
+        shakeHorizontalButton.exclusiveTouch = true
+        shakeVerticalButton.exclusiveTouch = true
+        deleteButton.exclusiveTouch = true
+        // set gesture text
+        gestureText.text = "Current Gesture: " + currentGestureLabel.rawValue
     }
     
     // export data (share)
@@ -97,10 +145,22 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     }
     
     // log headset data
-    // TODO: not complete, just test
-    func logData(pitch: Float, roll: Float, yaw: Float, label: Int){
-        let str = String(pitch) + "," + String(roll) + "," + String(yaw) + "," + String(label) + "\n"
-        writeToFile(str, file: dataFileName);
+    func logDataHeader() {
+        let data = "pitch,roll,yaw,aceelX,accelY,accelZ,label,UID,headsetConnectionState,timeStamp\n"
+        writeToFile(data, file: dataFileName)
+    }
+    func logData(pitch: Float, roll: Float, yaw: Float, accelX: Double, accelY: Double, accelZ: Double){
+        // also logs: gesture label, gesture ID, headset connection status, and timestamp
+        var data = String(pitch) + "," + String(roll) + "," + String(yaw) + ","
+        data += String(accelX) + "," + String(accelY) + "," + String(accelZ) + ","
+        data += String(currentGestureLabel.rawValue) + "," + String(gestureUID) + ","
+        data += String(ConnectionState.text!) + "," + String(NSDate().timeIntervalSince1970 * 1000) + "\n"
+        writeToFile(data, file: dataFileName)
+    }
+    // logs an "ignore" - ignore the last gesture
+    func logIgnoreLast() {
+        let data = "IGNORE,IGNORE,IGNORE,IGNORE,IGNORE,IGNORE,IGNORE,IGNORE,IGNORE,IGNORE\n"
+        writeToFile(data, file: dataFileName)
     }
     
     // Device Delegate Methods
@@ -125,14 +185,14 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     
     //Sensor Delegate Methods
     @objc func ihsDevice(ihs: IHSDevice!, accelerometer3AxisDataChanged data: IHSAHRS3AxisStruct) {
-        pitchLabel.text = String(headset.pitch)
-        rollLabel.text = String(headset.roll)
-        yawLabel.text = String(headset.yaw)
-        xLabel.text = String(headset.accelerometerData.x)
-        yLabel.text = String(headset.accelerometerData.y)
-        zLabel.text = String(headset.accelerometerData.z)
-        timeLabel.text = "\(NSDate().timeIntervalSince1970 * 1000)"
-        logData(headset.pitch, roll: headset.roll, yaw: headset.yaw, label: 1)
+        pitchLabel?.text = String(headset.pitch)
+        rollLabel?.text = String(headset.roll)
+        yawLabel?.text = String(headset.yaw)
+        xLabel?.text = String(headset.accelerometerData.x)
+        yLabel?.text = String(headset.accelerometerData.y)
+        zLabel?.text = String(headset.accelerometerData.z)
+        timeLabel?.text = "\(NSDate().timeIntervalSince1970 * 1000)"
+        logData(headset.pitch, roll: headset.roll, yaw: headset.yaw, accelX: headset.accelerometerData.x, accelY: headset.accelerometerData.y, accelZ: headset.accelerometerData.z)
     }
     
     @objc func ihsDevice(ihs: IHSDevice!, didChangeYaw yaw: Float, pitch: Float, andRoll roll: Float) {
@@ -187,6 +247,61 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     
     @objc func ihsDevice(ihs: IHSDevice!, playerRenderError status: OSStatus) {
     }
+    
+    // BUTTON UP/DOWN METHODS //
+    func updateGestureText() {
+        gestureText.text = "Current Gesture: " + currentGestureLabel.rawValue + " [" + String(gestureUID) + "]"
+    }
+    
+    @IBAction func NodUpTouchDown(sender: AnyObject) {
+        gestureUID++
+        currentGestureLabel = gestureLabel.NodUp
+        updateGestureText()
+    }
+    @IBAction func NodDownTouchDown(sender: AnyObject) {
+        gestureUID++
+        currentGestureLabel = gestureLabel.NodDown
+        updateGestureText()
+    }
+    @IBAction func NodRightTouchDown(sender: AnyObject) {
+        gestureUID++
+        currentGestureLabel = gestureLabel.NodRight
+        updateGestureText()
+    }
+    @IBAction func NodLeftTouchDown(sender: AnyObject) {
+        gestureUID++
+        currentGestureLabel = gestureLabel.NodLeft
+        updateGestureText()
+    }
+    @IBAction func LookRightTouchDown(sender: AnyObject) {
+        gestureUID++
+        currentGestureLabel = gestureLabel.LookRight
+        updateGestureText()
+    }
+    @IBAction func LookLeftTouchDown(sender: AnyObject) {
+        gestureUID++
+        currentGestureLabel = gestureLabel.LookLeft
+        updateGestureText()
+    }
+    @IBAction func ShakeHTouchDown(sender: AnyObject) {
+        gestureUID++
+        currentGestureLabel = gestureLabel.ShakeHorizontal
+        updateGestureText()
+    }
+    @IBAction func ShakeVTouchDown(sender: AnyObject) {
+        gestureUID++
+        currentGestureLabel = gestureLabel.ShakeVertical
+        updateGestureText()
+    }
+    @IBAction func NoGesture(sender: AnyObject) {
+        gestureUID++
+        currentGestureLabel = gestureLabel.None
+        updateGestureText()
+    }
+    @IBAction func IgnoreLastGesture(sender: AnyObject) {
+        logIgnoreLast()
+    }
+    
 
 }
 
