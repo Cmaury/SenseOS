@@ -55,6 +55,12 @@ class SAYOpenMicTopic: SAYConversationTopic {
 
         
     }
+    func speakTextAnd(text: String, action: CurrentRequest ) {
+        let sequence = SAYAudioEventSequence()
+        sequence.addEvent(SAYSpeechEvent(utteranceString: text), withCompletionBlock: {
+            print("wrong topic")
+        })
+    }
     func speakText(text: [String]) {
         let sequence = SAYAudioEventSequence()
         for item in text {

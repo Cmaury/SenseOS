@@ -46,6 +46,8 @@ class SAYStateManager: SAYGestureRecognizerDelegate  {
         }
         
         didSet(currentState) {
+            
+            print("\(state)")
 
             switch state {
                 case .tutorial:

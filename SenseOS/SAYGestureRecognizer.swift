@@ -50,7 +50,8 @@ class SAYGestureRecognizer {
                     case .up:
                         if nodDetector.isUpNod() {
                             recognizedGesture(SAYGesture.up)
-                            print("Recognized Up")
+                            //(viewController as NotificationTopicEventHandler).updateUI("nodded up")
+                            print("nodded up")
                         }
                     case .down:
                         if nodDetector.isDownNod() {

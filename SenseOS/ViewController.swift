@@ -31,7 +31,9 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     
     @IBAction func startTutorial(sender: UIButton) {
         if stateManager.state == SAYState.tutorial {
-            (stateManager.activeState as! SAYStateTutorial).startTutorial()
+
+            topicHandler!.speakTextAnd(topicHandler!.tutorialPrompt1, action: CurrentRequest.tutorialRequest1)
+            //(stateManager.activeState as! SAYStateTutorial).startTutorial()
         }
         
     }
@@ -108,6 +110,9 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     
     //handle spoken commands
     var topicHandler: SAYNotificationFeed?
+    func updateUI(text: String) {
+        audioOutput.text = text
+    }
     func handlePlay() {
         
     }
@@ -174,6 +179,7 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
             headset.audioDelegate = self
             headset.buttonDelegate = self
             headset.connect()
+            
             stateManager.state = SAYState.tutorial
             print("\(headset.connectionState.rawValue)")
         }
@@ -227,6 +233,7 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
         switch connectionState {
         case IHSDeviceConnectionState.Connected:
             ConnectionState.text = "Connected"
+            print("\(headset.sounds)")
         case IHSDeviceConnectionState.None: ConnectionState.text = "None"
         case IHSDeviceConnectionState.Disconnected: ConnectionState.text = "Disconnected"
         if startedConnecting {

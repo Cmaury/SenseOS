@@ -47,6 +47,7 @@ class SAYStateResting: SAYGestureRecognizerDelegate {
                 manager?.activeState = SAYStateQuickFeed(manager: manager)
             case .down:
                 print("pressed down")
+                manager?.viewController.headset.play()
                 manager?.activeState = SAYStateOpenMic(manager: manager, caller: self, callerState: 0)
             default: print("this gesture doesn't do anything")
 

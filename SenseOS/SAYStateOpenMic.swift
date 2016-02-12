@@ -18,6 +18,7 @@ class SAYStateOpenMic: SAYGestureRecognizerDelegate {
         if let manager = manager {
             self.manager = manager
             manager.gestureRecognizer.enableGestures(
+                true,
                 down: true,
                 shakeVertical: true,
                 shakeHorizontal: true)
@@ -42,8 +43,10 @@ class SAYStateOpenMic: SAYGestureRecognizerDelegate {
     
     func didRecognizeGesture(gesture: SAYGesture) {
         switch gesture {
+        case .up:
+            manager?.activeState = SAYStateQuickFeed(manager: manager)
         case .down:
-            print("pressed up")
+            print("pressed down")
         case .shakeVertical:
             print("pressed down")
         case .shakeHorizontal:
