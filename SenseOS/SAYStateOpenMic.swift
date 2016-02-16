@@ -47,6 +47,9 @@ class SAYStateOpenMic: SAYGestureRecognizerDelegate {
             manager?.activeState = SAYStateQuickFeed(manager: manager)
         case .down:
             print("pressed down")
+            let request = SAYVerbalCommandRequest(commandRegistry: (manager?.viewController.topicHandler!)!)
+            SAYConversationManager.systemManager().presentVoiceRequest(request)
+            
         case .shakeVertical:
             print("pressed down")
         case .shakeHorizontal:

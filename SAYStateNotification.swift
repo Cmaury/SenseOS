@@ -38,6 +38,7 @@ class SAYStateNotification: SAYGestureRecognizerDelegate {
     var direction = ""
     
     func didRecognizeGesture(gesture: SAYGesture) {
+        var notifText = [""]
         switch gesture {
             case .down:
                 manager?.activeState = SAYStateOpenMic(manager: manager, caller: self)
@@ -45,7 +46,7 @@ class SAYStateNotification: SAYGestureRecognizerDelegate {
                 if direction == "left" {
                     print("I should be speaking")
                     manager?.viewController.player?.stop()
-                    manager?.viewController.soundBoard?.speakText("New Email from Greg. What's the good word?")
+                    notifText = ["New Email from Greg. What's the good word?"]
                 }
                 else {
                     manager?.viewController.player?.stop()
@@ -55,7 +56,7 @@ class SAYStateNotification: SAYGestureRecognizerDelegate {
             case .right:
                 if direction == "right" {
                     manager?.viewController.player?.stop()
-                    manager?.viewController.soundBoard?.speakText("New Email from Greg. What's the good word?")
+                    notifText = ["New Email from Greg. What's the good word?"]
                 }
                 else {
                     manager?.viewController.player?.stop()
@@ -66,11 +67,19 @@ class SAYStateNotification: SAYGestureRecognizerDelegate {
                 manager?.activeState = SAYStateResting(manager: manager)
             case .shakeVertical:
                 manager?.viewController.player?.stop()
-                manager?.viewController.soundBoard?.speakText("New Email from Greg. What's the good word?")
+                notifText = ["New Email from Greg. What's the good word?"]
             default: print("this gesture doesn't do anything")
             
             
         }
+        if manager?.viewController.inTutorial == true {
+            //manager?.viewController.player?.stop()
+            manager?.viewController.topicHandler?.speakTextAnd(notifText, action: CurrentRequest.tutorialRequest4)
+        }
+        else {
+            manager?.viewController.topicHandler?.speakText(notifText)
+        }
+        
     }
 }
     

@@ -30,9 +30,10 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     }
     
     @IBAction func startTutorial(sender: UIButton) {
+        inTutorial = true
         if stateManager.state == SAYState.tutorial {
 
-            topicHandler!.speakTextAnd(topicHandler!.tutorialPrompt1, action: CurrentRequest.tutorialRequest1)
+            topicHandler!.speakText(topicHandler!.tutorialPrompt1)
             //(stateManager.activeState as! SAYStateTutorial).startTutorial()
         }
         
@@ -113,6 +114,11 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     func updateUI(text: String) {
         audioOutput.text = text
     }
+    func finishTutorial() {
+        stateManager.state = SAYState.resting
+        inTutorial = false
+    }
+    
     func handlePlay() {
         
     }
@@ -156,7 +162,7 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     var stateManager: SAYStateManager!
     var player: AVAudioPlayer?
     var showedDeviceSelection = false
-    
+    var inTutorial = false
 
     
     override func viewDidLoad() {

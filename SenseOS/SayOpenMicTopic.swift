@@ -10,6 +10,7 @@ import Foundation
 
 
 protocol OpenMicTopicEventHandler: class {
+    func updateUI(text: String)
     func handlePlay()
     func handlePrevious()
     func handleNext()
@@ -68,6 +69,26 @@ class SAYOpenMicTopic: SAYConversationTopic {
                 print(item)
                     })
             sequence.addEvent(SAYSilenceEvent(interval: 0.5))
+        }
+        self.postEvents(sequence)
+    }
+    
+    func speakTextAnd(text: [String], action: CurrentRequest ) {
+        let sequence = SAYAudioEventSequence()
+        for (index, item) in text.enumerate() {
+            if index == (text.count - 1) {
+                self.eventHandler.updateUI(item)
+                sequence.addEvent(SAYSpeechEvent(utteranceString: item), withCompletionBlock: {
+                    //self.currentRequest = action
+                })
+                
+            }
+            else {
+                sequence.addEvent(SAYSpeechEvent(utteranceString: item), withCompletionBlock: {
+                    self.eventHandler.updateUI(item)
+                })
+                sequence.addEvent(SAYSilenceEvent(interval: 0.5))
+            }
         }
         self.postEvents(sequence)
     }
