@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SenseOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Z7-IB-GWl">
+                                <rect key="frame" x="216" y="57" width="168" height="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="NOD UP">
+                                    <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="NoGesture:" destination="BYZ-38-t0r" eventType="touchDragExit" id="VUU-jL-Abz"/>
+                                    <action selector="NoGesture:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y8h-KA-3uy"/>
+                                    <action selector="NodUpTouchDown:" destination="BYZ-38-t0r" eventType="touchDown" id="nq4-oV-pNy"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DJW-9q-mi3">
+                                <rect key="frame" x="216" y="107" width="168" height="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="NOD DOWN">
+                                    <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="NoGesture:" destination="BYZ-38-t0r" eventType="touchUpInside" id="06g-Ty-nT0"/>
+                                    <action selector="NoGesture:" destination="BYZ-38-t0r" eventType="touchDragExit" id="NR1-iw-asi"/>
+                                    <action selector="NodDownTouchDown:" destination="BYZ-38-t0r" eventType="touchDown" id="P5P-fw-zCV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E78-CQ-ng8">
+                                <rect key="frame" x="216" y="157" width="168" height="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="NOD RIGHT">
+                                    <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="NoGesture:" destination="BYZ-38-t0r" eventType="touchDragExit" id="WwP-uU-eJm"/>
+                                    <action selector="NoGesture:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e54-8c-jIl"/>
+                                    <action selector="NodRightTouchDown:" destination="BYZ-38-t0r" eventType="touchDown" id="Mly-ej-gJk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SnQ-2a-L2M">
+                                <rect key="frame" x="216" y="207" width="168" height="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="NOD LEFT">
+                                    <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="NoGesture:" destination="BYZ-38-t0r" eventType="touchDragExit" id="IdA-lz-CvZ"/>
+                                    <action selector="NoGesture:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WKv-2x-wqx"/>
+                                    <action selector="NodLeftTouchDown:" destination="BYZ-38-t0r" eventType="touchDown" id="b2j-RG-NVj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="luH-Qk-Jtr">
+                                <rect key="frame" x="216" y="257" width="168" height="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="LOOK RIGHT">
+                                    <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="LookRightTouchDown:" destination="BYZ-38-t0r" eventType="touchDown" id="KEs-ta-tyX"/>
+                                    <action selector="NoGesture:" destination="BYZ-38-t0r" eventType="touchDragExit" id="eiJ-2U-F3r"/>
+                                    <action selector="NoGesture:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zAz-vd-h69"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4k9-mf-AjB">
+                                <rect key="frame" x="216" y="307" width="168" height="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="LOOK LEFT">
+                                    <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="LookLeftTouchDown:" destination="BYZ-38-t0r" eventType="touchDown" id="SwM-up-T7P"/>
+                                    <action selector="NoGesture:" destination="BYZ-38-t0r" eventType="touchDragExit" id="Eae-tW-NIQ"/>
+                                    <action selector="NoGesture:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iff-GI-Hv4"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connection State" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hpd-MO-Jqt">
+                                <rect key="frame" x="233" y="28" width="133" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qHy-ou-aIF">
+                                <rect key="frame" x="216" y="357" width="168" height="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="SHAKE-H">
+                                    <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="NoGesture:" destination="BYZ-38-t0r" eventType="touchDragExit" id="BzU-cu-pnK"/>
+                                    <action selector="NoGesture:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FoP-bN-KsY"/>
+                                    <action selector="ShakeHTouchDown:" destination="BYZ-38-t0r" eventType="touchDown" id="alg-mG-PrC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zhP-NG-awZ">
+                                <rect key="frame" x="216" y="407" width="168" height="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="SHAKE-V">
+                                    <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="NoGesture:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tty-0v-xuo"/>
+                                    <action selector="NoGesture:" destination="BYZ-38-t0r" eventType="touchDragExit" id="wyZ-zz-T2h"/>
+                                    <action selector="ShakeVTouchDown:" destination="BYZ-38-t0r" eventType="touchDown" id="qSV-A2-swm"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Gesture: None" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6RK-V2-1ZC">
+                                <rect key="frame" x="213" y="465" width="173" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A7M-81-jFu">
+                                <rect key="frame" x="490" y="522" width="30" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="X">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="IgnoreLastGesture:" destination="BYZ-38-t0r" eventType="touchUpInside" id="si2-0j-o6z"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Jv-7w-67T">
+                                <rect key="frame" x="101" y="516" width="206" height="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="Start/Stop Session">
+                                    <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="startSession:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WDj-1P-922"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SUg-8M-MBj">
+                                <rect key="frame" x="216" y="285" width="168" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="EXPORT DATA">
+                                    <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="shareButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VjM-jE-Fke"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dCA-4R-yAJ">
+                                <rect key="frame" x="314" y="522" width="168" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="EXPORT DATA">
+                                    <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="shareButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="07x-cq-Lkr"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="luH-Qk-Jtr" firstAttribute="top" secondItem="SnQ-2a-L2M" secondAttribute="bottom" constant="8" id="0uU-8F-29j"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="A7M-81-jFu" secondAttribute="bottom" constant="39" id="2RD-UJ-uhV"/>
+                            <constraint firstItem="E78-CQ-ng8" firstAttribute="width" secondItem="SnQ-2a-L2M" secondAttribute="width" id="5K4-2A-Abg"/>
+                            <constraint firstItem="E78-CQ-ng8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6Jo-tQ-iEF"/>
+                            <constraint firstItem="6Z7-IB-GWl" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="37" id="CGj-xv-M3x"/>
+                            <constraint firstItem="luH-Qk-Jtr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="DEf-Vj-FX9"/>
+                            <constraint firstItem="E78-CQ-ng8" firstAttribute="top" secondItem="DJW-9q-mi3" secondAttribute="bottom" constant="8" id="DZD-6C-CnC"/>
+                            <constraint firstItem="Hpd-MO-Jqt" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="Ghk-8Z-CEN"/>
+                            <constraint firstItem="A7M-81-jFu" firstAttribute="leading" secondItem="dCA-4R-yAJ" secondAttribute="trailing" constant="11" id="IVh-Qd-u3e"/>
+                            <constraint firstItem="Hpd-MO-Jqt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LA9-eY-Zqk"/>
+                            <constraint firstItem="qHy-ou-aIF" firstAttribute="width" secondItem="zhP-NG-awZ" secondAttribute="width" id="Oy6-IG-Gvj"/>
+                            <constraint firstItem="SnQ-2a-L2M" firstAttribute="width" secondItem="luH-Qk-Jtr" secondAttribute="width" id="RK4-tk-BA3"/>
+                            <constraint firstItem="4k9-mf-AjB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RTx-vV-TWV"/>
+                            <constraint firstItem="6Z7-IB-GWl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="T8g-EV-mrb"/>
+                            <constraint firstItem="qHy-ou-aIF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="UH9-7a-xHi"/>
+                            <constraint firstItem="zhP-NG-awZ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="abM-aK-a5P"/>
+                            <constraint firstItem="DJW-9q-mi3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ehh-xM-it2"/>
+                            <constraint firstItem="6Z7-IB-GWl" firstAttribute="top" secondItem="Hpd-MO-Jqt" secondAttribute="bottom" constant="8" id="hcK-FD-Dgu"/>
+                            <constraint firstItem="qHy-ou-aIF" firstAttribute="top" secondItem="4k9-mf-AjB" secondAttribute="bottom" constant="8" id="hdb-4G-Dfa"/>
+                            <constraint firstItem="6Z7-IB-GWl" firstAttribute="width" secondItem="DJW-9q-mi3" secondAttribute="width" id="iI3-60-Gm3"/>
+                            <constraint firstItem="4k9-mf-AjB" firstAttribute="width" secondItem="qHy-ou-aIF" secondAttribute="width" id="iSB-by-M8O"/>
+                            <constraint firstItem="zhP-NG-awZ" firstAttribute="top" secondItem="qHy-ou-aIF" secondAttribute="bottom" constant="8" id="im6-FB-moQ"/>
+                            <constraint firstItem="SnQ-2a-L2M" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kPf-V9-3ZN"/>
+                            <constraint firstItem="SnQ-2a-L2M" firstAttribute="top" secondItem="E78-CQ-ng8" secondAttribute="bottom" constant="8" id="kme-iI-LeY"/>
+                            <constraint firstItem="6RK-V2-1ZC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mO1-Nj-C8f"/>
+                            <constraint firstItem="6RK-V2-1ZC" firstAttribute="top" secondItem="zhP-NG-awZ" secondAttribute="bottom" constant="16" id="mte-EC-dmx"/>
+                            <constraint firstItem="DJW-9q-mi3" firstAttribute="width" secondItem="E78-CQ-ng8" secondAttribute="width" id="pHr-r2-Uw8"/>
+                            <constraint firstItem="DJW-9q-mi3" firstAttribute="top" secondItem="6Z7-IB-GWl" secondAttribute="bottom" constant="8" id="rst-yV-GfF"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="dCA-4R-yAJ" secondAttribute="bottom" constant="39" id="tWl-mY-jWF"/>
+                            <constraint firstItem="dCA-4R-yAJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xm0-Gd-ve9"/>
+                            <constraint firstItem="4k9-mf-AjB" firstAttribute="top" secondItem="luH-Qk-Jtr" secondAttribute="bottom" constant="8" id="ykN-de-d9h"/>
+                            <constraint firstItem="luH-Qk-Jtr" firstAttribute="width" secondItem="4k9-mf-AjB" secondAttribute="width" id="zh1-ZL-KZ5"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="SUg-8M-MBj"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="ConnectionState" destination="Hpd-MO-Jqt" id="Qtn-fd-eai"/>
+                        <outlet property="deleteButton" destination="A7M-81-jFu" id="zeT-XG-sjd"/>
+                        <outlet property="exportDataButton" destination="dCA-4R-yAJ" id="DTD-L4-1Y9"/>
+                        <outlet property="gestureText" destination="6RK-V2-1ZC" id="UyF-wP-cWe"/>
+                        <outlet property="lookLeftButton" destination="4k9-mf-AjB" id="QcW-4G-duz"/>
+                        <outlet property="lookRightButton" destination="luH-Qk-Jtr" id="1Cb-0l-asY"/>
+                        <outlet property="nodDownButton" destination="DJW-9q-mi3" id="gzS-jD-snI"/>
+                        <outlet property="nodLeftButton" destination="SnQ-2a-L2M" id="8uO-ri-dFW"/>
+                        <outlet property="nodRightButton" destination="E78-CQ-ng8" id="BtI-eR-c55"/>
+                        <outlet property="nodUpButton" destination="6Z7-IB-GWl" id="sIT-g4-6hi"/>
+                        <outlet property="shakeHorizontalButton" destination="qHy-ou-aIF" id="Qye-34-5Pc"/>
+                        <outlet property="shakeVerticalButton" destination="zhP-NG-awZ" id="gac-ix-1rN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="565" y="465"/>
+        </scene>
+    </scenes>
+</document>
