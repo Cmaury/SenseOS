@@ -18,11 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         
-        let catalog = SAYCommandRecognizerCatalog()
-        SAYConversationManager.systemManager().commandRegistry = catalog
         
         let soundBoard = SAYSoundBoard()
         SAYConversationManager.systemManager().addAudioSource(soundBoard, forTrack: SAYAudioTrackMainIdentifier)
+        
         
         
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
@@ -31,12 +30,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         viewController.soundBoard = soundBoard
         
+        let rootTopic = SAYNotificationFeed(eventHandler: viewController)
+        let systemManager = SAYConversationManager.systemManager()
+        systemManager.commandRegistry = rootTopic
+        systemManager.addAudioSource(rootTopic, forTrack: SAYAudioTrackMainIdentifier)
         
-        // Audio track coordinator set up
-        let synth = SAYManagedSynthesizer()
-        let audioCoordinator = SAYAudioTrackCoordinator(managedSynthesizer: synth)
+        viewController.topicHandler = rootTopic
         
-        viewController.audioCoordinator = audioCoordinator
         
         window?.rootViewController = viewController
         

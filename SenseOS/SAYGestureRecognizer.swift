@@ -25,7 +25,7 @@ protocol SAYGestureRecognizerDelegate {
 class SAYGestureRecognizer {
     
     
-    
+    var useGestures = true
     let viewController: ViewController
     var activeDelegate: SAYGestureRecognizerDelegate
     
@@ -45,12 +45,13 @@ class SAYGestureRecognizer {
         nodDetector.tick()
         
             for item in enabledGestures {
-                if !nodDetector.isShakeHorizontal() && !nodDetector.isShakeVertical() {
+                if useGestures{
                     switch item {
                     case .up:
                         if nodDetector.isUpNod() {
                             recognizedGesture(SAYGesture.up)
-                            print("Recognized Up")
+                            //(viewController as NotificationTopicEventHandler).updateUI("nodded up")
+                            print("nodded up")
                         }
                     case .down:
                         if nodDetector.isDownNod() {
@@ -80,16 +81,16 @@ class SAYGestureRecognizer {
                     }
                     
                 }
-                else {
-                    if self.nodDetector.isHShakeRecentlyEnded() && item == SAYGesture.shakeHorizontal {
-                        self.recognizedGesture(SAYGesture.shakeHorizontal)
-                        print("Recognized Shake Horizontal")
-                    }
-                    if self.nodDetector.isVShakeRecentlyEnded() && item == SAYGesture.shakeVertical {
-                        self.recognizedGesture(SAYGesture.shakeVertical)
-                        print("Recognized Shake Vertical")
-                    }
-                }
+//                else {
+//                    if self.nodDetector.isHShakeRecentlyEnded() && item == SAYGesture.shakeHorizontal {
+//                        self.recognizedGesture(SAYGesture.shakeHorizontal)
+//                        print("Recognized Shake Horizontal")
+//                    }
+//                    if self.nodDetector.isVShakeRecentlyEnded() && item == SAYGesture.shakeVertical {
+//                        self.recognizedGesture(SAYGesture.shakeVertical)
+//                        print("Recognized Shake Vertical")
+//                    }
+//                }
         }
     }
     

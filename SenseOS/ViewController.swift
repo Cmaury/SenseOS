@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, IHS3DAudioDelegate, IHSButtonDelegate {
+class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, IHS3DAudioDelegate, IHSButtonDelegate, NotificationTopicEventHandler {
         
     
     @IBOutlet weak var accelX: UILabel!
@@ -18,6 +18,26 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     @IBOutlet weak var audioOutput: UILabel!
    
     @IBOutlet weak var ConnectionState: UILabel!
+    
+    @IBAction func useGestures(sender: UISwitch) {
+        
+        if sender.on {
+            stateManager.gestureRecognizer.useGestures = true
+        }
+        else {
+            stateManager.gestureRecognizer.useGestures = false
+        }
+    }
+    
+    @IBAction func startTutorial(sender: UIButton) {
+        inTutorial = true
+        if stateManager.state == SAYState.tutorial {
+
+            topicHandler!.speakText(topicHandler!.tutorialPrompt1)
+            //(stateManager.activeState as! SAYStateTutorial).startTutorial()
+        }
+        
+    }
     
     @IBAction func shareButton(sender: UIBarButtonItem) {
         var fileText = ""
@@ -88,6 +108,60 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
         
     }
     
+    
+    //handle spoken commands
+    var topicHandler: SAYNotificationFeed?
+    func updateUI(text: String) {
+        audioOutput.text = text
+    }
+    func finishTutorial() {
+        stateManager.state = SAYState.resting
+        inTutorial = false
+    }
+    
+    func handleUber() {
+        headset.addSound(IHSAudio3DSoundFile(URL: carTone))
+        headset.play()
+        
+        for var i = 0; i < 360; i++ {
+            (headset.sounds[0] as! IHSAudio3DSound).heading = Float(i)
+            
+        }
+        
+        topicHandler?.speakTextAnd((topicHandler?.tutorialPrompt3)!, action: CurrentRequest.tutorialRequest3)
+    }
+    func handlePrevious() {
+        
+    }
+    func handleNext() {
+        
+    }
+    func handleSelect() {
+        
+    }
+    func handleStop() {
+        
+    }
+    func handleRead() {
+        
+    }
+    func handleShare() {
+        
+    }
+    func handleReply() {
+        soundBoard?.speakText("What would you like to say?")
+        stateManager.activeState = SAYStateOpenMic(manager: stateManager, caller: SAYStateNotification.self, callerState: 4)
+    }
+    func handleDelete() {
+        
+    }
+    func handleComments() {
+        
+    }
+    
+    var startedConnecting = false
+    var receivingGyroData = false
+    
     let headset = IHSDevice(deviceDelegate: ViewController.self as! IHSDeviceDelegate)
     
     //var gestureRecognizer: SAYGestureRecognizer!
@@ -96,8 +170,8 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     var stateManager: SAYStateManager!
     var player: AVAudioPlayer?
     var showedDeviceSelection = false
-    
-
+    var inTutorial = false
+    let carTone = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("carTrack", ofType: "mp3")!)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -120,8 +194,10 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
             headset.audioDelegate = self
             headset.buttonDelegate = self
             headset.connect()
-            stateManager.state = SAYState.resting
+            
+            stateManager.state = SAYState.tutorial
             print("\(headset.connectionState.rawValue)")
+            
         }
         print("connection state is \(headset.connectionState.rawValue)")
     }
@@ -173,11 +249,20 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
         switch connectionState {
         case IHSDeviceConnectionState.Connected:
             ConnectionState.text = "Connected"
-            
+            print("\(headset.sounds)")
         case IHSDeviceConnectionState.None: ConnectionState.text = "None"
         case IHSDeviceConnectionState.Disconnected: ConnectionState.text = "Disconnected"
+        if startedConnecting {
+            soundBoard?.speakText("disconnected")
+            startedConnecting = false
+            receivingGyroData = false
+            }
         case IHSDeviceConnectionState.Discovering: ConnectionState.text = "Discovering"
         case IHSDeviceConnectionState.Connecting: ConnectionState.text = "Connecting..."
+        if !startedConnecting {
+            soundBoard?.speakText("Connecting")
+            startedConnecting = true
+            }
         case IHSDeviceConnectionState.ConnectionFailed:
             ConnectionState.text = "Connection Failed"
         case IHSDeviceConnectionState.BluetoothOff: ConnectionState.text = "Bluetooth is off"
@@ -216,6 +301,12 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     }
     
     @objc func ihsDevice(ihs: IHSDevice!, didChangeYaw yaw: Float, pitch: Float, andRoll roll: Float) {
+        if !receivingGyroData {
+            soundBoard?.speakText("Connected")
+            receivingGyroData = true
+            
+        }
+        
         let file = "Gyro_Data"
         let text = "\(ihs.yaw), \(ihs.pitch), \(ihs.roll)"
         updateLog(text, file: file)
@@ -227,6 +318,7 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     }
     
     @objc func ihsDevice(ihs: IHSDevice!, fusedHeadingChanged heading: Float) {
+        self.headset.playerHeading = heading
     }
     
     @objc func ihsDevice(ihs: IHSDevice!, compassHeadingChanged heading: Float) {

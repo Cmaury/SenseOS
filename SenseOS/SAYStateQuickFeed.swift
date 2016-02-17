@@ -22,19 +22,21 @@ class SAYStateQuickFeed: SAYGestureRecognizerDelegate {
                 shakeHorizontal: true,
                 shakeVertical: true)
             setActiveDelegate(self)
-            var notificationArry = [""]
-            notificationArry.append("New Notifications:  eye message from Greg")
-            notificationArry.append("Email from Meredith. No Subject")
-            notificationArry.append("NY Times breaking news...")
             
-            for var i = 0; i < notificationArry.count; i+0 {
-                manager.viewController.soundBoard?.speakText(notificationArry[i], then: {i++})
+            manager.viewController.topicHandler?.clearQueue()
+            
+            var notificationArray = [""]
+            notificationArray.append("New Notifications:  eye message from Greg")
+            notificationArray.append("Email from Meredith. No Subject")
+            notificationArray.append("NY Times breaking news. Supreme Court Justice Antonin Scalia has died, age 79.")
+            
+            if manager.viewController.inTutorial == true {
+                manager.viewController.topicHandler?.speakTextAnd(notificationArray, action: CurrentRequest.tutorialRequest2)
             }
-           
-
             
-           // let request = SAYVerbalCommandRequest(commandRegistry: SAYConversationManager.systemManager().commandRegistry!)
-            //SAYConversationManager.systemManager().presentVoiceRequest(request)
+            else {
+                manager.viewController.topicHandler?.speakText(notificationArray)
+            }
         }
         else {
             self.manager = nil
@@ -50,63 +52,89 @@ class SAYStateQuickFeed: SAYGestureRecognizerDelegate {
     var feedIndex = 0
     
     func didRecognizeGesture(gesture: SAYGesture) {
-        switch gesture {
-        case .up:
-            print("pressed up")
-            
-            feedIndex = feedIndex + 1
-            
-            if feedIndex == 1 {
-                manager?.viewController.soundBoard?.speakText("Inbod: Meredith Stern. No Subject. Adam Larsen. Reply. lunch friday?")
+        if manager?.viewController.inTutorial == true {
+            manager!.state = SAYState.resting
+        }
+        else {
+            switch gesture {
+            case .up:
+                print("pressed up")
+                
+                feedIndex = feedIndex + 1
+                
+                if feedIndex == 1 {
+                    var notificationArray = [""]
+                    notificationArray.append("Inbox: Meredith Stern. No Subject.")
+                    notificationArray.append("Adam Larsen. Reply. lunch friday?")
+                    notificationArray.append("DeltaAirlines. You're flight is delayed.")
+                    manager?.viewController.topicHandler?.speakText(notificationArray)
+                }
+                if feedIndex == 2 {
+                    
+                    var notificationArray = [""]
+                    notificationArray.append("Red it: Sanders tied with Clinton nationwied: Poll. 5k votes.")
+                    notificationArray.append("New study shows regrowing tropical forest sequester more carbon and recover more quickly than previously thought. 5.6k votes.")
+                    notificationArray.append("Mexico won't pay a cent for Trump's stupid wall. 5.6k votes.")
+                    manager?.viewController.topicHandler?.speakText(notificationArray)
+                }
+                if feedIndex == 3 {
+                    var notificationArray = [""]
+                    notificationArray.append("Twitter: David Yanofsky: The Super Bowl can triple private jet travel. qz.com.")
+                    notificationArray.append("Caleb Hunt: Strategy one. Score some more goals.")
+                    notificationArray.append("Robert Beschizza. My favorite conspiracy theory: Britain retired its space program the week David Bowie began recording Ziggy Stardust.")
+                    manager?.viewController.topicHandler?.speakText(notificationArray)
+                }
+                
+            case .down:
+                manager?.activeState = SAYStateOpenMic(manager: manager, caller: self, callerState: feedIndex)
+            case .shakeHorizontal:
+                feedIndex = 0
+                manager?.activeState = SAYStateResting(manager: manager)
+                
+                
+            case .left:
+                if feedIndex == 1 {
+                    var notificationArray = [""]
+                    notificationArray.append("Inbox: Meredith Stern. No Subject.")
+                    notificationArray.append("Adam Larsen. Reply. lunch friday?")
+                    manager?.viewController.topicHandler?.speakText(notificationArray)
+                }
+                if feedIndex == 2 {
+                    var notificationArray = [""]
+                    notificationArray.append("Red it: Sanders tied with Clinton nationwied: Poll. 5k votes.")
+                    notificationArray.append("New study shows regrowing tropical forest sequester more carbon and recover more quickly than previously thought. 5.6k votes.")
+                    manager?.viewController.topicHandler?.speakText(notificationArray)
+                }
+                if feedIndex == 3 {
+                    var notificationArray = [""]
+                    notificationArray.append("Twitter: David Yanofsky: The Super Bowl can triple private get travel. qz.com.")
+                    notificationArray.append("Caleb Hunt: Strategy one. Score some more goals.")
+                    manager?.viewController.topicHandler?.speakText(notificationArray)
+                }
+                
+            case .right:
+                if feedIndex == 1 {
+                    var notificationArray = [""]
+                    notificationArray.append("Adam Larsen. Reply. lunch friday?")
+                    notificationArray.append("DeltaAirlines. You're flight is delayed.")
+                    manager?.viewController.topicHandler?.speakText(notificationArray)
+                }
+                if feedIndex == 2 {
+                    var notificationArray = [""]
+                    notificationArray.append("New study shows regrowing tropical forest sequester more carbon and recover more quickly than previously thought. 5.6k votes.")
+                    notificationArray.append("Mexico won't pay a cent for Trump's stupid wall. 5.6k votes.")
+                    manager?.viewController.topicHandler?.speakText(notificationArray)
+                }
+                if feedIndex == 3 {
+                    var notificationArray = [""]
+                    notificationArray.append("Caleb Hunt: Strategy one. Score some more goals.")
+                    notificationArray.append("Robert Beschizza. My favorite conspiracy theory: Britain retired its space program the week David Bowie began recording Ziggy Stardust.")
+                    manager?.viewController.topicHandler?.speakText(notificationArray)
+                }
+            default: print("this gesture doesn't do anything")
+                
+                
             }
-            if feedIndex == 2 {
-                manager?.viewController.soundBoard?.speakText("Reddit: Sanders tied with Clinton nationwied: Poll. 5k votes. New study shows regrowing tropical forest sequester more carbon and recover more quickly than previously thought. 5.6k votes.")
-            }
-            if feedIndex == 3 {
-                manager?.viewController.soundBoard?.speakText("Twitter: David Yanofsky: The Super Bowl can triple private get travel. qz.com.  Caleb Hunt: Strategy one. Score some more goals.")
-            }
-            
-        case .down:
-            print("pressed down")
-            if feedIndex == 1 {
-                manager?.viewController.soundBoard?.speakText("Meredith Stern: No Subject. youtube link. Baby faling on her own birthday cake.")
-            }
-            if feedIndex == 2 {
-                manager?.viewController.soundBoard?.speakText("Comments for Sanders tied with Clinton. PancackesYes said My guess is that Hillary's internal data already showed this.")
-            }
-            if feedIndex == 3 {
-                manager?.viewController.soundBoard?.speakText("New Message. What would you like to say?")
-            }
-            
-        case .shakeHorizontal:
-            feedIndex = 0
-            manager?.activeState = SAYStateResting(manager: manager)
-            
-            
-        case .left:
-            if feedIndex == 1 {
-                manager?.viewController.soundBoard?.speakText("Inbod: Meredith Stern. No Subject. Adam Larsen. Reply. lunch friday?")
-            }
-            if feedIndex == 2 {
-                manager?.viewController.soundBoard?.speakText("Reddit: Sanders tied with Clinton nationwied: Poll. 5k votes. New study shows regrowing tropical forest sequester more carbon and recover more quickly than previously thought. 5.6k votes.")
-            }
-            if feedIndex == 3 {
-                manager?.viewController.soundBoard?.speakText("Twitter: David Yanofsky: The Super Bowl can triple private get travel. qz.com.  Caleb Hunt: Strategy one. Score some more goals.")
-            }
-            
-        case .right:
-            if feedIndex == 1 {
-                manager?.viewController.soundBoard?.speakText("IAdam Larsen. Reply. lunch friday?")
-            }
-            if feedIndex == 2 {
-                manager?.viewController.soundBoard?.speakText("New study shows regrowing tropical forest sequester more carbon and recover more quickly than previously thought. 5.6k votes.")
-            }
-            if feedIndex == 3 {
-                manager?.viewController.soundBoard?.speakText("Caleb Hunt: Strategy one. Score some more goals.")
-            }
-        default: print("this gesture doesn't do anything")
-            
-            
         }
     }
 }
