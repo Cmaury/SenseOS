@@ -50,7 +50,7 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     let dataFileName = "data.csv"
     var gestureUID = 0
     var sessionActive = false
-    
+    var showedDeviceSelection = false
     var topicHandler: MyTopic?
     
     var currentGestureLabel = gestureLabel.None
@@ -60,6 +60,7 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
        //while in session randomly speak a gesture
         //record data during that time period as that gesture
         sessionActive = !sessionActive
+        
         
         let sequence = SAYAudioEventSequence()
         sequence.addEvent(SAYSpeechEvent(utteranceString: ""), withCompletionBlock: {
@@ -240,6 +241,10 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     
     func ihsDeviceFoundAmbiguousDevices(ihs: IHSDevice!) {
         print("Found ambiguous device")
+        if !showedDeviceSelection {
+            ihs.showDeviceSelection(self)
+            showedDeviceSelection = true
+        }
     }
     
     //Sensor Delegate Methods

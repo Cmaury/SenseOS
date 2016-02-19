@@ -14,6 +14,7 @@ enum SAYState {
     case openMic
     case quickFeed
     case tutorial
+    case noddingTutorial
 }
 
 class SAYStateManager: SAYGestureRecognizerDelegate  {
@@ -50,6 +51,8 @@ class SAYStateManager: SAYGestureRecognizerDelegate  {
             print("\(state)")
 
             switch state {
+                case .noddingTutorial:
+                    activeState = SAYStateNoddingTutorial(manager: self)
                 case .tutorial:
                     activeState = SAYStateTutorial(manager: self)
                 case .resting:

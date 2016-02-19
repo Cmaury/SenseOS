@@ -26,6 +26,8 @@ class SAYStateOpenMic: SAYGestureRecognizerDelegate {
             self.caller = caller
             self.callerState = callerState          
 
+//            let tone = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("pad_confirm", ofType: "wav")!)
+//            manager.viewController.soundBoard?.playToneWithURL(tone)
             let request = SAYVerbalCommandRequest(commandRegistry: SAYConversationManager.systemManager().commandRegistry!)
             SAYConversationManager.systemManager().presentVoiceRequest(request)
         }

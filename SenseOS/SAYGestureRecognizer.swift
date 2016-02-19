@@ -8,13 +8,31 @@
 
 import Foundation
 
-enum SAYGesture {
+enum SAYGesture: String {
     case up
     case down
     case left
     case right
     case shakeHorizontal
     case shakeVertical
+    
+    var userDescription: String {
+        switch self {
+        case up:
+            return "Nodded Up"
+        case down:
+            return "Nodded Down"
+        case left:
+            return "Looked Left"
+        case right:
+            return "Looked Right"
+        case shakeHorizontal:
+            return "Shook your head left and right"
+        case shakeVertical:
+            return "shook your head up and down"
+        default: break
+        }
+    }
 }
 
 protocol SAYGestureRecognizerDelegate {
@@ -37,6 +55,7 @@ class SAYGestureRecognizer {
     
     let nodDetector = SAYNodDetector(windowSize: 5)
     var enabledGestures = [SAYGesture]()
+    
     
     func detectGesture() {
         nodDetector.addPitchAngle(viewController.headset.pitch)
@@ -97,6 +116,7 @@ class SAYGestureRecognizer {
     
     func enableGestures(up: Bool = false, down: Bool = false, left: Bool = false, right: Bool = false, shakeHorizontal: Bool = false, shakeVertical: Bool = false) {
         
+        enabledGestures = []	
         if up {
             enabledGestures.append(SAYGesture.up)
         }

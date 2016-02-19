@@ -9,7 +9,7 @@
 import Foundation
 
 class SAYStateQuickFeed: SAYGestureRecognizerDelegate {
-    
+    var playedTutorialMessage = false
     let manager: SAYStateManager?
     init(manager: SAYStateManager?) {
         if let manager = manager {
@@ -30,11 +30,13 @@ class SAYStateQuickFeed: SAYGestureRecognizerDelegate {
             notificationArray.append("Email from Meredith. No Subject")
             notificationArray.append("NY Times breaking news. Supreme Court Justice Antonin Scalia has died, age 79.")
             
-            if manager.viewController.inTutorial == true {
+            if manager.viewController.inTutorial == true  && playedTutorialMessage == false {
+                manager.gestureRecognizer.enableGestures()
                 manager.viewController.topicHandler?.speakTextAnd(notificationArray, action: CurrentRequest.tutorialRequest2)
+                playedTutorialMessage = true
             }
             
-            else {
+            if manager.viewController.inTutorial == false {
                 manager.viewController.topicHandler?.speakText(notificationArray)
             }
         }
@@ -53,7 +55,13 @@ class SAYStateQuickFeed: SAYGestureRecognizerDelegate {
     
     func didRecognizeGesture(gesture: SAYGesture) {
         if manager?.viewController.inTutorial == true {
-            manager!.state = SAYState.resting
+            switch gesture {
+            case .down:
+                manager!.state = SAYState.openMic
+            default:
+                manager!.state = SAYState.resting
+            }
+            
         }
         else {
             switch gesture {

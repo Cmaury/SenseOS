@@ -31,11 +31,12 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     
     @IBAction func startTutorial(sender: UIButton) {
         inTutorial = true
-        if stateManager.state == SAYState.tutorial {
 
-            topicHandler!.speakText(topicHandler!.tutorialPrompt1)
-            //(stateManager.activeState as! SAYStateTutorial).startTutorial()
-        }
+        stateManager.state = SAYState.noddingTutorial
+        stateManager.gestureRecognizer.enableGestures()
+        topicHandler!.speakTextAnd(topicHandler!.tutorialPrompt1, action: CurrentRequest.tutorialRequest1)
+        //(stateManager.activeState as! SAYStateTutorial).startTutorial()
+
         
     }
     
@@ -120,16 +121,12 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     }
     
     func handleUber() {
-        headset.addSound(IHSAudio3DSoundFile(URL: carTone))
         headset.play()
         
-        for var i = 0; i < 360; i++ {
-            (headset.sounds[0] as! IHSAudio3DSound).heading = Float(i)
-            
-        }
-        
-        topicHandler?.speakTextAnd((topicHandler?.tutorialPrompt3)!, action: CurrentRequest.tutorialRequest3)
+    
+
     }
+    
     func handlePrevious() {
         
     }
@@ -171,15 +168,14 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     var player: AVAudioPlayer?
     var showedDeviceSelection = false
     var inTutorial = false
-    let carTone = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("carTrack", ofType: "mp3")!)
+    var carTone: NSURL!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
         stateManager = SAYStateManager(viewController: self)
         stateManager.state = SAYState.resting
-        
+        carTone = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("carTrack", ofType: "wav")!)
         
         let path = NSBundle.mainBundle().pathForResource("thinking", ofType: "wav")
         let url = NSURL(fileURLWithPath: path!)
@@ -196,6 +192,10 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
             headset.connect()
             
             stateManager.state = SAYState.tutorial
+            
+            let carSound = IHSAudio3DSoundFile(URL: carTone)
+            headset.addSound(carSound)
+            
             print("\(headset.connectionState.rawValue)")
             
         }
@@ -303,6 +303,7 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     @objc func ihsDevice(ihs: IHSDevice!, didChangeYaw yaw: Float, pitch: Float, andRoll roll: Float) {
         if !receivingGyroData {
             soundBoard?.speakText("Connected")
+            
             receivingGyroData = true
             
         }
@@ -362,9 +363,13 @@ class ViewController: UIViewController, IHSDeviceDelegate, IHSSensorsDelegate, I
     }
     
     @objc func ihsDevice(ihs: IHSDevice!, playerDidStopSuccessfully success: Bool) {
+        topicHandler?.speakTextAnd((topicHandler?.tutorialPrompt3)!, action: CurrentRequest.tutorialRequest3)
     }
     
     @objc func ihsDevice(ihs: IHSDevice!, playerCurrentTime currentTime: NSTimeInterval, duration: NSTimeInterval) {
+        
+        let sound = (headset.sounds[0] as! IHSAudio3DSound)
+        sound.distance = UInt32(1000 / 0.1 + (currentTime/duration))
         
     }
     

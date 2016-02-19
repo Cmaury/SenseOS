@@ -31,11 +31,11 @@ class MyTopic: SAYConversationTopic {
     
     func recordGesture(prompt: String, gesture: gestureLabel) {
         print("current gesture is \(gesture)")
-        viewController.gestureUID++
         let sequence = SAYAudioEventSequence()
         
         sequence.addEvent(SAYSpeechEvent(utteranceString: prompt))
         sequence.addEvent(SAYToneEvent(audioURL: NSURL(fileURLWithPath: startTone!)), withCompletionBlock: {
+                self.viewController.gestureUID++
                 self.viewController.currentGestureLabel = gesture
         })
         sequence.addEvent(SAYSilenceEvent(interval:2.0))

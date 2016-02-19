@@ -10,7 +10,6 @@
 		A816719D1C67B9DC00472E59 /* SAYNotificationFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = A816719C1C67B9DC00472E59 /* SAYNotificationFeed.swift */; };
 		A81671F21C73CCAB00472E59 /* pad_confirm.wav in Resources */ = {isa = PBXBuildFile; fileRef = A81671F11C73CCAB00472E59 /* pad_confirm.wav */; };
 		A81671F41C73D19500472E59 /* traffic.wav in Resources */ = {isa = PBXBuildFile; fileRef = A81671F31C73D19500472E59 /* traffic.wav */; };
-		A81671F61C73D31C00472E59 /* carStart.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A81671F51C73D31C00472E59 /* carStart.mp3 */; };
 		A81671F81C73D7D500472E59 /* carTrack.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A81671F71C73D7D500472E59 /* carTrack.mp3 */; };
 		A8436A981C4984BD006BCB09 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8436A971C4984BD006BCB09 /* AppDelegate.swift */; };
 		A8436A9A1C4984BD006BCB09 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8436A991C4984BD006BCB09 /* ViewController.swift */; };
@@ -33,6 +32,8 @@
 		A8436ADE1C499B62006BCB09 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A8436ADB1C499B62006BCB09 /* libc++.tbd */; };
 		A8436ADF1C499B62006BCB09 /* libc++abi.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A8436ADC1C499B62006BCB09 /* libc++abi.tbd */; };
 		A8436AEC1C499D3F006BCB09 /* IHS in Resources */ = {isa = PBXBuildFile; fileRef = A8436AEB1C499D3F006BCB09 /* IHS */; };
+		A870E1A41C7651A2004BB9BC /* chime_bell_ding-2.wav in Resources */ = {isa = PBXBuildFile; fileRef = A870E1A31C7651A2004BB9BC /* chime_bell_ding-2.wav */; };
+		A870E1A61C7653B0004BB9BC /* SAYStateNoddingTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870E1A51C7653B0004BB9BC /* SAYStateNoddingTutorial.swift */; };
 		A88B566B1C6258DD0099D57F /* SayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A88B566A1C6258DD0099D57F /* SayKit.framework */; };
 		A88B566C1C6259D00099D57F /* SayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A88B566A1C6258DD0099D57F /* SayKit.framework */; };
 		A88B566D1C6259D00099D57F /* SayKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A88B566A1C6258DD0099D57F /* SayKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -47,6 +48,7 @@
 		A88B56851C6542BE0099D57F /* SAYNodDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88B56841C6542BE0099D57F /* SAYNodDetector.swift */; };
 		A88B56871C6937F60099D57F /* SayOpenMicTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88B56861C6937F60099D57F /* SayOpenMicTopic.swift */; };
 		A88B568B1C6BA7370099D57F /* SayStateTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88B568A1C6BA7370099D57F /* SayStateTutorial.swift */; };
+		A8C3E19A1C750C88002734D6 /* carTrack.wav in Resources */ = {isa = PBXBuildFile; fileRef = A8C3E1991C750C88002734D6 /* carTrack.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,7 +86,6 @@
 		A816719C1C67B9DC00472E59 /* SAYNotificationFeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAYNotificationFeed.swift; sourceTree = "<group>"; };
 		A81671F11C73CCAB00472E59 /* pad_confirm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pad_confirm.wav; sourceTree = "<group>"; };
 		A81671F31C73D19500472E59 /* traffic.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = traffic.wav; sourceTree = "<group>"; };
-		A81671F51C73D31C00472E59 /* carStart.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = carStart.mp3; sourceTree = "<group>"; };
 		A81671F71C73D7D500472E59 /* carTrack.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = carTrack.mp3; sourceTree = "<group>"; };
 		A8436A941C4984BD006BCB09 /* SenseOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SenseOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8436A971C4984BD006BCB09 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +115,8 @@
 		A8436ADC1C499B62006BCB09 /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
 		A8436AE01C499C17006BCB09 /* IHS-Bridging-header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IHS-Bridging-header.h"; sourceTree = "<group>"; };
 		A8436AEB1C499D3F006BCB09 /* IHS */ = {isa = PBXFileReference; lastKnownFileType = folder; path = IHS; sourceTree = "<group>"; };
+		A870E1A31C7651A2004BB9BC /* chime_bell_ding-2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "chime_bell_ding-2.wav"; sourceTree = "<group>"; };
+		A870E1A51C7653B0004BB9BC /* SAYStateNoddingTutorial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAYStateNoddingTutorial.swift; sourceTree = "<group>"; };
 		A88B566A1C6258DD0099D57F /* SayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SayKit.framework; path = ../SayKit.framework; sourceTree = "<group>"; };
 		A88B56721C6271B60099D57F /* notiftone.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = notiftone.wav; sourceTree = "<group>"; };
 		A88B56741C6292460099D57F /* SAYStateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAYStateManager.swift; sourceTree = "<group>"; };
@@ -126,6 +129,7 @@
 		A88B56841C6542BE0099D57F /* SAYNodDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAYNodDetector.swift; sourceTree = "<group>"; };
 		A88B56861C6937F60099D57F /* SayOpenMicTopic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SayOpenMicTopic.swift; sourceTree = "<group>"; };
 		A88B568A1C6BA7370099D57F /* SayStateTutorial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SayStateTutorial.swift; sourceTree = "<group>"; };
+		A8C3E1991C750C88002734D6 /* carTrack.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = carTrack.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,7 +175,8 @@
 		A81671F01C73CC9E00472E59 /* Media */ = {
 			isa = PBXGroup;
 			children = (
-				A81671F51C73D31C00472E59 /* carStart.mp3 */,
+				A870E1A31C7651A2004BB9BC /* chime_bell_ding-2.wav */,
+				A8C3E1991C750C88002734D6 /* carTrack.wav */,
 				A81671F71C73D7D500472E59 /* carTrack.mp3 */,
 				A81671F31C73D19500472E59 /* traffic.wav */,
 				A81671F11C73CCAB00472E59 /* pad_confirm.wav */,
@@ -206,6 +211,7 @@
 				A8436A971C4984BD006BCB09 /* AppDelegate.swift */,
 				A8436A991C4984BD006BCB09 /* ViewController.swift */,
 				A88B56741C6292460099D57F /* SAYStateManager.swift */,
+				A870E1A51C7653B0004BB9BC /* SAYStateNoddingTutorial.swift */,
 				A88B568A1C6BA7370099D57F /* SayStateTutorial.swift */,
 				A88B56781C62A0C50099D57F /* SAYStateResting.swift */,
 				A88B567A1C63E6270099D57F /* SAYStateNotification.swift */,
@@ -219,8 +225,8 @@
 				A8436A9E1C4984BD006BCB09 /* Assets.xcassets */,
 				A8436AA01C4984BD006BCB09 /* LaunchScreen.storyboard */,
 				A8436AA31C4984BD006BCB09 /* Info.plist */,
-				A8436AE01C499C17006BCB09 /* IHS-Bridging-header.h */,
 				A88B56711C6271100099D57F /* Sounds */,
+				A8436AE01C499C17006BCB09 /* IHS-Bridging-header.h */,
 				A8436AC51C498531006BCB09 /* Frameworks */,
 			);
 			path = SenseOS;
@@ -383,12 +389,13 @@
 			files = (
 				A81671F21C73CCAB00472E59 /* pad_confirm.wav in Resources */,
 				A8436AA21C4984BD006BCB09 /* LaunchScreen.storyboard in Resources */,
+				A870E1A41C7651A2004BB9BC /* chime_bell_ding-2.wav in Resources */,
 				A8436A9F1C4984BD006BCB09 /* Assets.xcassets in Resources */,
 				A81671F81C73D7D500472E59 /* carTrack.mp3 in Resources */,
 				A8436A9D1C4984BD006BCB09 /* Main.storyboard in Resources */,
 				A88B567D1C63F6630099D57F /* thinking.wav in Resources */,
-				A81671F61C73D31C00472E59 /* carStart.mp3 in Resources */,
 				A88B56731C6271B60099D57F /* notiftone.wav in Resources */,
+				A8C3E19A1C750C88002734D6 /* carTrack.wav in Resources */,
 				A81671F41C73D19500472E59 /* traffic.wav in Resources */,
 				A8436AEC1C499D3F006BCB09 /* IHS in Resources */,
 			);
@@ -424,6 +431,7 @@
 				A88B56751C6292460099D57F /* SAYStateManager.swift in Sources */,
 				A88B56771C6299DF0099D57F /* SAYGestureRecognizer.swift in Sources */,
 				A8436A9A1C4984BD006BCB09 /* ViewController.swift in Sources */,
+				A870E1A61C7653B0004BB9BC /* SAYStateNoddingTutorial.swift in Sources */,
 				A88B568B1C6BA7370099D57F /* SayStateTutorial.swift in Sources */,
 				A816719D1C67B9DC00472E59 /* SAYNotificationFeed.swift in Sources */,
 				A8436A981C4984BD006BCB09 /* AppDelegate.swift in Sources */,
