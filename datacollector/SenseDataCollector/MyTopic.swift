@@ -41,8 +41,10 @@ class MyTopic: SAYConversationTopic {
         sequence.addEvent(SAYSilenceEvent(interval:2.0))
         sequence.addEvent(SAYToneEvent(audioURL: NSURL(fileURLWithPath: endTone!)), withCompletionBlock: {
                 self.viewController.currentGestureLabel = gestureLabel.None
-                self.viewController.setGestureToBeRecorded()
             })
+        sequence.addEvent(SAYSilenceEvent(interval: 6.0), withCompletionBlock: {
+            self.viewController.setGestureToBeRecorded()
+        })
         self.postEvents(sequence)
     }
     

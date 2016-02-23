@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A816719D1C67B9DC00472E59 /* SAYNotificationFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = A816719C1C67B9DC00472E59 /* SAYNotificationFeed.swift */; };
+		A816719D1C67B9DC00472E59 /* 	.swift in Sources */ = {isa = PBXBuildFile; fileRef = A816719C1C67B9DC00472E59 /* 	.swift */; };
 		A81671F21C73CCAB00472E59 /* pad_confirm.wav in Resources */ = {isa = PBXBuildFile; fileRef = A81671F11C73CCAB00472E59 /* pad_confirm.wav */; };
 		A81671F41C73D19500472E59 /* traffic.wav in Resources */ = {isa = PBXBuildFile; fileRef = A81671F31C73D19500472E59 /* traffic.wav */; };
 		A81671F81C73D7D500472E59 /* carTrack.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A81671F71C73D7D500472E59 /* carTrack.mp3 */; };
@@ -83,7 +83,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A816719C1C67B9DC00472E59 /* SAYNotificationFeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAYNotificationFeed.swift; sourceTree = "<group>"; };
+		A816719C1C67B9DC00472E59 /* 	.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "\t.swift"; sourceTree = "<group>"; };
 		A81671F11C73CCAB00472E59 /* pad_confirm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pad_confirm.wav; sourceTree = "<group>"; };
 		A81671F31C73D19500472E59 /* traffic.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = traffic.wav; sourceTree = "<group>"; };
 		A81671F71C73D7D500472E59 /* carTrack.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = carTrack.mp3; sourceTree = "<group>"; };
@@ -217,7 +217,7 @@
 				A88B567A1C63E6270099D57F /* SAYStateNotification.swift */,
 				A88B56801C6505CA0099D57F /* SAYStateQuickFeed.swift */,
 				A88B567E1C63F8000099D57F /* SAYStateOpenMic.swift */,
-				A816719C1C67B9DC00472E59 /* SAYNotificationFeed.swift */,
+				A816719C1C67B9DC00472E59 /* 	.swift */,
 				A88B56861C6937F60099D57F /* SayOpenMicTopic.swift */,
 				A88B56761C6299DF0099D57F /* SAYGestureRecognizer.swift */,
 				A88B56841C6542BE0099D57F /* SAYNodDetector.swift */,
@@ -433,7 +433,7 @@
 				A8436A9A1C4984BD006BCB09 /* ViewController.swift in Sources */,
 				A870E1A61C7653B0004BB9BC /* SAYStateNoddingTutorial.swift in Sources */,
 				A88B568B1C6BA7370099D57F /* SayStateTutorial.swift in Sources */,
-				A816719D1C67B9DC00472E59 /* SAYNotificationFeed.swift in Sources */,
+				A816719D1C67B9DC00472E59 /* 	.swift in Sources */,
 				A8436A981C4984BD006BCB09 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
