@@ -13,10 +13,35 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var loadedEnoughToDeepLink : Bool = false
+
+
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotaion: AnyObject?) -> Bool {
+        
+        if url.host == nil {
+            return true;
+        }
+
+        let urlString = url.absoluteString
+        let queryArray = urlString.componentsSeparatedByString("/")
+        let query = queryArray[2]
+        
+        if query.rangeOfString("SenseOS") != nil {
+            
+            let data = urlString.componentsSeparatedByString("/")
+            if data.count >= 3 {
+                
+                let parameters = data[3]
+                print("\(parameters)")
+                return true
+            }
+            
+        }
+        return false
+    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        
         
         
         let soundBoard = SAYSoundBoard()

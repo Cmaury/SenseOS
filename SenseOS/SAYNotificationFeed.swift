@@ -74,6 +74,10 @@ class SAYNotificationFeed: SAYConversationTopic {
         let replyRecognizer = SAYCustomCommandRecognizer(customType: "reply",  actionBlock: { command in
             print("heard reply command")
             eventHandler.handleReply()
+            
+
+            let testurl = NSURL(string: "URLTest://SenseOS/request=blah")
+            UIApplication.sharedApplication().openURL(testurl!)
         })
         
         patterns = ["reply", "respond", "answer"]
